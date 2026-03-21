@@ -206,11 +206,8 @@
 
 ## 접근성
 
+> 폼 접근성 공통 스펙은 `design.md` Section 11 "폼 접근성" 참조.
+
 | 항목 | 스펙 |
 |------|------|
-| `<label>` | 모든 input에 `htmlFor`로 연결 |
-| aria-required | 필수 필드에 `aria-required="true"` |
-| aria-describedby | 에러 메시지 `<span>` id와 연결 |
-| aria-invalid | validation 실패 시 `aria-invalid="true"` |
-| 에러 메시지 | `role="alert"` (스크린리더 즉시 안내) |
 | Tab 순서 | 회사명 → 담당자명 → 연락처 → 이메일 → 문의내용 → 전송 버튼 |

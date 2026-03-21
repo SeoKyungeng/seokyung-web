@@ -165,7 +165,7 @@
 | **벤토 그리드** | 홈 회사 소개 통계, ESG 카드 |
 | **수평 스크롤** | 홈 설비 하이라이트, 설비현황 쇼케이스 |
 | **마소닉 그리드** | 가공제품 갤러리 |
-| **스플릿 레이아웃** (50:50) | 문의하기 폼 + 정보 |
+| **스플릿 레이아웃** (6:4) | 문의하기 폼 + 정보 |
 
 ---
 
@@ -465,8 +465,8 @@ PC:
 | 폰트 | 로딩 방식 | 서브셋 |
 |------|----------|--------|
 | Syne | `next/font/google` | weight 600, 700 |
-| Geist | `next/font/google` | weight 400, 600 |
-| Geist Mono | `next/font/google` | weight 400 |
+| Geist | `next/font/local` | weight 400, 600 |
+| Geist Mono | `next/font/local` | weight 400 |
 | Pretendard | `next/font/local` (Variable) | weight 400, 600, 700만 서브셋 |
 
 - `font-display: swap` (모든 폰트)

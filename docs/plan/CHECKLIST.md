@@ -43,7 +43,7 @@
 - [ ] Tailwind 테마 커스터마이징
   - [ ] 컬러: midnight, cyan-400, smoke, steel, slate
   - [ ] 폰트 패밀리: Syne, Geist, Geist Mono, Pretendard
-  - [ ] 브레이크포인트: 768px (mobile), 1024px (tablet)
+  - [ ] 브레이크포인트: 640 / 768 / 1024 / 1280 / 1536px
 - [ ] next-intl i18n 설정
   - [ ] `[locale]` 세그먼트 라우팅
   - [ ] middleware (locale 감지 + 리다이렉트)
@@ -70,11 +70,13 @@
 - [ ] GrainOverlay — 미세 노이즈 텍스처 오버레이
 - [ ] GlowBlob — 시안/블루 그라디언트 블롭 (애니메이션)
 - [ ] PageHeader — 70vh 다크 히어로 (SectionLabel + 타이틀 + 서브타이틀)
+- [ ] NotFoundPage — 404 페이지 (midnight 배경, Syne 120px, 홈 CTA)
 
 ### 네비게이션
+- [ ] Skip link — "본문으로 건너뛰기" (포커스 시에만 표시)
 - [ ] Header (PC)
   - [ ] 로고 + 메뉴 + 언어 토글 + 문의 CTA
-  - [ ] 스크롤 60px 이후 배경 전환 (투명 → midnight/80 + blur)
+  - [ ] 스크롤 60px 이후 배경 전환 (투명 → midnight/90 + backdrop-blur-lg)
   - [ ] 활성 메뉴 시안 밑줄
 - [ ] Header (모바일)
   - [ ] 햄버거 버튼 → 풀스크린 오버레이
@@ -100,6 +102,9 @@
 - [ ] Skeleton — 로딩 상태 (펄스 애니메이션)
 - [ ] BlurUpImage — 저해상도 blur → 원본 fade-in
 
+### 모션
+- [ ] prefers-reduced-motion 대응 (스크롤 애니메이션 비활성화, 카운터 즉시 표시, Lenis 비활성화)
+
 ### 피드백
 - [ ] Toast — 성공/에러/정보 알림
 
@@ -111,7 +116,7 @@
 
 - [ ] Hero 섹션
   - [ ] 풀스크린 영상 배경 (poster 대체)
-  - [ ] 다크 오버레이 (midnight/60)
+  - [ ] 다크 오버레이 (midnight/80~95 그라디언트)
   - [ ] 텍스트 clip-path reveal 애니메이션
   - [ ] 스크롤 유도 인디케이터
 - [ ] 핵심 수치 섹션
