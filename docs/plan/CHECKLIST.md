@@ -6,60 +6,30 @@
 
 ## Phase 0 — 프로젝트 셋업 (~0.5주)
 
-- [ ] Next.js + TypeScript 프로젝트 초기화
-- [ ] Tailwind CSS v4 설치 및 설정
-- [ ] 폴더 구조 확립
-  ```
-  src/
-  ├── app/[locale]/          # i18n 라우팅
-  │   ├── layout.tsx
-  │   ├── page.tsx           # Home
-  │   ├── about/
-  │   ├── equipment/
-  │   ├── products/
-  │   ├── sustainability/
-  │   └── contact/
-  ├── components/
-  │   ├── common/            # Header, Footer, SectionLabel 등
-  │   ├── home/
-  │   ├── about/
-  │   ├── equipment/
-  │   ├── products/
-  │   ├── sustainability/
-  │   └── contact/
-  ├── lib/                   # 유틸리티, 타입 정의
-  ├── data/                  # 콘텐츠 데이터 (JSON)
-  │   ├── company.json       # 회사 기본 정보 (주소, 전화, 팩스, 이메일, 좌표)
-  │   ├── ceo.json           # CEO 인사말 (사진, 이름, 직함, 인사말)
-  │   ├── organization.json  # 조직도 (부서 트리)
-  │   ├── equipment.json     # CNC/MCT 설비 목록 + 스펙
-  │   ├── products.json      # 제품 갤러리 (카테고리별 이미지)
-  │   ├── sustainability.json # ESG 텍스트 + 인증서
-  │   └── stats.json         # 홈 핵심 수치
-  ├── messages/              # i18n 번역 파일 (ko.json, en.json)
-  └── styles/                # 글로벌 스타일
-  ```
-- [ ] ESLint + Prettier 설정
-- [ ] Tailwind 테마 커스터마이징
-  - [ ] 컬러: midnight, cyan-400, smoke, steel, slate
-  - [ ] 폰트 패밀리: Syne, Geist, Geist Mono, Pretendard
-  - [ ] 브레이크포인트: 640 / 768 / 1024 / 1280 / 1536px
-- [ ] next-intl i18n 설정
-  - [ ] `[locale]` 세그먼트 라우팅
-  - [ ] middleware (locale 감지 + 리다이렉트)
-  - [ ] 기본 메시지 파일 구조 (ko.json, en.json)
-- [ ] 폰트 설정
-  - [ ] Syne (Google Fonts / next/font)
-  - [ ] Geist + Geist Mono (next/font)
-  - [ ] Pretendard (next/font/local, 서브셋 400/600/700)
-- [ ] 모션 라이브러리 설치
-  - [ ] Framer Motion
-  - [ ] GSAP + ScrollTrigger
-  - [ ] Lenis (smooth scroll)
-- [ ] 콘텐츠 데이터 구조 설계
-  - [ ] TypeScript 타입 정의 (Company, CEO, Equipment, Product 등)
-  - [ ] 더미 데이터 JSON 파일 생성 (`src/data/*.json`)
-  - [ ] 다국어 콘텐츠 키 구조 설계 (`{ ko: "...", en: "..." }`)
+- [x] Next.js 16 + TypeScript 프로젝트 초기화 (pnpm)
+- [x] Tailwind CSS v4 설치 및 설정 (CSS-first `@theme`)
+- [x] 폴더 구조 확립 (app/[locale]/, components/, data/, lib/, i18n/, messages/, styles/)
+- [x] ESLint 설정
+- [x] Tailwind 테마 커스터마이징
+  - [x] 컬러: midnight, cyan-400, smoke, steel, slate
+  - [x] 폰트 패밀리: Syne, Geist, Geist Mono, Pretendard
+  - [x] 브레이크포인트: Tailwind v4 기본 (640 / 768 / 1024 / 1280 / 1536px)
+- [x] next-intl i18n 설정
+  - [x] `[locale]` 세그먼트 라우팅
+  - [x] proxy.ts (Next.js 16 convention)
+  - [x] 기본 메시지 파일 구조 (ko.json, en.json)
+- [x] 폰트 설정
+  - [x] Syne (`next/font/google`)
+  - [x] Geist + Geist Mono (`geist` 패키지)
+  - [x] Pretendard (`next/font/local`, Variable woff2)
+- [x] 모션 라이브러리 설치
+  - [x] Framer Motion
+  - [x] GSAP + @gsap/react
+  - [x] Lenis (smooth scroll)
+- [x] 콘텐츠 데이터 구조 설계
+  - [x] TypeScript 타입 정의 (`src/lib/types.ts`)
+  - [x] 더미 데이터 JSON 파일 7개 (`src/data/*.json`)
+  - [x] 다국어 콘텐츠 키 구조 (`{ ko: "...", en: "..." }`)
 - [ ] Vercel 프로젝트 생성 + 첫 preview 배포 확인
 
 ---
