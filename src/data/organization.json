@@ -1,0 +1,9 @@
+{
+  "departments": [
+    { "id": "ceo", "name": { "ko": "대표이사", "en": "CEO" }, "parent": null, "members": 1 },
+    { "id": "management", "name": { "ko": "경영지원팀", "en": "Management Support" }, "parent": "ceo", "members": 3 },
+    { "id": "production", "name": { "ko": "생산팀", "en": "Production" }, "parent": "ceo", "members": 8 },
+    { "id": "quality", "name": { "ko": "품질관리팀", "en": "Quality Control" }, "parent": "ceo", "members": 2 },
+    { "id": "sales", "name": { "ko": "영업팀", "en": "Sales" }, "parent": "ceo", "members": 2 }
+  ]
+}

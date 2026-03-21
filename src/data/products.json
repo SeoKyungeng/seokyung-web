@@ -1,0 +1,16 @@
+{
+  "categories": [
+    { "key": "defense", "label": { "ko": "방산", "en": "Defense" } },
+    { "key": "heat-exchanger", "label": { "ko": "열교환기", "en": "Heat Exchanger" } },
+    { "key": "industrial", "label": { "ko": "기타 산업군", "en": "Industrial" } }
+  ],
+  "items": [
+    { "id": "p1", "category": "defense", "image": "/images/products/defense-1.jpg", "alt": { "ko": "방산 부품 A", "en": "Defense Part A" } },
+    { "id": "p2", "category": "defense", "image": "/images/products/defense-2.jpg", "alt": { "ko": "방산 부품 B", "en": "Defense Part B" } },
+    { "id": "p3", "category": "defense", "image": "/images/products/defense-3.jpg", "alt": { "ko": "방산 부품 C", "en": "Defense Part C" } },
+    { "id": "p4", "category": "heat-exchanger", "image": "/images/products/heat-1.jpg", "alt": { "ko": "열교환기 부품 A", "en": "Heat Exchanger Part A" } },
+    { "id": "p5", "category": "heat-exchanger", "image": "/images/products/heat-2.jpg", "alt": { "ko": "열교환기 부품 B", "en": "Heat Exchanger Part B" } },
+    { "id": "p6", "category": "industrial", "image": "/images/products/industrial-1.jpg", "alt": { "ko": "산업 부품 A", "en": "Industrial Part A" } },
+    { "id": "p7", "category": "industrial", "image": "/images/products/industrial-2.jpg", "alt": { "ko": "산업 부품 B", "en": "Industrial Part B" } }
+  ]
+}

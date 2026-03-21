@@ -30,6 +30,7 @@ Thumbs.db
 
 # misc
 *.tsbuildinfo
+next-env.d.ts
 
 # ai
 .omc/

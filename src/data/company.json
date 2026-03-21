@@ -1,0 +1,17 @@
+{
+  "name": {
+    "ko": "(주)서경엔지니어링",
+    "en": "Seokyung Engineering Co., Ltd."
+  },
+  "address": {
+    "ko": "경기도 화성시 정남면 시청로 1234",
+    "en": "1234, Sicheong-ro, Jeongnam-myeon, Hwaseong-si, Gyeonggi-do, Korea"
+  },
+  "phone": "031-000-0000",
+  "fax": "031-000-0001",
+  "email": "info@seokyung.co.kr",
+  "coordinates": {
+    "lat": 37.1234,
+    "lng": 127.0567
+  }
+}

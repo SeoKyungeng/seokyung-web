@@ -1,0 +1,21 @@
+{
+  "name": {
+    "ko": "홍길동",
+    "en": "Gil-dong Hong"
+  },
+  "title": {
+    "ko": "대표이사",
+    "en": "CEO"
+  },
+  "photo": "/images/ceo.jpg",
+  "greeting": {
+    "highlight": {
+      "ko": "정밀 가공 기술로 신뢰를 쌓아온 서경엔지니어링입니다.",
+      "en": "Seokyung Engineering, building trust through precision machining."
+    },
+    "body": {
+      "ko": "저희 서경엔지니어링은 CNC 및 MCT 정밀 가공 분야에서 오랜 경험과 노하우를 바탕으로 고객 여러분께 최상의 품질을 제공하고 있습니다. 방산, 열교환기, 산업 부품 등 다양한 분야에서 축적된 기술력으로 고객의 기대에 부응하겠습니다.",
+      "en": "With extensive experience and expertise in CNC and MCT precision machining, Seokyung Engineering delivers the highest quality to our clients. Our accumulated technical capabilities across defense, heat exchangers, and industrial components ensure we meet and exceed customer expectations."
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "esg": {
+    "e": {
+      "title": { "ko": "환경 (Environment)", "en": "Environment" },
+      "description": { "ko": "에너지 효율 개선 및 폐기물 저감을 통해 환경 보호에 기여합니다.", "en": "Contributing to environmental protection through energy efficiency and waste reduction." },
+      "icon": "Leaf"
+    },
+    "s": {
+      "title": { "ko": "사회 (Social)", "en": "Social" },
+      "description": { "ko": "안전한 작업 환경과 지역사회 상생을 위해 노력합니다.", "en": "Committed to safe working conditions and community partnership." },
+      "icon": "Users"
+    },
+    "g": {
+      "title": { "ko": "지배구조 (Governance)", "en": "Governance" },
+      "description": { "ko": "투명한 경영과 윤리적 의사결정으로 신뢰를 구축합니다.", "en": "Building trust through transparent management and ethical decision-making." },
+      "icon": "Shield"
+    }
+  },
+  "certifications": [
+    { "id": "cert-1", "name": { "ko": "ISO 9001", "en": "ISO 9001" }, "image": "/images/certs/iso-9001.jpg" },
+    { "id": "cert-2", "name": { "ko": "ISO 14001", "en": "ISO 14001" }, "image": "/images/certs/iso-14001.jpg" },
+    { "id": "cert-3", "name": { "ko": "IATF 16949", "en": "IATF 16949" }, "image": "/images/certs/iatf-16949.jpg" }
+  ]
+}

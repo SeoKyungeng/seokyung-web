@@ -1,0 +1,47 @@
+{
+  "notFound": {
+    "title": "Page not found",
+    "backToHome": "Back to Home →"
+  },
+  "common": {
+    "siteName": "Seokyung Engineering",
+    "skipToContent": "Skip to content"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "equipment": "Equipment",
+    "products": "Products",
+    "sustainability": "Sustainability",
+    "contact": "Contact"
+  },
+  "footer": {
+    "copyright": "© 2026 Seokyung Engineering Co., Ltd. All rights reserved."
+  },
+  "pages": {
+    "home": {
+      "title": "Home",
+      "heroText": "Precision Machining Excellence"
+    },
+    "about": {
+      "title": "About Us",
+      "subtitle": "Growing together with trust and technology"
+    },
+    "equipment": {
+      "title": "Equipment",
+      "subtitle": "State-of-the-art CNC & MCT machinery"
+    },
+    "products": {
+      "title": "Products",
+      "subtitle": "Precision machining for defense, heat exchangers, and industrial parts"
+    },
+    "sustainability": {
+      "title": "Sustainability",
+      "subtitle": "Committed to ESG responsibility"
+    },
+    "contact": {
+      "title": "Contact",
+      "subtitle": "Tell us about your project"
+    }
+  }
+}
