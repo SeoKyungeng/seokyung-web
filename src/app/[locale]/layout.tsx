@@ -53,10 +53,11 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body
-        className={`${syne.variable} ${GeistSans.variable} ${GeistMono.variable} ${pretendard.variable} font-sans antialiased`}
-      >
+    <html
+      lang={locale}
+      className={`${syne.variable} ${GeistSans.variable} ${GeistMono.variable} ${pretendard.variable} antialiased`}
+    >
+      <body className="font-sans">
         <NextIntlClientProvider messages={messages}>
           <LenisProvider>
             <ToastProvider>

@@ -17,7 +17,9 @@
   --color-gray-700: #374151;
   --color-gray-500: #6B7280;
 
-  /* Fonts */
+}
+
+@theme inline {
   --font-display: var(--font-syne), sans-serif;
   --font-sans: var(--font-pretendard), var(--font-geist-sans), sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
