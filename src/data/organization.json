@@ -1,9 +1,22 @@
 {
   "departments": [
-    { "id": "ceo", "name": { "ko": "대표이사", "en": "CEO" }, "parent": null, "members": 1 },
-    { "id": "management", "name": { "ko": "경영지원팀", "en": "Management Support" }, "parent": "ceo", "members": 3 },
-    { "id": "production", "name": { "ko": "생산팀", "en": "Production" }, "parent": "ceo", "members": 8 },
-    { "id": "quality", "name": { "ko": "품질관리팀", "en": "Quality Control" }, "parent": "ceo", "members": 2 },
-    { "id": "sales", "name": { "ko": "영업팀", "en": "Sales" }, "parent": "ceo", "members": 2 }
+    { "id": "ceo", "name": { "ko": "대표이사", "en": "CEO" }, "parent": null },
+    { "id": "admin", "name": { "ko": "관리부", "en": "Administration" }, "parent": "ceo" },
+    { "id": "admin-accounting", "name": { "ko": "회계팀", "en": "Accounting" }, "parent": "admin" },
+    { "id": "admin-rnd", "name": { "ko": "연구개발팀", "en": "R&D" }, "parent": "admin" },
+    { "id": "sales", "name": { "ko": "영업부", "en": "Sales" }, "parent": "ceo" },
+    { "id": "sales-new", "name": { "ko": "신사업영업팀", "en": "New Business Sales" }, "parent": "sales" },
+    { "id": "sales-domestic", "name": { "ko": "국내영업팀", "en": "Domestic Sales" }, "parent": "sales" },
+    { "id": "sales-production", "name": { "ko": "제작팀", "en": "Manufacturing" }, "parent": "sales" },
+    { "id": "tech", "name": { "ko": "생산기술부", "en": "Production Technology" }, "parent": "ceo" },
+    { "id": "tech-mct", "name": { "ko": "MCT가공팀", "en": "MCT Machining" }, "parent": "tech" },
+    { "id": "tech-cnc", "name": { "ko": "CNC가공팀", "en": "CNC Machining" }, "parent": "tech" },
+    { "id": "materials", "name": { "ko": "자재부", "en": "Materials" }, "parent": "ceo" },
+    { "id": "materials-design", "name": { "ko": "설계팀", "en": "Design" }, "parent": "materials" },
+    { "id": "materials-purchasing", "name": { "ko": "구매팀", "en": "Purchasing" }, "parent": "materials" },
+    { "id": "materials-shipping", "name": { "ko": "출하팀", "en": "Shipping" }, "parent": "materials" },
+    { "id": "qc", "name": { "ko": "품질관리부", "en": "Quality Control" }, "parent": "ceo" },
+    { "id": "qc-assurance", "name": { "ko": "품질보증팀", "en": "Quality Assurance" }, "parent": "qc" },
+    { "id": "qc-control", "name": { "ko": "품질관리팀", "en": "Quality Management" }, "parent": "qc" }
   ]
 }

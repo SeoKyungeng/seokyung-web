@@ -1,0 +1,68 @@
+{
+  "slogan": {
+    "ko": "우리는 사람과 기술, 상생의 가치를 존중하는 품질중심의 글로벌 경영을 통해 인류의 더 나은 미래를 만들어 가기 위해 그 역량을 집중한다.",
+    "en": "We focus our capabilities on creating a better future for humanity through quality-centered global management that respects the values of people, technology, and mutual prosperity."
+  },
+  "values": [
+    {
+      "key": "customer",
+      "icon": "Users",
+      "title": { "ko": "고객", "en": "Customer" },
+      "subtitle": { "ko": "고객은 우리의 원동력이다", "en": "The customer is our driving force" },
+      "items": [
+        {
+          "ko": "우리의 현재와 미래는 고객의 지원과 신뢰를 쌓아 움직이는 원동력이다.",
+          "en": "Our present and future are driven by building trust and support from our customers."
+        },
+        {
+          "ko": "우리의 생존도 고객만족에 의해 보장된다.",
+          "en": "Our survival is also guaranteed by customer satisfaction."
+        },
+        {
+          "ko": "모든 임직원은 부서, 직위에 관계없이 고객 중심으로 판단하고 고객의 만족을 최고로 판단한다.",
+          "en": "All employees, regardless of department or position, make customer-centered decisions and consider customer satisfaction as the top priority."
+        }
+      ]
+    },
+    {
+      "key": "quality",
+      "icon": "ShieldCheck",
+      "title": { "ko": "품질", "en": "Quality" },
+      "subtitle": { "ko": "품질은 우리의 명함이다", "en": "Quality is our business card" },
+      "items": [
+        {
+          "ko": "각종 산업의 주요 메인 부품을 제조하는 회사로써 품질은 우리의 명함이다.",
+          "en": "As a company manufacturing key components for various industries, quality is our business card."
+        },
+        {
+          "ko": "우리는 고품질을 위해 과감한 기술 개발과 투자에 앞장서 완벽한 품질관리를 이룬다.",
+          "en": "We take the lead in bold technology development and investment for high quality, achieving perfect quality control."
+        },
+        {
+          "ko": "우리는 최고가치 실현을 위해 품질경영 중심으로 우리의 제품에 완벽한 품질을 담보한다.",
+          "en": "We guarantee perfect quality in our products through quality management to realize the highest value."
+        }
+      ]
+    },
+    {
+      "key": "people",
+      "icon": "Heart",
+      "title": { "ko": "사람", "en": "People" },
+      "subtitle": { "ko": "사람은 최고의 자산이다", "en": "People are our greatest asset" },
+      "items": [
+        {
+          "ko": "우리의 모든 경영이념은 사람을 통해 이루어진다.",
+          "en": "All our management philosophy is realized through people."
+        },
+        {
+          "ko": "조직의 미래는 각 구성원들의 마음가짐과 역량이며 경영진은 솔선수범하여 구성원들의 역량을 배가한다.",
+          "en": "The future of the organization lies in each member's mindset and capabilities, and management leads by example to multiply members' capabilities."
+        },
+        {
+          "ko": "구성원들의 꿈과 희망을 존중하며 기업은 발전한다.",
+          "en": "The company grows by respecting the dreams and hopes of its members."
+        }
+      ]
+    }
+  ]
+}

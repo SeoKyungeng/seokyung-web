@@ -57,8 +57,13 @@
       "title": "회사소개",
       "subtitle": "정밀 가공의 기술력으로 산업의 미래를 만들어갑니다",
       "ceoLabel": "CEO MESSAGE",
+      "philosophyLabel": "PHILOSOPHY",
+      "philosophyTitle": "경영이념",
       "orgLabel": "ORGANIZATION",
-      "orgTitle": "조직도"
+      "orgTitle": "조직도",
+      "clientsLabel": "CLIENTS",
+      "clientsTitle": "주요 고객사",
+      "clientsSubtitle": "신뢰를 바탕으로 다양한 산업 분야의 파트너와 함께합니다"
     },
     "equipment": {
       "title": "설비현황",

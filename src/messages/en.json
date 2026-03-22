@@ -57,8 +57,13 @@
       "title": "About Us",
       "subtitle": "Building the future of industry with precision machining technology",
       "ceoLabel": "CEO MESSAGE",
+      "philosophyLabel": "PHILOSOPHY",
+      "philosophyTitle": "Management Philosophy",
       "orgLabel": "ORGANIZATION",
-      "orgTitle": "Organization"
+      "orgTitle": "Organization",
+      "clientsLabel": "CLIENTS",
+      "clientsTitle": "Our Clients",
+      "clientsSubtitle": "Partnering with trusted companies across diverse industries"
     },
     "equipment": {
       "title": "Equipment",

@@ -18,7 +18,6 @@ export interface Company {
 export interface CEO {
   name: LocalizedText;
   title: LocalizedText;
-  photo: string;
   greeting: {
     highlight: LocalizedText;
     body: LocalizedText;
@@ -29,7 +28,25 @@ export interface Department {
   id: string;
   name: LocalizedText;
   parent: string | null;
-  members: number;
+}
+
+export interface PhilosophyValue {
+  key: string;
+  icon: string;
+  title: LocalizedText;
+  subtitle: LocalizedText;
+  items: LocalizedText[];
+}
+
+export interface Philosophy {
+  slogan: LocalizedText;
+  values: PhilosophyValue[];
+}
+
+export interface Client {
+  id: string;
+  name: LocalizedText;
+  logo: string | null;
 }
 
 export interface EquipmentSpec {

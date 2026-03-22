@@ -1,21 +1,20 @@
 {
   "name": {
-    "ko": "홍길동",
-    "en": "Gil-dong Hong"
+    "ko": "이설도",
+    "en": "Seol-do Lee"
   },
   "title": {
     "ko": "대표이사",
     "en": "CEO"
   },
-  "photo": "/images/ceo.jpg",
   "greeting": {
     "highlight": {
-      "ko": "정밀 가공 기술로 신뢰를 쌓아온 서경엔지니어링입니다.",
-      "en": "Seokyung Engineering, building trust through precision machining."
+      "ko": "변화 속에서도 지속 성장과 경쟁력 확보를 약속합니다",
+      "en": "We promise sustainable growth and competitiveness even amid change"
     },
     "body": {
-      "ko": "저희 서경엔지니어링은 CNC 및 MCT 정밀 가공 분야에서 오랜 경험과 노하우를 바탕으로 고객 여러분께 최상의 품질을 제공하고 있습니다. 방산, 열교환기, 산업 부품 등 다양한 분야에서 축적된 기술력으로 고객의 기대에 부응하겠습니다.",
-      "en": "With extensive experience and expertise in CNC and MCT precision machining, Seokyung Engineering delivers the highest quality to our clients. Our accumulated technical capabilities across defense, heat exchangers, and industrial components ensure we meet and exceed customer expectations."
+      "ko": "여러분 안녕하세요. 서경엔지니어링 대표 이설도입니다.\n\n회사 발전에 끊임없이 성원을 보내주신 여러분께 깊이 감사드립니다.\n\n지난 2011년 서경산업으로 출발하여 품질경영, 기술경영, 고객만족이란 비전을 가지고 주요 사업 분야인 방산, 자동화 라인, 조선 부품 임가공의 선두주자로 자리잡기 위해 달려왔습니다.\n\n급변하는 시장환경에 대처하며 현재뿐만 아닌 미래를 바라보는 지속 가능한 기업으로 자리매김하였습니다.\n\n고품질을 위한 지속 설비 투자와 인적자원 투자, 글로벌 경쟁력 확보를 위해 사활을 걸고 모든 제품을 분석하고 이해하였습니다.\n\n당사는 이제 ㈜서경엔지니어링으로 출발하여 변화 속에서도 새로운 전략과 목표를 통한 지속 성장, 경쟁력 확보를 고객 및 협력업체에게 약속합니다.",
+      "en": "Hello everyone. I am Seol-do Lee, CEO of Seokyung Engineering.\n\nI deeply appreciate all of you who have continuously supported our company's growth.\n\nSince our founding as Seokyung Industrial in 2011, we have been striving to become a leader in our key business areas — defense, automation lines, and shipbuilding parts processing — with a vision of quality management, technology management, and customer satisfaction.\n\nWe have established ourselves as a sustainable company that looks not only at the present but also toward the future, adapting to the rapidly changing market environment.\n\nWe have devoted ourselves to analyzing and understanding every product for continuous facility investment, human resource development, and securing global competitiveness.\n\nNow, as Seokyung Engineering Co., Ltd., we promise our customers and partners sustainable growth and competitiveness through new strategies and goals even amid change."
     }
   }
 }

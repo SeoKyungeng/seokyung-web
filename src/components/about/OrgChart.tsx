@@ -41,21 +41,18 @@ function DeptCard({
       <p className={`font-display font-semibold text-white ${isRoot ? "text-base" : "text-sm"}`}>
         {dept.name[locale]}
       </p>
-      <p className="mt-1 text-xs text-gray-500">
-        {dept.members}{locale === "ko" ? "명" : " members"}
-      </p>
     </div>
   );
 }
 
 function DesktopTree({
   root,
-  childDepts,
+  deptGroups,
   locale,
   reducedMotion,
 }: {
   root: Department;
-  childDepts: Department[];
+  deptGroups: { dept: Department; teams: Department[] }[];
   locale: "ko" | "en";
   reducedMotion: boolean;
 }) {
@@ -69,21 +66,41 @@ function DesktopTree({
         </motion.div>
       )}
 
-      {childDepts.length > 0 && (
+      {deptGroups.length > 0 && (
         <div className="h-8 w-px bg-primary-400/40" aria-hidden="true" />
       )}
 
-      {childDepts.length > 0 && (
+      {deptGroups.length > 0 && (
         <div className="relative flex items-start gap-6">
-          <div className="absolute top-0 left-0 right-0 h-px bg-primary-400/40" aria-hidden="true" />
-          {childDepts.map((dept: Department) => (
+          <div className="absolute top-0 right-0 left-0 h-px bg-primary-400/40" aria-hidden="true" />
+          {deptGroups.map(({ dept, teams }) => (
             <div key={dept.id} className="relative flex flex-col items-center">
               <div className="h-8 w-px bg-primary-400/40" aria-hidden="true" />
               {reducedMotion ? (
-                <DeptCard dept={dept} locale={locale} />
-              ) : (
-                <motion.div variants={nodeVariants}>
+                <div className="flex flex-col items-center">
                   <DeptCard dept={dept} locale={locale} />
+                  {teams.length > 0 && (
+                    <div className="mt-3 space-y-1">
+                      {teams.map((team) => (
+                        <p key={team.id} className="text-xs text-gray-500">
+                          {team.name[locale]}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <motion.div variants={nodeVariants} className="flex flex-col items-center">
+                  <DeptCard dept={dept} locale={locale} />
+                  {teams.length > 0 && (
+                    <div className="mt-3 space-y-1">
+                      {teams.map((team) => (
+                        <p key={team.id} className="text-xs text-gray-500">
+                          {team.name[locale]}
+                        </p>
+                      ))}
+                    </div>
+                  )}
                 </motion.div>
               )}
             </div>
@@ -112,12 +129,12 @@ function DesktopTree({
 
 function MobileList({
   root,
-  childDepts,
+  deptGroups,
   locale,
   reducedMotion,
 }: {
   root: Department;
-  childDepts: Department[];
+  deptGroups: { dept: Department; teams: Department[] }[];
   locale: "ko" | "en";
   reducedMotion: boolean;
 }) {
@@ -133,17 +150,30 @@ function MobileList({
 
       <div className="ml-4 border-l-2 border-primary-400/40 pl-4">
         <div className="flex flex-col gap-3">
-          {childDepts.map((dept: Department) =>
-            reducedMotion ? (
+          {deptGroups.map(({ dept, teams }) => {
+            const node = (
               <div key={dept.id} className="w-full">
                 <DeptCard dept={dept} locale={locale} />
+                {teams.length > 0 && (
+                  <div className="mt-2 space-y-1 pl-4">
+                    {teams.map((team) => (
+                      <p key={team.id} className="text-xs text-gray-500">
+                        {team.name[locale]}
+                      </p>
+                    ))}
+                  </div>
+                )}
               </div>
+            );
+
+            return reducedMotion ? (
+              <div key={dept.id}>{node}</div>
             ) : (
-              <motion.div key={dept.id} variants={nodeVariants} className="w-full">
-                <DeptCard dept={dept} locale={locale} />
+              <motion.div key={dept.id} variants={nodeVariants}>
+                {node}
               </motion.div>
-            )
-          )}
+            );
+          })}
         </div>
       </div>
     </>
@@ -170,7 +200,11 @@ export function OrgChart({ departments, locale, label, title }: OrgChartProps) {
   const reducedMotion = useReducedMotion();
 
   const root = departments.find((d) => d.parent === null);
-  const childDepts = departments.filter((d) => d.parent !== null);
+  const deptLevel = departments.filter((d) => d.parent === root?.id);
+  const deptGroups = deptLevel.map((dept) => ({
+    dept,
+    teams: departments.filter((d) => d.parent === dept.id),
+  }));
 
   if (!root) return null;
 
@@ -188,11 +222,11 @@ export function OrgChart({ departments, locale, label, title }: OrgChartProps) {
         </div>
 
         <div className="hidden md:block">
-          <DesktopTree root={root} childDepts={childDepts} locale={locale} reducedMotion={reducedMotion} />
+          <DesktopTree root={root} deptGroups={deptGroups} locale={locale} reducedMotion={reducedMotion} />
         </div>
 
         <div className="md:hidden">
-          <MobileList root={root} childDepts={childDepts} locale={locale} reducedMotion={reducedMotion} />
+          <MobileList root={root} deptGroups={deptGroups} locale={locale} reducedMotion={reducedMotion} />
         </div>
       </div>
     </section>
