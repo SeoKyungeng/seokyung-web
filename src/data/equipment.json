@@ -4,27 +4,27 @@
       "id": "cnc-1",
       "type": "cnc",
       "model": "PUMA 2600SY",
-      "manufacturer": "두산",
+      "manufacturer": { "ko": "두산", "en": "Doosan" },
       "quantity": 2,
       "photo": "/images/equipment/cnc-1.jpg",
-      "specs": {
-        "가공범위": "Ø350 × 550mm",
-        "주축회전수": "4,500 RPM",
-        "축수": "X, Z, C, Y"
-      }
+      "specs": [
+        { "label": { "ko": "가공범위", "en": "Machining Range" }, "value": "Ø350 × 550mm" },
+        { "label": { "ko": "주축회전수", "en": "Spindle Speed" }, "value": "4,500 RPM" },
+        { "label": { "ko": "축수", "en": "Axes" }, "value": "X, Z, C, Y" }
+      ]
     },
     {
       "id": "cnc-2",
       "type": "cnc",
       "model": "LYNX 2100LB",
-      "manufacturer": "두산",
+      "manufacturer": { "ko": "두산", "en": "Doosan" },
       "quantity": 3,
       "photo": "/images/equipment/cnc-2.jpg",
-      "specs": {
-        "가공범위": "Ø300 × 510mm",
-        "주축회전수": "4,000 RPM",
-        "축수": "X, Z"
-      }
+      "specs": [
+        { "label": { "ko": "가공범위", "en": "Machining Range" }, "value": "Ø300 × 510mm" },
+        { "label": { "ko": "주축회전수", "en": "Spindle Speed" }, "value": "4,000 RPM" },
+        { "label": { "ko": "축수", "en": "Axes" }, "value": "X, Z" }
+      ]
     }
   ],
   "mct": [
@@ -32,27 +32,27 @@
       "id": "mct-1",
       "type": "mct",
       "model": "DNM 500",
-      "manufacturer": "두산",
+      "manufacturer": { "ko": "두산", "en": "Doosan" },
       "quantity": 2,
       "photo": "/images/equipment/mct-1.jpg",
-      "specs": {
-        "테이블": "1,100 × 500mm",
-        "주축회전수": "12,000 RPM",
-        "이송속도": "30m/min"
-      }
+      "specs": [
+        { "label": { "ko": "테이블", "en": "Table" }, "value": "1,100 × 500mm" },
+        { "label": { "ko": "주축회전수", "en": "Spindle Speed" }, "value": "12,000 RPM" },
+        { "label": { "ko": "이송속도", "en": "Feed Rate" }, "value": "30m/min" }
+      ]
     },
     {
       "id": "mct-2",
       "type": "mct",
       "model": "MYNX 5400",
-      "manufacturer": "두산",
+      "manufacturer": { "ko": "두산", "en": "Doosan" },
       "quantity": 1,
       "photo": "/images/equipment/mct-2.jpg",
-      "specs": {
-        "테이블": "1,300 × 540mm",
-        "주축회전수": "8,000 RPM",
-        "이송속도": "20m/min"
-      }
+      "specs": [
+        { "label": { "ko": "테이블", "en": "Table" }, "value": "1,300 × 540mm" },
+        { "label": { "ko": "주축회전수", "en": "Spindle Speed" }, "value": "8,000 RPM" },
+        { "label": { "ko": "이송속도", "en": "Feed Rate" }, "value": "20m/min" }
+      ]
     }
   ]
 }

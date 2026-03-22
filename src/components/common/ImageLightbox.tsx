@@ -3,6 +3,7 @@
 import { useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 interface LightboxImage {
@@ -25,6 +26,7 @@ export function ImageLightbox({
   onClose,
   onNavigate,
 }: ImageLightboxProps) {
+  const t = useTranslations("common");
   const closeRef = useRef<HTMLButtonElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const touchStart = useRef(0);
@@ -96,7 +98,7 @@ export function ImageLightbox({
       ref={containerRef}
       role="dialog"
       aria-modal="true"
-      aria-label="이미지 확대 보기"
+      aria-label={t("lightboxLabel")}
       className="fixed inset-0 z-50 flex items-center justify-center"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
@@ -117,7 +119,7 @@ export function ImageLightbox({
         ref={closeRef}
         onClick={onClose}
         className="absolute top-4 right-4 z-10 rounded-full p-2 text-white/70 transition-colors hover:text-white"
-        aria-label="닫기"
+        aria-label={t("close")}
       >
         <X className="h-6 w-6" />
       </button>
@@ -132,7 +134,7 @@ export function ImageLightbox({
         onClick={goPrev}
         disabled={!hasPrev}
         className="absolute left-4 z-10 rounded-full p-2 text-white/70 transition-colors hover:text-white disabled:invisible"
-        aria-label="이전 이미지"
+        aria-label={t("prevImage")}
       >
         <ChevronLeft className="h-8 w-8" />
       </button>
@@ -164,7 +166,7 @@ export function ImageLightbox({
         onClick={goNext}
         disabled={!hasNext}
         className="absolute right-4 z-10 rounded-full p-2 text-white/70 transition-colors hover:text-white disabled:invisible"
-        aria-label="다음 이미지"
+        aria-label={t("nextImage")}
       >
         <ChevronRight className="h-8 w-8" />
       </button>

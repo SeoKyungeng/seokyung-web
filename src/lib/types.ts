@@ -32,14 +32,19 @@ export interface Department {
   members: number;
 }
 
+export interface EquipmentSpec {
+  label: LocalizedText;
+  value: string;
+}
+
 export interface EquipmentItem {
   id: string;
   type: "cnc" | "mct";
   model: string;
-  manufacturer: string;
+  manufacturer: LocalizedText;
   quantity: number;
   photo: string;
-  specs: Record<string, string>;
+  specs: EquipmentSpec[];
 }
 
 export interface ProductItem {

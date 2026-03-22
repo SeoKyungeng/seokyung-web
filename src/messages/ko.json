@@ -5,7 +5,12 @@
   },
   "common": {
     "siteName": "(주)서경엔지니어링",
-    "skipToContent": "본문으로 건너뛰기"
+    "skipToContent": "본문으로 건너뛰기",
+    "viewAll": "전체 보기",
+    "lightboxLabel": "이미지 확대 보기",
+    "prevImage": "이전 이미지",
+    "nextImage": "다음 이미지",
+    "close": "닫기"
   },
   "nav": {
     "home": "홈",
@@ -28,27 +33,93 @@
   "pages": {
     "home": {
       "title": "홈",
-      "heroText": "정밀 가공의 새로운 기준"
+      "heroText": "정밀 가공의 새로운 기준",
+      "heroTitle": "PRECISION\nMACHINING\nEXCELLENCE",
+      "heroSubtitle": "CNC·MCT 정밀 가공의 선두주자",
+      "heroCta": "문의하기",
+      "heroCtaSecondary": "설비 보기",
+      "scrollIndicator": "스크롤",
+      "statsLabel": "ABOUT US",
+      "statsTitle": "정밀 가공의 기술력, 신뢰의 파트너",
+      "statsSince": "설립 연혁",
+      "statsSinceDesc": "오랜 경험과 노하우를 바탕으로 고객 여러분께 최상의 품질을 제공합니다.",
+      "equipmentLabel": "EQUIPMENT",
+      "equipmentTitle": "보유 설비",
+      "equipmentViewAll": "전체 보기",
+      "productsLabel": "PRODUCTS",
+      "productsTitle": "가공제품",
+      "productsViewAll": "전체 보기 →",
+      "ctaTitle": "정밀 가공이 필요하신가요?",
+      "ctaSubtitle": "지금 문의하세요.",
+      "ctaButton": "문의하기"
     },
     "about": {
       "title": "회사소개",
-      "subtitle": "신뢰와 기술력으로 함께 성장합니다"
+      "subtitle": "정밀 가공의 기술력으로 산업의 미래를 만들어갑니다",
+      "ceoLabel": "CEO MESSAGE",
+      "orgLabel": "ORGANIZATION",
+      "orgTitle": "조직도"
     },
     "equipment": {
       "title": "설비현황",
-      "subtitle": "최첨단 CNC·MCT 장비를 보유하고 있습니다"
+      "subtitle": "최첨단 CNC·MCT 장비를 보유하고 있습니다",
+      "totalEquipment": "총 설비",
+      "cncLabel": "CNC MACHINES",
+      "mctLabel": "MCT MACHINES",
+      "specManufacturer": "제조사",
+      "specQuantity": "수량",
+      "specUnit": "대"
     },
     "products": {
       "title": "가공제품",
-      "subtitle": "방산, 열교환기, 산업 부품 정밀 가공"
+      "subtitle": "방산 · 열교환기 · 산업기계",
+      "filterAll": "전체",
+      "filterDefense": "방산",
+      "filterHeatExchanger": "열교환기",
+      "filterIndustrial": "기타 산업군",
+      "emptyState": "등록된 제품이 없습니다"
     },
     "sustainability": {
       "title": "지속가능경영",
-      "subtitle": "환경·사회·지배구조 책임을 다합니다"
+      "subtitle": "환경·사회·지배구조 책임을 다합니다",
+      "esgLabel": "ESG POLICY",
+      "esgTitle": "ESG 경영 방침",
+      "certLabel": "CERTIFICATIONS",
+      "certTitle": "인증 현황"
     },
     "contact": {
       "title": "문의하기",
-      "subtitle": "프로젝트에 대해 이야기해 주세요"
+      "subtitle": "궁금하신 점이 있으시면 언제든 연락주세요",
+      "formLabel": "INQUIRY",
+      "infoLabel": "INFORMATION",
+      "companyName": "회사명",
+      "contactPerson": "담당자명",
+      "phone": "연락처",
+      "email": "이메일",
+      "message": "문의내용",
+      "submit": "문의 보내기",
+      "submitting": "전송 중...",
+      "successTitle": "문의가 접수되었습니다",
+      "successMessage": "빠른 시일 내에 답변 드리겠습니다.",
+      "errorMessage": "전송에 실패했습니다. 다시 시도하거나 이메일로 직접 문의해주세요.",
+      "retryButton": "다시 시도",
+      "mapFallback": "지도에서 보기",
+      "addressLabel": "주소",
+      "phoneLabel": "전화",
+      "faxLabel": "팩스",
+      "emailLabel": "이메일",
+      "validation": {
+        "companyRequired": "회사명을 입력해주세요",
+        "companyLength": "회사명은 2~50자로 입력해주세요",
+        "personRequired": "담당자명을 입력해주세요",
+        "personLength": "담당자명은 2~20자로 입력해주세요",
+        "phoneRequired": "연락처를 입력해주세요",
+        "phoneFormat": "올바른 연락처를 입력해주세요",
+        "emailRequired": "이메일을 입력해주세요",
+        "emailFormat": "올바른 이메일을 입력해주세요",
+        "messageRequired": "문의내용을 입력해주세요",
+        "messageLength": "문의내용을 10자 이상 입력해주세요"
+      }
     }
   }
 }

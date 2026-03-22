@@ -5,7 +5,12 @@
   },
   "common": {
     "siteName": "Seokyung Engineering",
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "viewAll": "View All",
+    "lightboxLabel": "Image lightbox",
+    "prevImage": "Previous image",
+    "nextImage": "Next image",
+    "close": "Close"
   },
   "nav": {
     "home": "Home",
@@ -28,27 +33,93 @@
   "pages": {
     "home": {
       "title": "Home",
-      "heroText": "Precision Machining Excellence"
+      "heroText": "Precision Machining Excellence",
+      "heroTitle": "PRECISION\nMACHINING\nEXCELLENCE",
+      "heroSubtitle": "Leading the way in CNC & MCT precision machining",
+      "heroCta": "Contact Us",
+      "heroCtaSecondary": "View Equipment",
+      "scrollIndicator": "Scroll",
+      "statsLabel": "ABOUT US",
+      "statsTitle": "Precision Technology, Trusted Partnership",
+      "statsSince": "Established",
+      "statsSinceDesc": "Delivering the highest quality to our clients with extensive experience and expertise.",
+      "equipmentLabel": "EQUIPMENT",
+      "equipmentTitle": "Our Equipment",
+      "equipmentViewAll": "View All",
+      "productsLabel": "PRODUCTS",
+      "productsTitle": "Products",
+      "productsViewAll": "View All →",
+      "ctaTitle": "Need precision machining?",
+      "ctaSubtitle": "Contact us today.",
+      "ctaButton": "Contact Us"
     },
     "about": {
       "title": "About Us",
-      "subtitle": "Growing together with trust and technology"
+      "subtitle": "Building the future of industry with precision machining technology",
+      "ceoLabel": "CEO MESSAGE",
+      "orgLabel": "ORGANIZATION",
+      "orgTitle": "Organization"
     },
     "equipment": {
       "title": "Equipment",
-      "subtitle": "State-of-the-art CNC & MCT machinery"
+      "subtitle": "State-of-the-art CNC & MCT machinery",
+      "totalEquipment": "Total Equipment",
+      "cncLabel": "CNC MACHINES",
+      "mctLabel": "MCT MACHINES",
+      "specManufacturer": "Manufacturer",
+      "specQuantity": "Quantity",
+      "specUnit": "units"
     },
     "products": {
       "title": "Products",
-      "subtitle": "Precision machining for defense, heat exchangers, and industrial parts"
+      "subtitle": "Defense · Heat Exchangers · Industrial Machinery",
+      "filterAll": "All",
+      "filterDefense": "Defense",
+      "filterHeatExchanger": "Heat Exchanger",
+      "filterIndustrial": "Industrial",
+      "emptyState": "No products available"
     },
     "sustainability": {
       "title": "Sustainability",
-      "subtitle": "Committed to ESG responsibility"
+      "subtitle": "Committed to ESG responsibility",
+      "esgLabel": "ESG POLICY",
+      "esgTitle": "ESG Management Policy",
+      "certLabel": "CERTIFICATIONS",
+      "certTitle": "Certifications"
     },
     "contact": {
       "title": "Contact",
-      "subtitle": "Tell us about your project"
+      "subtitle": "Have questions? Feel free to reach out anytime",
+      "formLabel": "INQUIRY",
+      "infoLabel": "INFORMATION",
+      "companyName": "Company Name",
+      "contactPerson": "Contact Person",
+      "phone": "Phone",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send Inquiry",
+      "submitting": "Sending...",
+      "successTitle": "Your inquiry has been submitted",
+      "successMessage": "We will get back to you shortly.",
+      "errorMessage": "Failed to send. Please try again or contact us directly via email.",
+      "retryButton": "Try Again",
+      "mapFallback": "View on Map",
+      "addressLabel": "Address",
+      "phoneLabel": "Phone",
+      "faxLabel": "Fax",
+      "emailLabel": "Email",
+      "validation": {
+        "companyRequired": "Please enter company name",
+        "companyLength": "Company name must be 2-50 characters",
+        "personRequired": "Please enter contact person",
+        "personLength": "Contact person must be 2-20 characters",
+        "phoneRequired": "Please enter phone number",
+        "phoneFormat": "Please enter a valid phone number",
+        "emailRequired": "Please enter email",
+        "emailFormat": "Please enter a valid email",
+        "messageRequired": "Please enter your message",
+        "messageLength": "Message must be at least 10 characters"
+      }
     }
   }
 }

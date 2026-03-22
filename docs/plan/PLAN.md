@@ -28,7 +28,7 @@
 | - | 디자인 문서 작성 | ✅ 완료 | 6페이지 + 시스템 |
 | 0 | 프로젝트 셋업 | ✅ 완료 | Next.js 16 + Tailwind v4 + pnpm |
 | 1 | 디자인 시스템 + 공통 컴포넌트 | ✅ 완료 | Header, Footer, Toast, ImageLightbox 등 18개 컴포넌트 |
-| 2 | 페이지 퍼블리싱 | ⬜ 대기 | |
+| 2 | 페이지 퍼블리싱 | ✅ 완료 | 6페이지 퍼블리싱 (Home, About, Equipment, Products, Sustainability, Contact) |
 | 3 | 기능 구현 | ⬜ 대기 | |
 | 4 | 테스트 + QA | ⬜ 대기 | |
 | 5 | 최적화 + 배포 | ⬜ 대기 | |
