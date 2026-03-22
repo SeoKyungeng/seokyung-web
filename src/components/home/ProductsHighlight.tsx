@@ -31,7 +31,7 @@ function ProductCard({
   reducedMotion: boolean;
 }) {
   const categoryColors: Record<string, string> = {
-    defense: "bg-cyan-400/10 border-cyan-400/30 text-cyan-400",
+    defense: "bg-primary-400/10 border-primary-400/30 text-primary-400",
     "heat-exchanger": "bg-white/10 border-white/20 text-white",
     industrial: "bg-white/10 border-white/20 text-white",
   };

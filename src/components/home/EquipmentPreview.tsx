@@ -24,9 +24,9 @@ function EquipmentCard({ item, locale }: { item: EquipmentItem; locale: "ko" | "
     <div className="flex-shrink-0 w-[85vw] sm:w-[350px] rounded-lg border border-steel bg-midnight/60 overflow-hidden">
       <div className="relative h-48 bg-steel/30 flex items-center justify-center">
         <div className="text-center">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full border border-cyan-400/30 mb-3">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full border border-primary-400/30 mb-3">
             <svg
-              className="w-7 h-7 text-cyan-400/60"
+              className="w-7 h-7 text-primary-400/60"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -46,11 +46,11 @@ function EquipmentCard({ item, locale }: { item: EquipmentItem; locale: "ko" | "
               />
             </svg>
           </div>
-          <span className="block text-xs text-cyan-400/40 uppercase tracking-widest">
+          <span className="block text-xs text-primary-400/40 uppercase tracking-widest">
             {typeLabel}
           </span>
         </div>
-        <span className="absolute top-3 left-3 px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider bg-cyan-400/10 text-cyan-400 border border-cyan-400/20">
+        <span className="absolute top-3 left-3 px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider bg-primary-400/10 text-primary-400 border border-primary-400/20">
           {typeLabel}
         </span>
       </div>
@@ -167,7 +167,7 @@ export function EquipmentPreview({
           <div className="h-px bg-white/10 rounded-full overflow-hidden">
             <div
               ref={progressRef}
-              className="h-full bg-cyan-400 rounded-full transition-none"
+              className="h-full bg-primary-400 rounded-full transition-none"
               style={{ width: reducedMotion ? "100%" : "0%" }}
             />
           </div>

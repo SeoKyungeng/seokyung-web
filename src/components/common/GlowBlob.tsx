@@ -11,7 +11,7 @@ export function GlowBlob({ className = "", size = 400 }: GlowBlobProps) {
         width: size,
         height: size,
         background:
-          "radial-gradient(ellipse, var(--color-cyan-400) 0%, transparent 70%)",
+          "radial-gradient(ellipse, var(--color-primary-400) 0%, transparent 70%)",
         opacity: 0.15,
       }}
       aria-hidden="true"

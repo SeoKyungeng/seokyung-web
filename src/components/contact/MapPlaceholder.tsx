@@ -23,7 +23,7 @@ export async function MapPlaceholder() {
             href={mapUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-gray-300 px-5 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-cyan-400 hover:text-cyan-500"
+            className="inline-flex items-center gap-2 rounded-full border border-gray-300 px-5 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-primary-400 hover:text-primary-500"
           >
             {t("mapFallback")}
             <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />

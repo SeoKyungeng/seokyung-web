@@ -66,9 +66,9 @@ function StatCard({ item, locale, triggered, reducedMotion }: StatCardProps) {
 
   return (
     <Card className="flex flex-col justify-center p-6 md:p-8">
-      <p className="font-mono text-4xl md:text-5xl font-bold text-cyan-400 leading-none">
+      <p className="font-mono text-4xl md:text-5xl font-bold text-primary-400 leading-none">
         {displayValue}
-        <span className="text-2xl md:text-3xl ml-1 text-cyan-400/80">{suffix}</span>
+        <span className="text-2xl md:text-3xl ml-1 text-primary-400/80">{suffix}</span>
       </p>
       <p className="mt-3 text-sm text-gray-500 uppercase tracking-wider">{label}</p>
     </Card>

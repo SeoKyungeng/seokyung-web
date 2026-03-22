@@ -94,7 +94,7 @@ export function Header() {
                 {isActive(href) && (
                   <motion.span
                     layoutId="nav-underline"
-                    className="absolute -bottom-1 left-0 h-0.5 w-full bg-cyan-400"
+                    className="absolute -bottom-1 left-0 h-0.5 w-full bg-primary-400"
                   />
                 )}
               </Link>
@@ -166,7 +166,7 @@ export function Header() {
                     href={href}
                     onClick={() => setMobileOpen(false)}
                     className={`text-2xl font-semibold transition-colors ${
-                      isActive(href) ? "text-cyan-400" : "text-white"
+                      isActive(href) ? "text-primary-400" : "text-white"
                     }`}
                     aria-current={isActive(href) ? "page" : undefined}
                   >

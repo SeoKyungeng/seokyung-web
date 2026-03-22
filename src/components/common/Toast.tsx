@@ -12,7 +12,7 @@ export interface ToastItem {
 }
 
 const borderColors: Record<ToastType, string> = {
-  success: "border-l-cyan-400",
+  success: "border-l-primary-400",
   error: "border-l-red-400",
   warning: "border-l-amber-400",
 };

@@ -55,14 +55,14 @@ export function ESGCards({ items }: ESGCardsProps) {
           const Icon = ICON_MAP[item.icon];
           return (
             <Card key={item.key} className="flex flex-col gap-4 p-8">
-              <p className="font-display text-3xl font-bold text-cyan-400">
+              <p className="font-display text-3xl font-bold text-primary-400">
                 {item.key}
               </p>
               <hr className="border-steel" />
               <p className="font-semibold text-gray-950">{item.title}</p>
               <p className="flex-1 text-gray-700">{item.description}</p>
               <div className="pt-2">
-                <Icon className="h-8 w-8 text-cyan-400" aria-hidden="true" />
+                <Icon className="h-8 w-8 text-primary-400" aria-hidden="true" />
               </div>
             </Card>
           );
@@ -84,14 +84,14 @@ export function ESGCards({ items }: ESGCardsProps) {
         return (
           <motion.div key={item.key} variants={cardVariants}>
             <Card className="flex h-full flex-col gap-4 p-8">
-              <p className="font-display text-3xl font-bold text-cyan-400">
+              <p className="font-display text-3xl font-bold text-primary-400">
                 {item.key}
               </p>
               <hr className="border-steel" />
               <p className="font-semibold text-gray-950">{item.title}</p>
               <p className="flex-1 text-gray-700">{item.description}</p>
               <div className="pt-2">
-                <Icon className="h-8 w-8 text-cyan-400" aria-hidden="true" />
+                <Icon className="h-8 w-8 text-primary-400" aria-hidden="true" />
               </div>
             </Card>
           </motion.div>

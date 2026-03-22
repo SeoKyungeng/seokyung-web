@@ -69,10 +69,10 @@
 | 요소 | 스타일 |
 |------|--------|
 | 라벨 | `gray-400`, Caption, uppercase |
-| 인풋 | 하단 보더만 (1px `gray-200`). 포커스 시 `cyan-400` 전환 |
+| 인풋 | 하단 보더만 (1px `gray-200`). 포커스 시 `primary-400` 전환 |
 | 플로팅 라벨 | 입력 시 라벨이 위로 이동 + 축소 (float label 패턴) |
 | textarea | 높이 120px, 리사이즈 가능 |
-| 전송 버튼 | 풀너비, `cyan-400` 배경, `midnight` 텍스트 |
+| 전송 버튼 | 풀너비, `primary-400` 배경, `midnight` 텍스트 |
 
 ### 폼 Validation 규칙
 

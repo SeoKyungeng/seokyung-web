@@ -14,7 +14,7 @@ export default async function NotFound() {
       </h2>
       <Link
         href="/"
-        className="mt-8 rounded-full bg-cyan-400 px-8 py-3 font-semibold text-midnight transition-colors hover:bg-cyan-300"
+        className="mt-8 rounded-full bg-primary-400 px-8 py-3 font-semibold text-midnight transition-colors hover:bg-primary-300"
       >
         {t("backToHome")}
       </Link>

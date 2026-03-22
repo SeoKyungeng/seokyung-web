@@ -98,7 +98,7 @@ export function ProductGallery({ items }: ProductGalleryProps) {
                     onClick={() => handleItemClick(index)}
                     onMouseEnter={() => setHoveredId(item.id)}
                     onMouseLeave={() => setHoveredId(null)}
-                    className="group relative w-full overflow-hidden rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2"
+                    className="group relative w-full overflow-hidden rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2"
                   >
                     <div
                       className="w-full bg-smoke transition-transform duration-300 ease-out group-hover:scale-[1.03] sm:max-h-none"

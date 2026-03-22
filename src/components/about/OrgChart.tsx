@@ -34,7 +34,7 @@ function DeptCard({
 }) {
   return (
     <div
-      className={`rounded-lg border border-steel px-5 py-4 text-center transition-[border-color] duration-250 hover:border-cyan-400 ${
+      className={`rounded-lg border border-steel px-5 py-4 text-center transition-[border-color] duration-250 hover:border-primary-400 ${
         isRoot ? "bg-steel/60 min-w-[140px]" : "bg-slate/60 min-w-[120px]"
       }`}
     >
@@ -70,15 +70,15 @@ function DesktopTree({
       )}
 
       {childDepts.length > 0 && (
-        <div className="h-8 w-px bg-cyan-400/40" aria-hidden="true" />
+        <div className="h-8 w-px bg-primary-400/40" aria-hidden="true" />
       )}
 
       {childDepts.length > 0 && (
         <div className="relative flex items-start gap-6">
-          <div className="absolute top-0 left-0 right-0 h-px bg-cyan-400/40" aria-hidden="true" />
+          <div className="absolute top-0 left-0 right-0 h-px bg-primary-400/40" aria-hidden="true" />
           {childDepts.map((dept: Department) => (
             <div key={dept.id} className="relative flex flex-col items-center">
-              <div className="h-8 w-px bg-cyan-400/40" aria-hidden="true" />
+              <div className="h-8 w-px bg-primary-400/40" aria-hidden="true" />
               {reducedMotion ? (
                 <DeptCard dept={dept} locale={locale} />
               ) : (
@@ -131,7 +131,7 @@ function MobileList({
         </motion.div>
       )}
 
-      <div className="ml-4 border-l-2 border-cyan-400/40 pl-4">
+      <div className="ml-4 border-l-2 border-primary-400/40 pl-4">
         <div className="flex flex-col gap-3">
           {childDepts.map((dept: Department) =>
             reducedMotion ? (

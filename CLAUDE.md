@@ -23,7 +23,7 @@ pnpm start        # 프로덕션 서버
 ### Tailwind CSS v4
 - CSS-first 설정: `src/styles/globals.css`의 `@theme { }` 블록
 - `tailwind.config.ts` 파일 없음
-- 커스텀 토큰: `midnight`, `slate`, `steel`, `smoke`, `cyan-300/400/500`
+- 커스텀 토큰: `midnight`, `slate`, `steel`, `smoke`, `primary-300/400/500`
 
 ### i18n (next-intl v4)
 - `[locale]` App Router 세그먼트: `/ko/`, `/en/`

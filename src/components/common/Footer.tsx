@@ -18,7 +18,7 @@ export function Footer() {
   return (
     <footer className="bg-midnight text-white">
       {/* CTA Band */}
-      <div className="bg-gradient-to-r from-cyan-500 to-cyan-400 px-5 py-16 text-center">
+      <div className="bg-gradient-to-r from-primary-500 to-primary-400 px-5 py-16 text-center">
         <p className="text-2xl font-bold text-midnight md:text-3xl">
           {tFooter("ctaTitle")}
         </p>

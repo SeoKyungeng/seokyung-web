@@ -46,7 +46,7 @@
 - 카드: `steel` 1px 보더, 내부 패딩 넉넉하게
 - E/S/G 글자: Syne, H3
 - 아이콘: Lucide (Leaf, Users, Shield)
-- 호버: 보더 `cyan-400` 전환 + translate-y(-4px)
+- 호버: 보더 `primary-400` 전환 + translate-y(-4px)
 - 모바일: 1컬럼 세로 배치
 
 ### Section 3 — 인증 현황

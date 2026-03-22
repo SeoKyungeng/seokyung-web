@@ -68,7 +68,7 @@ function FloatField({
         className={`peer w-full border-b bg-transparent pt-6 pb-2 text-gray-950 transition-colors focus:outline-none ${
           error
             ? "border-red-400 focus:border-red-400"
-            : "border-gray-200 focus:border-cyan-400"
+            : "border-gray-200 focus:border-primary-400"
         }`}
       />
       <label
@@ -76,11 +76,11 @@ function FloatField({
         className={`pointer-events-none absolute left-0 top-4 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs ${
           error
             ? "text-red-400 peer-focus:text-red-400"
-            : "text-gray-500 peer-focus:text-cyan-400"
+            : "text-gray-500 peer-focus:text-primary-400"
         }`}
       >
         {label}
-        {required && <span className="ml-0.5 text-cyan-400" aria-hidden="true">*</span>}
+        {required && <span className="ml-0.5 text-primary-400" aria-hidden="true">*</span>}
       </label>
       {error && (
         <p id={errorId} role="alert" className="mt-1.5 text-sm text-red-400">
@@ -128,7 +128,7 @@ function FloatTextarea({
         className={`peer w-full resize-none border-b bg-transparent pt-6 pb-2 text-gray-950 transition-colors focus:outline-none ${
           error
             ? "border-red-400 focus:border-red-400"
-            : "border-gray-200 focus:border-cyan-400"
+            : "border-gray-200 focus:border-primary-400"
         }`}
         style={{ minHeight: 120 }}
       />
@@ -137,11 +137,11 @@ function FloatTextarea({
         className={`pointer-events-none absolute left-0 top-4 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs ${
           error
             ? "text-red-400 peer-focus:text-red-400"
-            : "text-gray-500 peer-focus:text-cyan-400"
+            : "text-gray-500 peer-focus:text-primary-400"
         }`}
       >
         {label}
-        {required && <span className="ml-0.5 text-cyan-400" aria-hidden="true">*</span>}
+        {required && <span className="ml-0.5 text-primary-400" aria-hidden="true">*</span>}
       </label>
       {error && (
         <p id={errorId} role="alert" className="mt-1.5 text-sm text-red-400">
@@ -260,7 +260,7 @@ export function ContactForm() {
               {...fadeProps}
               className="flex flex-col items-center justify-center py-16 text-center"
             >
-              <CheckCircle className="mb-4 h-12 w-12 text-cyan-400" aria-hidden="true" />
+              <CheckCircle className="mb-4 h-12 w-12 text-primary-400" aria-hidden="true" />
               <h2 className="font-display text-2xl font-bold text-gray-950">
                 {t("successTitle")}
               </h2>
@@ -340,7 +340,7 @@ export function ContactForm() {
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-8 py-3 font-semibold text-midnight transition-colors duration-200 hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary-400 px-8 py-3 font-semibold text-midnight transition-colors duration-200 hover:bg-primary-300 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {status === "submitting" ? (
                     <>

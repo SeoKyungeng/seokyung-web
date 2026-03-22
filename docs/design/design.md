@@ -10,7 +10,7 @@
 |------|------|
 | **톤 & 무드** | Industrial Precision — 다크 베이스, 정밀 가공의 날카로움과 신뢰감 |
 | **스타일** | 미니멀 구조 + 대담한 타이포 + 인터랙티브 포인트 |
-| **컬러** | 미드나잇 + 시안 악센트 (차가운 금속성, 정밀 테크) |
+| **컬러** | 미드나잇 + 블루 악센트 (차가운 금속성, 정밀 테크) |
 | **모션** | 적극적 — GSAP 스크롤 트리거, 텍스트 리빌, 패럴랙스, 수평 스크롤 |
 | **레퍼런스 무드** | Stripe, Linear, Vercel의 구조적 깔끔함 + 산업/제조업 무게감 |
 
@@ -50,9 +50,9 @@
 
 | 토큰 | 값 | 용도 |
 |------|----|------|
-| `cyan-400` | `#22D3EE` | 주요 악센트 — CTA, 링크, 하이라이트 |
-| `cyan-300` | `#67E8F9` | 다크 배경 위 호버 |
-| `cyan-500` | `#06B6D4` | 라이트 배경 위 악센트 |
+| `primary-400` | `#1447E6` | 주요 악센트 — CTA, 링크, 하이라이트 |
+| `primary-300` | `#6B8AF5` | 다크 배경 위 호버 |
+| `primary-500` | `#1038C0` | 라이트 배경 위 악센트 |
 
 ### Text
 
@@ -68,7 +68,7 @@
 
 | 이름 | 값 | 용도 |
 |------|----|------|
-| `glow` | `radial-gradient(ellipse, cyan-400/15, transparent 70%)` | 배경 글로우 이펙트 |
+| `glow` | `radial-gradient(ellipse, primary-400/15, transparent 70%)` | 배경 글로우 이펙트 |
 | `hero-overlay` | `linear-gradient(to bottom, midnight/80, midnight/95)` | 히어로 영상 오버레이 |
 | `section-fade` | `linear-gradient(to bottom, midnight, slate)` | 다크 섹션 전환 |
 
@@ -178,7 +178,7 @@
 | **SectionLabel** | uppercase 영문 라벨 (Caption, `gray-400`, letter-spacing 0.15em) + 좌측 시안 dot 또는 짧은 라인 |
 | **SectionTitle** | 대형 타이포 (Syne). 워드별 reveal 애니메이션 |
 | **CTAButton** | 시안 배경, `midnight` 텍스트. 호버 시 마그네틱 + 글로우. 또는 아웃라인 변형 (시안 보더, 투명 배경) |
-| **Card** | `steel` 보더 1px, 투명 배경. 호버 시 보더 `cyan-400` 전환 + translate-y(-4px) |
+| **Card** | `steel` 보더 1px, 투명 배경. 호버 시 보더 `primary-400` 전환 + translate-y(-4px) |
 | **ImageLightbox** | backdrop-blur + 다크 오버레이. 이미지 scale-in. 좌우 네비 + ESC 닫기 |
 | **GrainOverlay** | 전체 페이지 노이즈 텍스처 (pointer-events: none, opacity 3%) |
 | **GlowBlob** | 시안 radial gradient — 마우스 따라가기 또는 고정 위치 배경 장식 |
@@ -295,7 +295,7 @@ PC:
 |------|------|
 | 배경 | `midnight` + backdrop-blur |
 | 메뉴 항목 | Syne 24px (영어) / Pretendard 24px (한국어), `white`, 세로 `gap: 24px` |
-| 활성 메뉴 | `cyan-400` 텍스트 |
+| 활성 메뉴 | `primary-400` 텍스트 |
 | 열기 애니메이션 | 오버레이 fade-in (0.3s) + 메뉴 항목 stagger slide-up (0.05s per item) |
 | 닫기 애니메이션 | 전체 fade-out (0.2s) |
 | 닫기 방법 | ✕ 버튼, 메뉴 항목 클릭 시 자동 닫힘 |
@@ -314,8 +314,8 @@ PC:
 
 | 항목 | 스펙 |
 |------|------|
-| PC | 현재 페이지 메뉴: `white` 텍스트 + `cyan-400` 하단 2px 밑줄 (offset 4px) |
-| 모바일 | 현재 페이지 메뉴: `cyan-400` 텍스트 |
+| PC | 현재 페이지 메뉴: `white` 텍스트 + `primary-400` 하단 2px 밑줄 (offset 4px) |
+| 모바일 | 현재 페이지 메뉴: `primary-400` 텍스트 |
 | 비활성 | `white/70` |
 | 호버 (PC) | `white` (비활성→활성 전환, 0.2s) |
 
@@ -392,7 +392,7 @@ PC:
 |------|------|
 | 위치 | 우상단 (PC), 상단 중앙 (모바일) |
 | 너비 | 최대 400px (PC), 풀너비 - 패딩 (모바일) |
-| 종류 | 성공(`cyan-400` 좌측 보더), 에러(`red-400`), 경고(`amber-400`) |
+| 종류 | 성공(`primary-400` 좌측 보더), 에러(`red-400`), 경고(`amber-400`) |
 | 배경 | `white` + `shadow-lg` |
 | 자동 닫힘 | 5초 |
 | 최대 스택 | 3개, 위로 쌓임 |
@@ -408,8 +408,8 @@ PC:
 |------|------|
 | Tab 순서 | Header → 본문 컨텐츠 → Footer (자연스러운 DOM 순서) |
 | Skip link | 첫 Tab에서 "본문으로 건너뛰기" 링크 표시 (포커스 시에만) |
-| Focus 링 | `outline: 2px solid cyan-400`, `outline-offset: 2px` |
-| Focus 링 (다크 배경) | `outline: 2px solid cyan-300` |
+| Focus 링 | `outline: 2px solid primary-400`, `outline-offset: 2px` |
+| Focus 링 (다크 배경) | `outline: 2px solid primary-300` |
 
 ### prefers-reduced-motion 대응
 

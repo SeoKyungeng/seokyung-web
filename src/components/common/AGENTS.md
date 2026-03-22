@@ -19,7 +19,7 @@
 | `SectionLabel.tsx` | · UPPERCASE 시안 dot 라벨 (letter-spacing 0.15em) |
 | `SectionTitle.tsx` | Syne H2/H3 타이틀. Framer Motion 워드별 fade-in. reduced-motion 즉시 표시. Client Component |
 | `CTAButton.tsx` | CTA 버튼 — solid/outline/dark 변형. Link 또는 button 렌더링 |
-| `Card.tsx` | steel 보더 카드. hover 시 cyan 보더 + translateY(-4px) |
+| `Card.tsx` | steel 보더 카드. hover 시 primary 보더 + translateY(-4px) |
 | `ImageLightbox.tsx` | 이미지 라이트박스. focus trap, 키보드/스와이프 네비, aria-modal. Client Component |
 | `BlurUpImage.tsx` | next/image 기반. blur(20px) → sharp fade-in 0.5s. Client Component |
 | `Skeleton.tsx` | 로딩 스켈레톤 (smoke 배경, pulse 애니메이션) |
@@ -37,6 +37,6 @@
 ### Common Patterns
 - props 인터페이스는 컴포넌트 파일 내부에 정의
 - `className` prop으로 외부 스타일 확장 허용
-- 디자인 토큰(midnight, cyan-400, steel 등)은 Tailwind 유틸리티 클래스로 사용
+- 디자인 토큰(midnight, primary-400, steel 등)은 Tailwind 유틸리티 클래스로 사용
 
 <!-- MANUAL: -->

@@ -8,9 +8,9 @@
   --color-smoke: #F8F9FB;
 
   /* Accent */
-  --color-cyan-300: #67E8F9;
-  --color-cyan-400: #22D3EE;
-  --color-cyan-500: #06B6D4;
+  --color-primary-300: #6B8AF5;
+  --color-primary-400: #1447E6;
+  --color-primary-500: #1038C0;
 
   /* Text */
   --color-gray-950: #0B0F1A;
@@ -27,7 +27,7 @@
 
 /* Focus ring */
 *:focus-visible {
-  outline: 2px solid var(--color-cyan-400);
+  outline: 2px solid var(--color-primary-400);
   outline-offset: 2px;
 }
 
@@ -38,7 +38,7 @@
   left: 0;
   z-index: 9999;
   padding: 1rem 2rem;
-  background: var(--color-cyan-400);
+  background: var(--color-primary-400);
   color: var(--color-midnight);
   font-weight: 600;
   transition: top 0.2s;

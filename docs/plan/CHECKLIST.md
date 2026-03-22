@@ -11,7 +11,7 @@
 - [x] 폴더 구조 확립 (app/[locale]/, components/, data/, lib/, i18n/, messages/, styles/)
 - [x] ESLint 설정
 - [x] Tailwind 테마 커스터마이징
-  - [x] 컬러: midnight, cyan-400, smoke, steel, slate
+  - [x] 컬러: midnight, primary-400, smoke, steel, slate
   - [x] 폰트 패밀리: Syne, Geist, Geist Mono, Pretendard
   - [x] 브레이크포인트: Tailwind v4 기본 (640 / 768 / 1024 / 1280 / 1536px)
 - [x] next-intl i18n 설정
@@ -59,7 +59,7 @@
 - [x] SectionLabel — `· UPPERCASE` 시안 점 + 라벨
 - [x] SectionTitle — Syne H2/H3
 - [x] CTAButton — 시안 배경, hover 그라디언트, 화살표 아이콘
-- [x] Card — steel 1px 보더, hover cyan 전환 + translateY
+- [x] Card — steel 1px 보더, hover primary 전환 + translateY
 - [x] LanguageToggle — KO | EN 토글, next-intl 라우팅 기반
 
 ### 미디어
