@@ -29,15 +29,6 @@ interface EquipmentStickyListProps {
 
 const VIEWPORT = { once: true, margin: "-10%" } as const;
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
-  },
-};
-
 const staggerContainer = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.05 } },
@@ -68,7 +59,7 @@ function SpecRow({ label, value }: { label: string; value: string }) {
 
 function ImagePlaceholder({ model }: { model: string }) {
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-smoke">
+    <div className="relative aspect-4/3 w-full overflow-hidden rounded-lg bg-smoke">
       <div className="flex h-full w-full flex-col items-center justify-center gap-3">
         <Cog className="h-16 w-16 text-gray-300" strokeWidth={1} aria-hidden="true" />
         <span className="font-mono text-sm tracking-wider text-gray-500">{model}</span>
@@ -79,7 +70,6 @@ function ImagePlaceholder({ model }: { model: string }) {
 
 interface EquipmentRowProps {
   item: EquipmentCardItem;
-  index: number;
   specUnit: string;
   reducedMotion: boolean;
   reversed: boolean;
@@ -102,7 +92,7 @@ function EquipmentRow({ item, specUnit, reducedMotion, reversed }: EquipmentRowP
   const textBlock = reducedMotion ? (
     <div className="flex flex-col justify-center">
       <div className="flex items-start gap-4">
-        <div className="hidden shrink-0 md:flex md:h-[2rem] md:items-center lg:h-[2.25rem]">
+        <div className="hidden shrink-0 md:flex md:h-8 md:items-center lg:h-9">
           <Cog className="h-5 w-5 text-primary-400" strokeWidth={1.5} aria-hidden="true" />
         </div>
         <div className="flex-1">
@@ -133,7 +123,7 @@ function EquipmentRow({ item, specUnit, reducedMotion, reversed }: EquipmentRowP
       viewport={VIEWPORT}
     >
       <div className="flex items-start gap-4">
-        <motion.div className="hidden shrink-0 md:flex md:h-[2rem] md:items-center lg:h-[2.25rem]" variants={staggerItem}>
+        <motion.div className="hidden shrink-0 md:flex md:h-8 md:items-center lg:h-9" variants={staggerItem}>
           <Cog className="h-5 w-5 text-primary-400" strokeWidth={1.5} aria-hidden="true" />
         </motion.div>
         <div className="flex-1">
@@ -223,7 +213,6 @@ export function EquipmentStickyList({
               <EquipmentRow
                 key={item.id}
                 item={item}
-                index={index}
                 specUnit={specUnit}
                 reducedMotion={reducedMotion}
                 reversed={zigzag && index % 2 === 1}
