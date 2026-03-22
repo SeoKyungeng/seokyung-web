@@ -16,7 +16,14 @@
     "contact": "문의하기"
   },
   "footer": {
-    "copyright": "© 2026 (주)서경엔지니어링. All rights reserved."
+    "copyright": "© 2026 (주)서경엔지니어링. All rights reserved.",
+    "ctaTitle": "정밀 가공이 필요하신가요?",
+    "address": "경기도 OO시 OO구 OO로 000",
+    "quickLinks": "바로가기",
+    "contactTitle": "연락처",
+    "phone": "031-000-0000",
+    "fax": "031-000-0000",
+    "email": "info@seokyung.co.kr"
   },
   "pages": {
     "home": {

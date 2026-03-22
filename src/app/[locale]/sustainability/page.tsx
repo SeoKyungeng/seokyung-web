@@ -4,13 +4,11 @@ export default async function SustainabilityPage() {
   const t = await getTranslations("pages.sustainability");
 
   return (
-    <main>
-      <section className="flex min-h-screen items-center justify-center bg-midnight text-white">
-        <div className="text-center">
-          <h1 className="font-display text-5xl font-bold">{t("title")}</h1>
-          <p className="mt-4 text-white/60">{t("subtitle")}</p>
-        </div>
-      </section>
-    </main>
+    <section className="flex min-h-screen items-center justify-center bg-midnight text-white">
+      <div className="text-center">
+        <h1 className="font-display text-5xl font-bold">{t("title")}</h1>
+        <p className="mt-4 text-white/60">{t("subtitle")}</p>
+      </div>
+    </section>
   );
 }

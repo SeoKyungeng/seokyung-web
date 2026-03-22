@@ -16,7 +16,14 @@
     "contact": "Contact"
   },
   "footer": {
-    "copyright": "© 2026 Seokyung Engineering Co., Ltd. All rights reserved."
+    "copyright": "© 2026 Seokyung Engineering Co., Ltd. All rights reserved.",
+    "ctaTitle": "Need precision machining?",
+    "address": "000, OO-ro, OO-gu, OO-si, Gyeonggi-do",
+    "quickLinks": "Quick Links",
+    "contactTitle": "Contact",
+    "phone": "031-000-0000",
+    "fax": "031-000-0000",
+    "email": "info@seokyung.co.kr"
   },
   "pages": {
     "home": {

@@ -23,6 +23,12 @@
   --font-mono: var(--font-geist-mono), monospace;
 }
 
+/* Focus ring */
+*:focus-visible {
+  outline: 2px solid var(--color-cyan-400);
+  outline-offset: 2px;
+}
+
 /* Skip link */
 .skip-link {
   position: absolute;

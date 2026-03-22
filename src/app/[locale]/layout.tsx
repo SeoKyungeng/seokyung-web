@@ -7,6 +7,11 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { LenisProvider } from "@/providers/LenisProvider";
+import { ToastProvider } from "@/providers/ToastProvider";
+import { Header } from "@/components/common/Header";
+import { Footer } from "@/components/common/Footer";
+import { GrainOverlay } from "@/components/common/GrainOverlay";
 import "@/styles/globals.css";
 
 const syne = Syne({
@@ -53,7 +58,14 @@ export default async function LocaleLayout({
         className={`${syne.variable} ${GeistSans.variable} ${GeistMono.variable} ${pretendard.variable} font-sans antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <LenisProvider>
+            <ToastProvider>
+              <GrainOverlay />
+              <Header />
+              <main id="main-content">{children}</main>
+              <Footer />
+            </ToastProvider>
+          </LenisProvider>
         </NextIntlClientProvider>
       </body>
     </html>

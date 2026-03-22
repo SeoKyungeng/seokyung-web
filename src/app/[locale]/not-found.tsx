@@ -5,7 +5,7 @@ export default async function NotFound() {
   const t = await getTranslations("notFound");
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-midnight text-white">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-midnight text-white">
       <span className="font-display text-[120px] font-bold leading-none text-white/10">
         404
       </span>
@@ -18,6 +18,6 @@ export default async function NotFound() {
       >
         {t("backToHome")}
       </Link>
-    </main>
+    </div>
   );
 }
