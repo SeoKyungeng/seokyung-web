@@ -72,16 +72,13 @@ export interface ProductItem {
 }
 
 export interface ESGPolicy {
-  key: "e" | "s" | "g";
+  key: "E" | "S" | "G";
   title: LocalizedText;
+  subtitle: LocalizedText;
   description: LocalizedText;
   icon: string;
-}
-
-export interface Certification {
-  id: string;
-  name: LocalizedText;
   image: string;
+  items: LocalizedText[];
 }
 
 export interface Stat {

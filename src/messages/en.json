@@ -87,10 +87,9 @@
     "sustainability": {
       "title": "Sustainability",
       "subtitle": "Committed to ESG responsibility",
+      "introLabel": "ESG MANAGEMENT",
       "esgLabel": "ESG POLICY",
-      "esgTitle": "ESG Management Policy",
-      "certLabel": "CERTIFICATIONS",
-      "certTitle": "Certifications"
+      "esgTitle": "ESG Management Policy"
     },
     "contact": {
       "title": "Contact",

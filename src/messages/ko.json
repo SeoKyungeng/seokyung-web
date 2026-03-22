@@ -87,10 +87,9 @@
     "sustainability": {
       "title": "지속가능경영",
       "subtitle": "환경·사회·지배구조 책임을 다합니다",
+      "introLabel": "ESG MANAGEMENT",
       "esgLabel": "ESG POLICY",
-      "esgTitle": "ESG 경영 방침",
-      "certLabel": "CERTIFICATIONS",
-      "certTitle": "인증 현황"
+      "esgTitle": "ESG 경영 방침"
     },
     "contact": {
       "title": "문의하기",

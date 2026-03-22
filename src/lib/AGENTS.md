@@ -10,7 +10,7 @@ TypeScript 타입 정의 및 공유 유틸리티.
 
 | File | Description |
 |------|-------------|
-| `types.ts` | 콘텐츠 데이터 타입 — `LocalizedText`, `Company`, `CEO`, `EquipmentItem`, `ProductItem`, `ESGPolicy`, `Certification`, `Stat` 등 |
+| `types.ts` | 콘텐츠 데이터 타입 — `LocalizedText`, `Company`, `CEO`, `EquipmentItem`, `ProductItem`, `ESGPolicy`, `Stat` 등 |
 
 ## For AI Agents
 

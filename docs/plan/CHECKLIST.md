@@ -173,19 +173,18 @@
 ### 2-5. Sustainability (지속가능경영)
 
 - [x] 페이지 헤더
+- [x] ESG 소개
+  - [x] 풀너비 중앙 텍스트 (비전문 + 소개문)
+  - [x] accent line (primary-400, scaleX 애니메이션)
+  - [x] fade-in 모션
 - [x] ESG 경영 방침
-  - [x] 3컬럼 카드 (E / S / G)
-  - [x] 카드: steel 보더, Lucide 아이콘 (Leaf, Users, Shield)
-  - [x] 호버: 시안 보더 + translateY(-4px)
-  - [x] stagger fade-in
-- [x] 인증 현황
-  - [x] 4열 (PC) / 2열 (모바일) 그리드
-  - [x] 인증서 이미지 1:1.4 비율 (aspect-[5/7])
-  - [x] 클릭 시 라이트박스
-  - [x] 호버: 줌 + 그림자
+  - [x] zigzag 이미지+텍스트 3블록 (E/S/G)
+  - [x] 5:7 비대칭 2컬럼, 홀짝 교차
+  - [x] 이미지 placeholder (추후 교체)
+  - [x] 텍스트: 큰 키 문자 + title + subtitle + description + items
+  - [x] 이미지 slide-in + 텍스트 stagger fade-in
 - [x] 모바일 대응
-  - [x] ESG 카드 → 1컬럼
-  - [x] 인증서 → 2열 유지
+  - [x] ESG 방침 zigzag → 1컬럼 (이미지 상단, 텍스트 하단)
 
 ### 2-6. Contact (문의하기)
 

@@ -1,24 +1,61 @@
 {
-  "esg": {
-    "e": {
-      "title": { "ko": "환경 (Environment)", "en": "Environment" },
-      "description": { "ko": "에너지 효율 개선 및 폐기물 저감을 통해 환경 보호에 기여합니다.", "en": "Contributing to environmental protection through energy efficiency and waste reduction." },
-      "icon": "Leaf"
+  "intro": {
+    "vision": {
+      "ko": "서경엔지니어링은 지속가능 경영을 추구하며 신성장 동력을 발굴, 개발하며 전략적 투자를 통해 지속 성장을 이루는 기업입니다.",
+      "en": "Seokyung Engineering pursues sustainable management, discovering and developing new growth engines while achieving continuous growth through strategic investments."
     },
-    "s": {
-      "title": { "ko": "사회 (Social)", "en": "Social" },
-      "description": { "ko": "안전한 작업 환경과 지역사회 상생을 위해 노력합니다.", "en": "Committed to safe working conditions and community partnership." },
-      "icon": "Users"
-    },
-    "g": {
-      "title": { "ko": "지배구조 (Governance)", "en": "Governance" },
-      "description": { "ko": "투명한 경영과 윤리적 의사결정으로 신뢰를 구축합니다.", "en": "Building trust through transparent management and ethical decision-making." },
-      "icon": "Shield"
+    "description": {
+      "ko": "기업의 장기적인 가치 창출과 지속가능한 경영을 목표로 하며, 환경적, 사회적, 거버넌스적 요소를 평가하고 관리하여 지속가능한 성과를 추구합니다.",
+      "en": "We aim for long-term value creation and sustainable management, evaluating and managing environmental, social, and governance factors to pursue sustainable outcomes."
     }
   },
-  "certifications": [
-    { "id": "cert-1", "name": { "ko": "ISO 9001", "en": "ISO 9001" }, "image": "/images/certs/iso-9001.jpg" },
-    { "id": "cert-2", "name": { "ko": "ISO 14001", "en": "ISO 14001" }, "image": "/images/certs/iso-14001.jpg" },
-    { "id": "cert-3", "name": { "ko": "IATF 16949", "en": "IATF 16949" }, "image": "/images/certs/iatf-16949.jpg" }
-  ]
+  "esg": {
+    "e": {
+      "key": "E",
+      "title": { "ko": "환경 (Environment)", "en": "Environment" },
+      "subtitle": { "ko": "탄소중립", "en": "Carbon Neutrality" },
+      "description": {
+        "ko": "탄소 배출, 오염 최소화, 재활용 등을 효율적으로 관리하고 환경 보존에 앞장서 탄소중립을 선도하는 기업이 되겠습니다.",
+        "en": "We will efficiently manage carbon emissions, pollution minimization, and recycling, taking the lead in environmental conservation to become a company pioneering carbon neutrality."
+      },
+      "icon": "Leaf",
+      "image": "/images/sustainability/environment.jpg",
+      "items": [
+        { "ko": "폐수처리", "en": "Wastewater Treatment" },
+        { "ko": "에너지 재활용", "en": "Energy Recycling" },
+        { "ko": "공정 개선 및 단순화", "en": "Process Improvement & Simplification" }
+      ]
+    },
+    "s": {
+      "key": "S",
+      "title": { "ko": "사회 (Social)", "en": "Social" },
+      "subtitle": { "ko": "사회공헌", "en": "Social Contribution" },
+      "description": {
+        "ko": "근로자의 권리와 복지, 공정한 사업, 지역사회 발전에 앞장서 사회적 가치 창출을 이뤄내겠습니다.",
+        "en": "We will take the lead in workers' rights and welfare, fair business practices, and community development to create social value."
+      },
+      "icon": "Users",
+      "image": "/images/sustainability/social.jpg",
+      "items": [
+        { "ko": "안전하고 효율적인 작업환경 조성", "en": "Creating Safe and Efficient Work Environments" },
+        { "ko": "직원을 위한 행복한 쉼터, 일터 조성", "en": "Building Happy Rest Areas and Workplaces for Employees" },
+        { "ko": "지역사회와 나눔", "en": "Community Sharing" }
+      ]
+    },
+    "g": {
+      "key": "G",
+      "title": { "ko": "지배구조 (Governance)", "en": "Governance" },
+      "subtitle": { "ko": "투명경영", "en": "Transparent Management" },
+      "description": {
+        "ko": "기업의 경영 구조 투명성, 윤리 경영, 이해관계자의 이익을 고려한 의사결정 과정 등을 강조하여 거버넌스를 강화합니다.",
+        "en": "We strengthen governance by emphasizing transparency in corporate management structure, ethical management, and decision-making processes that consider stakeholder interests."
+      },
+      "icon": "Shield",
+      "image": "/images/sustainability/governance.jpg",
+      "items": [
+        { "ko": "윤리 경영", "en": "Ethical Management" },
+        { "ko": "지배구조 투명성", "en": "Governance Transparency" }
+      ]
+    }
+  }
 }
