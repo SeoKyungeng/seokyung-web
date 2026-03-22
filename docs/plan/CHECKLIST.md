@@ -37,46 +37,46 @@
 ## Phase 1 — 디자인 시스템 + 공통 컴포넌트 (~1주)
 
 ### 레이아웃
-- [ ] GrainOverlay — 미세 노이즈 텍스처 오버레이
-- [ ] GlowBlob — 시안/블루 그라디언트 블롭 (애니메이션)
-- [ ] PageHeader — 70vh 다크 히어로 (SectionLabel + 타이틀 + 서브타이틀)
-- [ ] NotFoundPage — 404 페이지 (midnight 배경, Syne 120px, 홈 CTA)
+- [x] GrainOverlay — 미세 노이즈 텍스처 오버레이
+- [x] GlowBlob — 시안/블루 그라디언트 블롭 (애니메이션)
+- [x] PageHeader — 70vh 다크 히어로 (SectionLabel + 타이틀 + 서브타이틀)
+- [x] NotFoundPage — 404 페이지 (midnight 배경, Syne 120px, 홈 CTA)
 
 ### 네비게이션
-- [ ] Skip link — "본문으로 건너뛰기" (포커스 시에만 표시)
-- [ ] Header (PC)
-  - [ ] 로고 + 메뉴 + 언어 토글 + 문의 CTA
-  - [ ] 스크롤 60px 이후 배경 전환 (투명 → midnight/90 + backdrop-blur-lg)
-  - [ ] 활성 메뉴 시안 밑줄
-- [ ] Header (모바일)
-  - [ ] 햄버거 버튼 → 풀스크린 오버레이
-  - [ ] 메뉴 stagger 애니메이션
-- [ ] Footer
-  - [ ] 회사 정보 + 빠른 링크 + 저작권
-  - [ ] PC 3컬럼 / 모바일 1컬럼
+- [x] Skip link — "본문으로 건너뛰기" (포커스 시에만 표시)
+- [x] Header (PC)
+  - [x] 로고 + 메뉴 + 언어 토글 + 문의 CTA
+  - [x] 스크롤 60px 이후 배경 전환 (투명 → midnight/90 + backdrop-blur-lg)
+  - [x] 활성 메뉴 시안 밑줄
+- [x] Header (모바일)
+  - [x] 햄버거 버튼 → 풀스크린 오버레이
+  - [x] 메뉴 stagger 애니메이션
+- [x] Footer
+  - [x] 회사 정보 + 빠른 링크 + 저작권
+  - [x] PC 3컬럼 / 모바일 1컬럼
 
 ### UI 컴포넌트
-- [ ] SectionLabel — `· UPPERCASE` 시안 점 + 라벨
-- [ ] SectionTitle — Syne H2/H3
-- [ ] CTAButton — 시안 배경, hover 그라디언트, 화살표 아이콘
-- [ ] Card — steel 1px 보더, hover cyan 전환 + translateY
-- [ ] LanguageToggle — KO | EN 토글, localStorage 저장
+- [x] SectionLabel — `· UPPERCASE` 시안 점 + 라벨
+- [x] SectionTitle — Syne H2/H3
+- [x] CTAButton — 시안 배경, hover 그라디언트, 화살표 아이콘
+- [x] Card — steel 1px 보더, hover cyan 전환 + translateY
+- [x] LanguageToggle — KO | EN 토글, next-intl 라우팅 기반
 
 ### 미디어
-- [ ] ImageLightbox
-  - [ ] shared layout animation (클릭 위치 → 확대)
-  - [ ] midnight/90 backdrop + blur
-  - [ ] 좌우 네비 (키보드 + 스와이프 + 클릭)
-  - [ ] ESC / 배경 클릭 닫기
-  - [ ] Focus trap + aria-modal
-- [ ] Skeleton — 로딩 상태 (펄스 애니메이션)
-- [ ] BlurUpImage — 저해상도 blur → 원본 fade-in
+- [x] ImageLightbox
+  - [x] scale(0.9→1) 애니메이션
+  - [x] midnight/90 backdrop + blur
+  - [x] 좌우 네비 (키보드 + 스와이프 + 클릭)
+  - [x] ESC / 배경 클릭 닫기
+  - [x] Focus trap + aria-modal
+- [x] Skeleton — 로딩 상태 (펄스 애니메이션)
+- [x] BlurUpImage — 저해상도 blur → 원본 fade-in
 
 ### 모션
-- [ ] prefers-reduced-motion 대응 (스크롤 애니메이션 비활성화, 카운터 즉시 표시, Lenis 비활성화)
+- [x] prefers-reduced-motion 대응 (스크롤 애니메이션 비활성화, 카운터 즉시 표시, Lenis 비활성화)
 
 ### 피드백
-- [ ] Toast — 성공/에러/정보 알림
+- [x] Toast — 성공/에러/정보 알림
 
 ---
 
