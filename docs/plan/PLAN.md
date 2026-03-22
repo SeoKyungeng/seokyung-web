@@ -87,7 +87,7 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3
 | ✅ | 조직도 데이터 | 부서 구조만 수령, 인원수 미기재 (2026-03-22) |
 | ✅ | 경영이념 콘텐츠 | 슬로건 + 핵심가치 3가지 수신 (2026-03-22) |
 | ✅ | 주요 고객사 목록 | 7개사 명단 수신, 로고 미수령 (2026-03-22) |
-| ⬜ | CNC/MCT 장비 사진 + 스펙 | |
+| 🔄 | 설비 데이터 (14개 장비) | 스펙 8개 완성, 3개 부분, 3개 불충분. 사진 미수령. 클라이언트 확인 5건 대기 (2026-03-22) |
 | ⬜ | 제품 사진 (방산/열교환기/기타) | |
 | ✅ | ESG 콘텐츠 | ESG 텍스트 수신, 이미지 추후 제공, 인증 현황 제거 확정 (2026-03-22) |
 | ⬜ | 회사 연락처 (주소/전화/팩스/이메일) | |
@@ -107,6 +107,12 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3
 | 4 | 디자인 컨셉 최종 확정 | 기획서 Section 8 "미정" 상태 | 클라이언트 | ⬜ 미결 |
 | 5 | 지도 서비스 선택 | Naver 지도 / Kakao 지도 | 개발자 | ⬜ 미결 |
 | 6 | 이메일 발송 서비스 | Resend / Nodemailer + SMTP | 개발자 | ⬜ 미결 |
+| 7 | eq-10: 명칭 불일치 | High Precision Lathe vs Engine Lathe | 클라이언트 | ⬜ 미결 |
+| 8 | eq-11: 래디얼 드릴 교체 사진 | 슬라이드에 '사진수정 必' 표기 | 클라이언트 | ⬜ 미결 |
+| 9 | eq-12: 5축 머시닝센터 배치 | 설비현황 vs 가공제품 + 장비 스펙 필요 | 클라이언트 | ⬜ 미결 |
+| 10 | eq-13: SL 2500/3000 | 테이블 미등록, 수량·스펙 필요 | 클라이언트 | ⬜ 미결 |
+| 11 | eq-14: VM960 | 테이블 미등록, 수량·스펙 필요 | 클라이언트 | ⬜ 미결 |
+| 12 | 설비 카테고리 확장 | CNC/MCT → CNC/MCT/범용선반/기타 (4개 카테고리) | 개발자 | ⬜ 미결 |
 
 ---
 
@@ -174,7 +180,7 @@ src/data/
 | `organization.json` | departments[] (id, name, parent) — 2단계 계층 | About |
 | `philosophy.json` | slogan, values[] (key, icon, title, subtitle, items[]) | About |
 | `clients.json` | clients[] (id, name, logo) | About |
-| `equipment.json` | cnc[], mct[] (model, manufacturer, quantity, specs{}) | Equipment, Home |
+| `equipment.json` | cnc[], mct[], lathe[], other[] — 4개 카테고리, 총 14개 장비 | Equipment, Home |
 | `products.json` | categories[] → items[] (image, category, alt) | Products, Home |
 | `sustainability.json` | intro (vision, description), esg{e,s,g} (title, subtitle, description, icon, image, items[]) | Sustainability |
 | `stats.json` | items[] (label, value, suffix) | Home |
