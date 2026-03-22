@@ -15,7 +15,6 @@ interface ESGItem {
   subtitle: string;
   description: string;
   icon: string;
-  image: string;
   items: string[];
 }
 

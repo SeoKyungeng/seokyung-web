@@ -69,11 +69,19 @@
       "title": "Equipment",
       "subtitle": "State-of-the-art CNC & MCT machinery",
       "totalEquipment": "Total Equipment",
-      "cncLabel": "CNC MACHINES",
-      "mctLabel": "MCT MACHINES",
+      "cncLabel": "CNC",
+      "mctLabel": "MCT",
+      "latheLabel": "Manual Lathes",
+      "filterAll": "All",
+      "filterCnc": "CNC",
+      "filterMct": "MCT",
+      "filterLathe": "Manual Lathes",
+      "filterOther": "Other",
       "specManufacturer": "Manufacturer",
       "specQuantity": "Quantity",
-      "specUnit": "units"
+      "specUnit": "units",
+      "viewSpecs": "View Specs",
+      "hideSpecs": "Hide Specs"
     },
     "products": {
       "title": "Products",

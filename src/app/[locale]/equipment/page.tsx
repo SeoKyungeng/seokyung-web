@@ -1,59 +1,65 @@
 import { getLocale, getTranslations } from "next-intl/server";
-import equipmentRaw from "@/data/equipment.json";
+import { PageHeader } from "@/components/common/PageHeader";
 import { EquipmentHeader } from "@/components/equipment/EquipmentHeader";
-import { EquipmentShowcase } from "@/components/equipment/EquipmentShowcase";
-import type { EquipmentItem } from "@/lib/types";
+import { EquipmentGrid } from "@/components/equipment/EquipmentGrid";
+import equipmentRaw from "@/data/equipment.json";
 
-const cncItems: EquipmentItem[] = equipmentRaw.cnc.map((item) => ({
-  ...item,
-  type: "cnc" as const,
-}));
-
-const mctItems: EquipmentItem[] = equipmentRaw.mct.map((item) => ({
-  ...item,
-  type: "mct" as const,
-}));
+type Locale = "ko" | "en";
 
 export default async function EquipmentPage() {
-  const locale = (await getLocale()) as "ko" | "en";
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations("pages.equipment");
 
-  const cncTotal = cncItems.reduce((sum, item) => sum + item.quantity, 0);
-  const mctTotal = mctItems.reduce((sum, item) => sum + item.quantity, 0);
-  const total = cncTotal + mctTotal;
+  const allItems = [
+    ...equipmentRaw.cnc.map((item) => ({ ...item, type: "cnc" as const })),
+    ...equipmentRaw.mct.map((item) => ({ ...item, type: "mct" as const })),
+    ...equipmentRaw.lathe.map((item) => ({ ...item, type: "lathe" as const })),
+    ...equipmentRaw.other.map((item) => ({ ...item, type: "other" as const })),
+  ];
+
+  const items = allItems.map((item) => ({
+    id: item.id,
+    type: item.type,
+    name: item.name[locale],
+    model: item.model,
+    manufacturer: item.manufacturer[locale],
+    quantity: item.quantity,
+    photo: item.photo,
+    specs: item.specs.map((s) => ({ label: s.label[locale], value: s.value })),
+  }));
+
+  const cncTotal = equipmentRaw.cnc.reduce((sum, i) => sum + i.quantity, 0);
+  const mctTotal = equipmentRaw.mct.reduce((sum, i) => sum + i.quantity, 0);
+  const latheTotal = equipmentRaw.lathe.reduce(
+    (sum, i) => sum + i.quantity,
+    0
+  );
+  const otherTotal = equipmentRaw.other.reduce(
+    (sum, i) => sum + i.quantity,
+    0
+  );
+  const total = cncTotal + mctTotal + latheTotal + otherTotal;
 
   const stats = [
     { label: t("totalEquipment"), value: total },
     { label: t("cncLabel"), value: cncTotal },
     { label: t("mctLabel"), value: mctTotal },
+    { label: t("latheLabel"), value: latheTotal },
   ];
 
   return (
     <>
-      <EquipmentHeader
+      <PageHeader
+        label="EQUIPMENT"
         title={t("title")}
         subtitle={t("subtitle")}
-        stats={stats}
       />
-
-      <EquipmentShowcase
-        items={cncItems}
-        label={t("cncLabel")}
-        locale={locale}
-        specManufacturer={t("specManufacturer")}
-        specQuantity={t("specQuantity")}
+      <EquipmentHeader stats={stats} />
+      <EquipmentGrid
+        items={items}
         specUnit={t("specUnit")}
-        bgClass="bg-white"
-      />
-
-      <EquipmentShowcase
-        items={mctItems}
-        label={t("mctLabel")}
-        locale={locale}
-        specManufacturer={t("specManufacturer")}
-        specQuantity={t("specQuantity")}
-        specUnit={t("specUnit")}
-        bgClass="bg-smoke"
+        viewSpecs={t("viewSpecs")}
+        hideSpecs={t("hideSpecs")}
       />
     </>
   );

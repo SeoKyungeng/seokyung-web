@@ -69,11 +69,19 @@
       "title": "설비현황",
       "subtitle": "최첨단 CNC·MCT 장비를 보유하고 있습니다",
       "totalEquipment": "총 설비",
-      "cncLabel": "CNC MACHINES",
-      "mctLabel": "MCT MACHINES",
+      "cncLabel": "CNC",
+      "mctLabel": "MCT",
+      "latheLabel": "범용선반",
+      "filterAll": "전체",
+      "filterCnc": "CNC",
+      "filterMct": "MCT",
+      "filterLathe": "범용선반",
+      "filterOther": "기타",
       "specManufacturer": "제조사",
       "specQuantity": "수량",
-      "specUnit": "대"
+      "specUnit": "대",
+      "viewSpecs": "스펙 보기",
+      "hideSpecs": "스펙 닫기"
     },
     "products": {
       "title": "가공제품",

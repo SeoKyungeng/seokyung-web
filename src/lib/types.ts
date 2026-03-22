@@ -56,7 +56,8 @@ export interface EquipmentSpec {
 
 export interface EquipmentItem {
   id: string;
-  type: "cnc" | "mct";
+  type: "cnc" | "mct" | "lathe" | "other";
+  name: LocalizedText;
   model: string;
   manufacturer: LocalizedText;
   quantity: number;

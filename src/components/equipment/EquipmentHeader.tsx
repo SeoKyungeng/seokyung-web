@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { SectionLabel } from "@/components/common/SectionLabel";
 import { GlowBlob } from "@/components/common/GlowBlob";
 
 interface CounterStat {
@@ -11,8 +10,6 @@ interface CounterStat {
 }
 
 interface EquipmentHeaderProps {
-  title: string;
-  subtitle: string;
   stats: CounterStat[];
 }
 
@@ -86,22 +83,14 @@ function AnimatedCounter({ value, label }: CounterStat) {
   );
 }
 
-export function EquipmentHeader({ title, subtitle, stats }: EquipmentHeaderProps) {
+export function EquipmentHeader({ stats }: EquipmentHeaderProps) {
   return (
-    <section className="relative flex min-h-[70vh] flex-col items-center justify-center overflow-hidden bg-midnight px-5 py-20 text-white md:px-10 lg:px-20">
+    <section className="relative overflow-hidden bg-midnight px-5 py-16 text-white md:px-10 lg:px-20">
       <GlowBlob className="-bottom-32 -left-32" size={500} />
       <GlowBlob className="-right-32 -top-32" size={400} />
 
-      <div className="relative z-10 text-center">
-        <SectionLabel>EQUIPMENT</SectionLabel>
-        <h1 className="mt-4 font-display text-5xl font-bold tracking-tight md:text-7xl">
-          {title}
-        </h1>
-        <p className="mx-auto mt-6 max-w-xl text-lg text-white/60">
-          {subtitle}
-        </p>
-
-        <div className="mt-12 grid grid-cols-3 gap-4 max-w-lg mx-auto">
+      <div className="relative z-10 mx-auto max-w-3xl">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {stats.map((stat) => (
             <AnimatedCounter key={stat.label} value={stat.value} label={stat.label} />
           ))}

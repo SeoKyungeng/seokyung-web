@@ -19,7 +19,6 @@ export default async function SustainabilityPage() {
       subtitle: data.subtitle[locale],
       description: data.description[locale],
       icon: data.icon,
-      image: data.image,
       items: data.items.map((item) => item[locale]),
     };
   });

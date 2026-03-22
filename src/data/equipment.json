@@ -1,57 +1,204 @@
 {
   "cnc": [
     {
-      "id": "cnc-1",
+      "id": "eq-01",
       "type": "cnc",
-      "model": "PUMA 2600SY",
-      "manufacturer": { "ko": "두산", "en": "Doosan" },
-      "quantity": 2,
-      "photo": "/images/equipment/cnc-1.jpg",
+      "name": { "ko": "CNC 선반", "en": "CNC Lathe" },
+      "model": "L400-LC",
+      "manufacturer": { "ko": "현대위아", "en": "Hyundai-Wia" },
+      "quantity": 1,
+      "photo": "/images/equipment/eq-01.jpg",
       "specs": [
-        { "label": { "ko": "가공범위", "en": "Machining Range" }, "value": "Ø350 × 550mm" },
-        { "label": { "ko": "주축회전수", "en": "Spindle Speed" }, "value": "4,500 RPM" },
-        { "label": { "ko": "축수", "en": "Axes" }, "value": "X, Z, C, Y" }
+        { "label": { "ko": "최대 스윙", "en": "Max Swing" }, "value": "Φ630 (15\")" },
+        { "label": { "ko": "최대 가공 길이", "en": "Max Turning Length" }, "value": "2120mm" },
+        { "label": { "ko": "공구 수", "en": "Tool Count" }, "value": "10ea" },
+        { "label": { "ko": "척 사이즈", "en": "Chuck Size" }, "value": "15\"" },
+        { "label": { "ko": "NC 컨트롤러", "en": "NC Controller" }, "value": "FANUC 21i-TB" }
       ]
     },
     {
-      "id": "cnc-2",
+      "id": "eq-02",
       "type": "cnc",
-      "model": "LYNX 2100LB",
-      "manufacturer": { "ko": "두산", "en": "Doosan" },
-      "quantity": 3,
-      "photo": "/images/equipment/cnc-2.jpg",
+      "name": { "ko": "CNC 수직선반", "en": "CNC Vertical Turning" },
+      "model": "PUMA VT1100",
+      "manufacturer": { "ko": "두산 인프라코어", "en": "Doosan Infracore" },
+      "quantity": 2,
+      "photo": "/images/equipment/eq-02.jpg",
       "specs": [
-        { "label": { "ko": "가공범위", "en": "Machining Range" }, "value": "Ø300 × 510mm" },
-        { "label": { "ko": "주축회전수", "en": "Spindle Speed" }, "value": "4,000 RPM" },
-        { "label": { "ko": "축수", "en": "Axes" }, "value": "X, Z" }
+        { "label": { "ko": "최대 스윙", "en": "Max Swing" }, "value": "1100mm" },
+        { "label": { "ko": "최대 가공 높이", "en": "Max Turning Height" }, "value": "1000mm" },
+        { "label": { "ko": "척 사이즈", "en": "Chuck Size" }, "value": "32\"" },
+        { "label": { "ko": "공구 수", "en": "Tool Count" }, "value": "12ea" },
+        { "label": { "ko": "NC 컨트롤러", "en": "NC Controller" }, "value": "FANUC 21i-TB" }
       ]
+    },
+    {
+      "id": "eq-03",
+      "type": "cnc",
+      "name": { "ko": "CNC 수직선반", "en": "CNC Vertical Turning" },
+      "model": "VT1150+/MC",
+      "manufacturer": { "ko": "화천", "en": "Whacheon" },
+      "quantity": 1,
+      "photo": "/images/equipment/eq-03.jpg",
+      "specs": [
+        { "label": { "ko": "최대 스윙", "en": "Max Swing" }, "value": "1150mm" },
+        { "label": { "ko": "최대 가공 높이", "en": "Max Turning Height" }, "value": "1000mm" },
+        { "label": { "ko": "척 사이즈", "en": "Chuck Size" }, "value": "32\"" },
+        { "label": { "ko": "공구 수", "en": "Tool Count" }, "value": "12ea" },
+        { "label": { "ko": "NC 컨트롤러", "en": "NC Controller" }, "value": "FANUC 0i-TD" }
+      ]
+    },
+    {
+      "id": "eq-04",
+      "type": "cnc",
+      "name": { "ko": "O-M 터닝기", "en": "O-M Turning Machine" },
+      "model": "TM2-20N",
+      "manufacturer": { "ko": "O-M Ltd", "en": "O-M Ltd" },
+      "quantity": 1,
+      "photo": "/images/equipment/eq-04.jpg",
+      "specs": [
+        { "label": { "ko": "척 사이즈", "en": "Chuck Size" }, "value": "79\"" },
+        { "label": { "ko": "최대 스윙", "en": "Max Swing" }, "value": "2500mm" },
+        { "label": { "ko": "최대 가공 높이", "en": "Max Turning Height" }, "value": "2000mm" },
+        { "label": { "ko": "NC 컨트롤러", "en": "NC Controller" }, "value": "FANUC Oi-TD" }
+      ]
+    },
+    {
+      "id": "eq-13",
+      "type": "cnc",
+      "name": { "ko": "CNC 선반 SL 시리즈", "en": "CNC Lathe SL Series" },
+      "model": "SL 2500 / SL 3000",
+      "manufacturer": { "ko": "SMEC", "en": "SMEC" },
+      "quantity": 1,
+      "photo": "/images/equipment/eq-13.jpg",
+      "specs": []
     }
   ],
   "mct": [
     {
-      "id": "mct-1",
+      "id": "eq-05",
       "type": "mct",
-      "model": "DNM 500",
-      "manufacturer": { "ko": "두산", "en": "Doosan" },
-      "quantity": 2,
-      "photo": "/images/equipment/mct-1.jpg",
+      "name": { "ko": "수직 밀링 8호 (머시닝센터)", "en": "Vertical Milling No.8 (MCT)" },
+      "model": "8호",
+      "manufacturer": { "ko": "삼성기계 (남선)", "en": "Samsung Machine (Namsun)" },
+      "quantity": 1,
+      "photo": "/images/equipment/eq-05.jpg",
       "specs": [
-        { "label": { "ko": "테이블", "en": "Table" }, "value": "1,100 × 500mm" },
-        { "label": { "ko": "주축회전수", "en": "Spindle Speed" }, "value": "12,000 RPM" },
-        { "label": { "ko": "이송속도", "en": "Feed Rate" }, "value": "30m/min" }
+        { "label": { "ko": "이동거리 (XYZ)", "en": "Travel (XYZ)" }, "value": "1150×550×520mm" },
+        { "label": { "ko": "테이블 크기", "en": "Table Size" }, "value": "1700×800mm" },
+        { "label": { "ko": "최대 테이블 하중", "en": "Max Table Load" }, "value": "2500kg" },
+        { "label": { "ko": "주축 회전수", "en": "Spindle RPM" }, "value": "8000 RPM" },
+        { "label": { "ko": "공구 수", "en": "Tool Count" }, "value": "24ea" },
+        { "label": { "ko": "공구 생크", "en": "Tool Shank" }, "value": "BT50" },
+        { "label": { "ko": "NC 컨트롤러", "en": "NC Controller" }, "value": "FANUC OiM-D" }
       ]
     },
     {
-      "id": "mct-2",
+      "id": "eq-06",
       "type": "mct",
-      "model": "MYNX 5400",
+      "name": { "ko": "수직 밀링 2호 복합기", "en": "Vertical Milling No.2 Multi" },
+      "model": "2호",
+      "manufacturer": { "ko": "흥", "en": "Heung" },
+      "quantity": 2,
+      "photo": "/images/equipment/eq-06.jpg",
+      "specs": [
+        { "label": { "ko": "테이블 크기", "en": "Table Size" }, "value": "300×1000mm" },
+        { "label": { "ko": "이동거리 X", "en": "Travel X" }, "value": "820mm" },
+        { "label": { "ko": "이동거리 Y", "en": "Travel Y" }, "value": "450mm" },
+        { "label": { "ko": "이동거리 Z", "en": "Travel Z" }, "value": "550mm" }
+      ]
+    },
+    {
+      "id": "eq-12",
+      "type": "mct",
+      "name": { "ko": "5축 머시닝센터", "en": "5-Axis Machining Center" },
+      "model": "5축 머시닝센터",
+      "manufacturer": { "ko": "미상", "en": "Unknown" },
+      "quantity": 1,
+      "photo": "/images/equipment/eq-12.jpg",
+      "specs": []
+    },
+    {
+      "id": "eq-14",
+      "type": "mct",
+      "name": { "ko": "머시닝 센터", "en": "Machining Center" },
+      "model": "VM960",
       "manufacturer": { "ko": "두산", "en": "Doosan" },
       "quantity": 1,
-      "photo": "/images/equipment/mct-2.jpg",
+      "photo": "/images/equipment/eq-14.jpg",
+      "specs": []
+    }
+  ],
+  "lathe": [
+    {
+      "id": "eq-07",
+      "type": "lathe",
+      "name": { "ko": "강력중절삭 대형선반", "en": "Heavy Duty Large Lathe" },
+      "model": "범용",
+      "manufacturer": { "ko": "한국기계", "en": "Hankook Machinery" },
+      "quantity": 1,
+      "photo": "/images/equipment/eq-07.jpg",
       "specs": [
-        { "label": { "ko": "테이블", "en": "Table" }, "value": "1,300 × 540mm" },
-        { "label": { "ko": "주축회전수", "en": "Spindle Speed" }, "value": "8,000 RPM" },
-        { "label": { "ko": "이송속도", "en": "Feed Rate" }, "value": "20m/min" }
+        { "label": { "ko": "베드 위 스윙", "en": "Swing Over Bed" }, "value": "1720mm" },
+        { "label": { "ko": "캐리지 위 스윙", "en": "Swing Over Carriage" }, "value": "1320mm" },
+        { "label": { "ko": "양 센터 간 거리", "en": "Distance Between Centers" }, "value": "3000mm" }
+      ]
+    },
+    {
+      "id": "eq-08",
+      "type": "lathe",
+      "name": { "ko": "고속정밀선반", "en": "High Precision Lathe" },
+      "model": "범용",
+      "manufacturer": { "ko": "이케가이 (일본)", "en": "Ikegai Machinery (Japan)" },
+      "quantity": 1,
+      "photo": "/images/equipment/eq-08.jpg",
+      "specs": [
+        { "label": { "ko": "베드 위 스윙", "en": "Swing Over Bed" }, "value": "1300mm" },
+        { "label": { "ko": "캐리지 위 스윙", "en": "Swing Over Carriage" }, "value": "900mm" },
+        { "label": { "ko": "양 센터 간 거리", "en": "Distance Between Centers" }, "value": "4000mm" }
+      ]
+    },
+    {
+      "id": "eq-09",
+      "type": "lathe",
+      "name": { "ko": "강력중절삭 대형선반", "en": "Heavy Duty Large Lathe" },
+      "model": "범용",
+      "manufacturer": { "ko": "한국기계", "en": "Hankook Machinery" },
+      "quantity": 1,
+      "photo": "/images/equipment/eq-09.jpg",
+      "specs": [
+        { "label": { "ko": "베드 위 스윙", "en": "Swing Over Bed" }, "value": "Φ900" },
+        { "label": { "ko": "캐리지 위 스윙", "en": "Swing Over Carriage" }, "value": "900mm" },
+        { "label": { "ko": "양 센터 간 거리", "en": "Distance Between Centers" }, "value": "3000mm" }
+      ]
+    },
+    {
+      "id": "eq-10",
+      "type": "lathe",
+      "name": { "ko": "고속정밀선반", "en": "High Precision Lathe" },
+      "model": "범용",
+      "manufacturer": { "ko": "남선기계", "en": "Namsun Machinery" },
+      "quantity": 1,
+      "photo": "/images/equipment/eq-10.jpg",
+      "specs": [
+        { "label": { "ko": "베드 위 스윙", "en": "Swing Over Bed" }, "value": "Φ480" },
+        { "label": { "ko": "캐리지 위 스윙", "en": "Swing Over Carriage" }, "value": "480mm" },
+        { "label": { "ko": "양 센터 간 거리", "en": "Distance Between Centers" }, "value": "1000mm" }
+      ]
+    }
+  ],
+  "other": [
+    {
+      "id": "eq-11",
+      "type": "other",
+      "name": { "ko": "래디얼 드릴", "en": "Radial Drill" },
+      "model": "RE2-1600D",
+      "manufacturer": { "ko": "오야 (일본)", "en": "OOYA (Japan)" },
+      "quantity": 1,
+      "photo": "/images/equipment/eq-11.jpg",
+      "specs": [
+        { "label": { "ko": "최대 드릴 직경", "en": "Max Drill Diameter" }, "value": "Φ40" },
+        { "label": { "ko": "컬럼", "en": "Column" }, "value": "1600mm" }
       ]
     }
   ]
