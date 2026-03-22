@@ -28,7 +28,7 @@
 | - | 디자인 문서 작성 | ✅ 완료 | 6페이지 + 시스템 |
 | 0 | 프로젝트 셋업 | ✅ 완료 | Next.js 16 + Tailwind v4 + pnpm |
 | 1 | 디자인 시스템 + 공통 컴포넌트 | ✅ 완료 | Header, Footer, Toast, ImageLightbox 등 18개 컴포넌트 |
-| 2 | 페이지 퍼블리싱 | ✅ 완료 | 6페이지 퍼블리싱 (Home, About, Equipment, Products, Sustainability, Contact) |
+| 2 | 페이지 퍼블리싱 | 🔄 진행중 | About 회사소개 콘텐츠 반영 작업 중 (CEO·경영이념·조직도·고객사) |
 | 3 | 기능 구현 | ⬜ 대기 | |
 | 4 | 테스트 + QA | ⬜ 대기 | |
 | 5 | 최적화 + 배포 | ⬜ 대기 | |
@@ -83,8 +83,10 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3
 | 상태 | 항목 | 비고 |
 |------|------|------|
 | ⬜ | 로고 (PNG) | |
-| ⬜ | CEO 사진 + 인사말 텍스트 | |
-| ⬜ | 조직도 데이터 | |
+| ✅ | CEO 인사말 텍스트 | 사진 미사용 확정 (2026-03-22) |
+| ✅ | 조직도 데이터 | 부서 구조만 수령, 인원수 미기재 (2026-03-22) |
+| ✅ | 경영이념 콘텐츠 | 슬로건 + 핵심가치 3가지 수신 (2026-03-22) |
+| ✅ | 주요 고객사 목록 | 7개사 명단 수신, 로고 미수령 (2026-03-22) |
 | ⬜ | CNC/MCT 장비 사진 + 스펙 | |
 | ⬜ | 제품 사진 (방산/열교환기/기타) | |
 | ⬜ | ESG 콘텐츠 + 인증서 이미지 | |
@@ -154,8 +156,10 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3
 ```
 src/data/
 ├── company.json        # 회사 기본 정보
-├── ceo.json            # CEO 인사말
-├── organization.json   # 조직도
+├── ceo.json            # CEO 인사말 (사진 미사용)
+├── organization.json   # 조직도 (2단계: 부서→팀)
+├── philosophy.json     # 경영이념 (슬로건 + 핵심가치 3가지)
+├── clients.json        # 주요 고객사 (7개사)
 ├── equipment.json      # CNC/MCT 설비 목록 + 스펙
 ├── products.json       # 제품 갤러리 (카테고리별)
 ├── sustainability.json # ESG 텍스트 + 인증서 목록
@@ -167,8 +171,10 @@ src/data/
 | 파일 | 주요 필드 | 사용 페이지 |
 |------|-----------|------------|
 | `company.json` | address, phone, fax, email, coordinates | Contact, Footer |
-| `ceo.json` | name, title, photo, greeting (첫 문장 + 본문) | About |
-| `organization.json` | departments[] (name, parent, members) | About |
+| `ceo.json` | name, title, greeting (highlight + body) | About |
+| `organization.json` | departments[] (id, name, parent) — 2단계 계층 | About |
+| `philosophy.json` | slogan, values[] (key, icon, title, subtitle, items[]) | About |
+| `clients.json` | clients[] (id, name, logo) | About |
 | `equipment.json` | cnc[], mct[] (model, manufacturer, quantity, specs{}) | Equipment, Home |
 | `products.json` | categories[] → items[] (image, category, alt) | Products, Home |
 | `sustainability.json` | esg{e,s,g} (title, description, icon), certifications[] | Sustainability |
@@ -191,10 +197,10 @@ src/data/
 ```jsonc
 // 예: ceo.json
 {
-  "name": { "ko": "홍길동", "en": "Gil-dong Hong" },
+  "name": { "ko": "이설도", "en": "Seol-do Lee" },
   "greeting": {
-    "ko": "인사말 텍스트...",
-    "en": "Greeting text..."
+    "highlight": { "ko": "...", "en": "..." },
+    "body": { "ko": "...", "en": "..." }
   }
 }
 ```
