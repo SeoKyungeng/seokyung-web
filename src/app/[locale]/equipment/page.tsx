@@ -1,7 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/common/PageHeader";
 import { EquipmentHeader } from "@/components/equipment/EquipmentHeader";
-import { EquipmentGrid } from "@/components/equipment/EquipmentGrid";
+import { EquipmentStickyList } from "@/components/equipment/EquipmentStickyList";
 import equipmentRaw from "@/data/equipment.json";
 
 type Locale = "ko" | "en";
@@ -55,11 +55,9 @@ export default async function EquipmentPage() {
         subtitle={t("subtitle")}
       />
       <EquipmentHeader stats={stats} />
-      <EquipmentGrid
+      <EquipmentStickyList
         items={items}
         specUnit={t("specUnit")}
-        viewSpecs={t("viewSpecs")}
-        hideSpecs={t("hideSpecs")}
       />
     </>
   );

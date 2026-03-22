@@ -140,24 +140,25 @@
 ### 2-3. Equipment (설비현황)
 
 - [x] 페이지 헤더 + 카운터
-  - [x] 설비 총괄 카운터 (총 설비, CNC, MCT)
+  - [x] 설비 총괄 카운터 (총 설비, CNC, MCT, 범용선반)
   - [x] 0→N 롤링 애니메이션
-- [x] CNC 설비 쇼케이스
-  - [x] Zigzag 좌우 교차 배치 (5:7)
-  - [x] 장비 placeholder (hover 줌)
-  - [x] 스펙 key-value 테이블 (Geist Mono, i18n 대응)
-  - [x] 스크롤 slide-in (홀수 좌→우, 짝수 우→좌)
-- [x] MCT 설비 쇼케이스
-  - [x] CNC와 동일 구조
-  - [x] smoke 배경으로 섹션 구분
+- [x] Sticky 카드 스태킹 레이아웃
+  - [x] md:sticky top-20 + bg-white (다음 항목이 이전을 덮음)
+  - [x] 12컬럼 그리드 (텍스트 4칸 + 이미지 6칸)
+  - [x] 장비 placeholder (Cog 아이콘)
+  - [x] 스펙 항상 표시 (SpecRow, Geist Mono)
+  - [x] fadeUp + stagger 진입 애니메이션
+- [x] 카테고리 탭 필터
+  - [x] 5탭 (전체/CNC/MCT/범용선반/기타)
+  - [x] layoutId 슬라이딩 dot
+  - [x] AnimatePresence 필터 전환
 - [x] 모바일 대응
-  - [x] Zigzag → 세로 배치 (사진 상단, 스펙 하단)
-  - [x] 카운터 3열 유지
-- [ ] 콘텐츠 반영
-  - [ ] 카테고리 확장 (CNC/MCT → CNC/MCT/범용선반/기타)
-  - [ ] 14개 장비 데이터 교체 (완성 8개 우선 반영)
-  - [ ] 부분 완성 3개 — 클라이언트 확인 후 보충
-  - [ ] 불충분 3개 — 클라이언트 스펙 수령 후 반영
+  - [x] grid-cols-1, sticky 해제
+  - [x] 카운터 2열×2행 (grid-cols-2)
+- [x] 콘텐츠 반영
+  - [x] 카테고리 확장 (CNC/MCT → CNC/MCT/범용선반/기타)
+  - [x] 14개 장비 데이터 반영
+  - [ ] 부분 완성 3개 (eq-12, 13, 14) — 클라이언트 스펙 수령 후 보충
   - [ ] 장비 사진 교체 (클라이언트 수령 후)
 
 ### 2-4. Products (가공제품)
