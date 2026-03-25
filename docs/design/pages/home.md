@@ -38,17 +38,18 @@
 
 - **문구 TBD**: 안 A(디자인 판단 — 대문자 Syne 타이포에 최적화된 짧은 문구)와 안 B(기획서 원문)를 클라이언트에 제시 후 확정. 안 A 변경 사유: 기획서 원문이 문법적으로 부자연스럽고("one of best" → "one of the best"), Syne 대문자 타이포에는 짧고 임팩트 있는 문구가 적합
 - 배경: 풀스크린 영상 + `hero-overlay` 그라디언트 (80-95% 다크)
-- 타이포: Syne 72-80px, 라인별 clip-path reveal 애니메이션 (1.2s stagger)
+- 타이포: Syne **58-64px, weight 400, letter-spacing -0.04em**, 라인별 clip-path reveal 애니메이션 (1.2s stagger)
+- 영상 하단: **diagonal-cut clip-path** (금속 절단 느낌)
 - 스크롤 시: 영상 scale(1→1.1) + 텍스트 opacity fade-out (scrub)
-- CTA: 시안 배경 primary + 아웃라인 secondary
+- CTA: primary-400 배경 + 아웃라인 secondary
 - 하단: 스크롤 인디케이터 (얇은 라인 + bounce)
-- 배경에 은은한 시안 글로우 블롭
+- 배경에 은은한 블루 글로우 블롭 (다크 포인트 섹션)
 
 ### Section 2 — 숫자로 보는 서경 (벤토 그리드)
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  [smoke 배경]                                        │
+│  [white 배경]                                        │
 │                                                     │
 │  · ABOUT US                          ← SectionLabel │
 │                                                     │
@@ -70,7 +71,7 @@
 ```
 
 - 벤토 그리드: 좌 1칸 (2:1 비율) + 우 4칸 (1:1 비율)
-- 카드: `steel` 1px 보더, 투명 배경. 호버 시 보더 시안 전환
+- 카드: **`gray-200` 1px 보더, `white` 배경**. 호버 시 보더 `primary-400` + `shadow-md`
 - 숫자: Geist Mono, 카운터 롤링 (스크롤 트리거)
 - 스크롤 진입: 카드별 stagger fade-in
 
@@ -96,9 +97,9 @@
 └─────────────────────────────────────────────────────┘
 ```
 
-- GSAP ScrollTrigger pin + horizontal scroll
-- 카드: 대형 이미지 상단 + 스펙 하단. 1px `steel` 보더
-- 스크롤 진행 바: 시안 라인
+- GSAP ScrollTrigger pin + horizontal scroll (다크 포인트 섹션)
+- 카드: 대형 이미지 상단 (**corner-notch clip-path 적용**) + 스펙 하단. 1px `steel` 보더
+- 스크롤 진행 바: primary-400 라인
 - 우측 하단: 설비현황 페이지 링크
 
 ### Section 4 — 가공제품 하이라이트 (비대칭 그리드)
@@ -127,25 +128,30 @@
 ```
 
 - 비대칭 그리드: 좌 대형(2:3) + 우 상하 2분할
+- 이미지: **대형 asymmetric-cut, 소형 corner-notch clip-path 적용**
 - 호버: 이미지 scale(1.05) + 다크 오버레이 + 카테고리명 텍스트 reveal
+- **넘버링(01, 02, 03)** + 카테고리명 오버레이
 - 각 이미지 클릭 → 해당 카테고리 페이지로 이동
 
-### Section 5 — CTA 밴드
+### Section 5 — 마키 CTA 밴드
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  [midnight 배경 + 시안 글로우 블롭]                    │
+│  [navy 배경 + 쉐브론/기하학적 SVG 반복 패턴]           │
 │                                                     │
-│     정밀 가공이 필요하신가요?              ← Syne 48px │
-│     지금 문의하세요.                                   │
+│  ← 정밀 가공 파트너가 필요하신가요? · HOW CAN WE HELP? │  ← 무한 롤링 (marquee)
+│  → HOW CAN WE HELP? · 정밀 가공 파트너가 필요하신가요? │  ← 반대 방향 롤링
 │                                                     │
-│     [ 문의하기 → ]                        ← 시안 CTA │
+│         [ 문의하기 → ]   [ 설비 보기 → ]              │  ← CTA 2개 (중앙)
 │                                                     │
 └─────────────────────────────────────────────────────┘
 ```
 
-- 배경에 시안 radial gradient 글로우 (중앙, 은은하게)
-- 텍스트 워드별 reveal
+- 배경: `navy` (#0F1B3D) + 쉐브론 SVG 패턴 (opacity 5-8%)
+- 롤링 텍스트: 2행, 반대 방향. Syne 32px (PC) / 24px (모바일), weight 400, `white/80`
+- 롤링 속도: 20s 무한 루프 (`animation: marquee 20s linear infinite`)
+- CTA: 중앙 정렬, primary-400 배경 CTA + white 아웃라인 CTA
+- reduced-motion: 롤링 정지, 텍스트 정적 중앙 표시
 
 ---
 
@@ -158,7 +164,7 @@
 │ [poster 정지 이미지]   │  ← 영상 미로드
 │ [다크 오버레이]        │
 │                      │
-│ PRECISION            │  ← Syne 40px
+│ PRECISION            │  ← Syne 36-42px, weight 400
 │ MACHINING            │
 │ EXCELLENCE           │
 │                      │
@@ -172,7 +178,7 @@
 ```
 
 - 영상 → poster 정지 이미지만 표시 (`<source media="(min-width: 768px)">`)
-- Display 72px → 40px
+- Display 58-64px → 36-42px (weight 400)
 - CTA 2개 → 1개 (문의하기만), 풀너비
 - 패럴랙스 비활성화
 

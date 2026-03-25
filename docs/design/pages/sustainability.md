@@ -12,7 +12,7 @@
 │                                                     │
 │  · SUSTAINABILITY                                   │
 │                                                     │
-│  지속가능경영                           ← Syne 64px   │
+│  지속가능경영                ← Syne 48-56px, weight 400│
 │                                                     │
 └─────────────────────────────────────────────────────┘
 ```
@@ -97,9 +97,9 @@
 
 - 패턴: EquipmentShowcase zigzag (5:7 비대칭 2컬럼, 홀짝 교차)
 - SectionLabel: "ESG POLICY" + SectionTitle: "ESG 경영 방침"
-- 이미지 영역: `md:col-span-7`, `aspect-[7/5]`, Lucide 아이콘 placeholder (추후 실제 이미지 교체)
+- 이미지 영역: `md:col-span-7`, `aspect-[7/5]`, **corner-notch clip-path 적용**, Lucide 아이콘 placeholder (추후 실제 이미지 교체)
 - 텍스트 영역: `md:col-span-5`
-  - 큰 E/S/G 문자: `font-display text-3xl font-bold text-primary-400`
+  - 큰 E/S/G 문자: `font-display text-3xl font-normal text-primary-400` (weight 400, letter-spacing -0.02em)
   - subtitle: `font-semibold text-gray-950`
   - description: `text-gray-600`
   - items: bullet list, `text-sm text-gray-600`

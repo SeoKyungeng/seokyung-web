@@ -14,7 +14,7 @@
 │                                                     │
 │  · EQUIPMENT                                        │
 │                                                     │
-│  설비현황                              ← Syne 64px   │
+│  설비현황                 ← Syne 48-56px, weight 400  │
 │                                                     │
 │  ┌──────┐  ┌──────┐  ┌──────┐  ┌──────┐          │
 │  │ 14+  │  │ CNC  │  │ MCT  │  │범용선반│          │
@@ -84,7 +84,7 @@
 - 스크롤 시 다음 항목이 올라오며 이전 항목을 `border-t` 기준으로 자연스럽게 덮음
 - `max-w-6xl` 내부, `md:grid-cols-12`:
   - 텍스트: `md:col-span-4`
-  - 이미지: `md:col-span-6 md:col-start-7`
+  - 이미지: `md:col-span-6 md:col-start-7`, **corner-notch clip-path 적용**
   - 간격: `md:gap-24`
 - 외부 컨테이너: `px-5 md:px-10 lg:px-16` (max-w 제한 없이 화면 활용)
 - `zigzag?: boolean` prop 준비 (현재 `false`, 향후 좌우 교차 확장 가능)
@@ -117,7 +117,7 @@
 └────────────────────────────────────────────────────────────────┘
 ```
 
-- 모델명: `font-display text-2xl md:text-3xl font-semibold`
+- 모델명: `font-display text-2xl md:text-3xl font-normal` (weight 400, letter-spacing -0.025em)
 - 장비명: `text-sm text-gray-500`
 - 제조사 · 수량: `text-sm text-gray-500`
 - Cog 아이콘: `h-5 w-5 text-primary-400`, 제목 line-height에 수직 중앙 정렬

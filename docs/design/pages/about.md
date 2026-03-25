@@ -1,7 +1,7 @@
 # 회사소개 페이지 구성
 
 > **섹션 순서**: 페이지 헤더 → CEO 인사말 → 경영이념 → 조직도 → 주요 고객사
-> **배경 리듬**: dark → light → light(smoke) → dark → light
+> **배경 리듬**: dark → light → light(smoke) → light(smoke) → light
 
 ---
 
@@ -85,12 +85,12 @@
 ```
 ┌─────────────────────────────────────────────────────┐
 │  [midnight 배경 + 그레인]                              │
-│  [시안 글로우 블롭 — 우상단]                            │
+│  [블루 글로우 블롭 — 우상단]                            │
 │                                                     │
 │                                                     │
 │  · ABOUT US                          ← SectionLabel │
 │                                                     │
-│  회사소개                              ← Syne 64px   │
+│  회사소개                 ← Syne 48-56px, weight 400  │
 │                                                     │
 │  정밀 가공의 기술력으로                                 │
 │  산업의 미래를 만들어갑니다              ← Body L       │
@@ -100,7 +100,7 @@
 
 - 풀블리드 다크 배경
 - 텍스트 라인별 reveal 애니메이션
-- 우상단 은은한 시안 글로우
+- 우상단 은은한 블루 글로우
 
 ### Section 2 — CEO 인사말 (풀너비 텍스트)
 
@@ -128,7 +128,7 @@
 
 - **사진 미사용** — 풀너비 텍스트 레이아웃
 - 텍스트 컨테이너: `max-w-3xl mx-auto text-center`
-- highlight: `font-display text-2xl md:text-3xl font-semibold` 중앙 정렬
+- highlight: `font-display text-2xl md:text-3xl font-normal` (weight 400, letter-spacing -0.025em) 중앙 정렬
 - accent line: primary-400, `w-16 h-0.5 mx-auto`, highlight와 body 사이 시각 분리
 - body: `text-base md:text-lg text-gray-600 leading-relaxed`, 단락 간 `mb-6`
 - 이름/직함: 우측 정렬, `border-t border-gray-200` 위 `pt-6`
@@ -171,16 +171,16 @@
     - 고객: Users / Handshake 아이콘
     - 품질: Shield-check / Award 아이콘
     - 사람: Heart / UserCircle 아이콘
-  - 제목: `font-display text-xl font-semibold text-gray-950`
+  - 제목: `font-display text-xl font-medium text-gray-950`
   - 부제: `text-sm text-primary-500 font-medium` (인용구 스타일)
   - 항목 리스트: `text-sm text-gray-600 leading-relaxed`, 좌측 정렬, 넘버링 제거 → 깔끔한 prose
-  - hover: `shadow-lg` 전환, `border border-transparent hover:border-primary-400/20`
+  - hover: `shadow-md` 전환, `border border-gray-200 hover:border-primary-400`
 
-### Section 4 — 조직도 (다크 섹션, 2단계 계층)
+### Section 4 — 조직도 (라이트 섹션, 2단계 계층)
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  [slate 배경 + 그레인]                                │
+│  [smoke 배경]                                        │
 │                                                     │
 │  · ORGANIZATION                                     │
 │                                                     │
@@ -201,12 +201,12 @@
 └─────────────────────────────────────────────────────┘
 ```
 
-- 다크 배경으로 시각적 전환
+- **라이트 배경** (`smoke`)으로 시각적 전환
 - **2단계 트리**: root → 부서(5) → 팀(12)
-- root 노드: `steel/60` 배경, `min-w-[140px]`, base 텍스트
-- 부서 노드: `slate/60` 배경, `min-w-[120px]`, sm 텍스트, 시안 보더
+- root 노드: **`white` 배경 + `gray-200` 보더**, `min-w-[140px]`, base 텍스트 `gray-950`
+- 부서 노드: **`white` 배경 + `gray-200` 보더 + `primary-400` 좌측 2px accent strip**, `min-w-[120px]`, sm 텍스트 `gray-950`
 - 팀 노드: 부서 카드 하단에 `text-xs text-gray-500` 리스트로 표시 (별도 카드 X)
-- 연결선: `primary-400/40` 1px 세로/가로 라인
+- 연결선: **`gray-300`** 1px 세로/가로 라인
 - 노드: 상→하 순차 fade-in (stagger 0.1s)
 - hover: `border-color` → `primary-400` 전환
 - **인원수 미기재** — `members` 텍스트 비표시
@@ -238,9 +238,9 @@
 
 - **로고 미수령 시 (현재)**: 텍스트 그리드
   - `grid-cols-2 md:grid-cols-4 gap-6`
-  - 각 셀: `bg-smoke rounded-lg p-6`, 고객사명 중앙 정렬
+  - 각 셀: **`bg-white border border-gray-200 rounded-lg p-6`**, 고객사명 중앙 정렬
   - `text-sm font-medium text-gray-700`
-  - hover: `shadow-md` + `border-primary-400/20`
+  - hover: `shadow-md` + **`border-primary-400`**
 - **로고 수령 시**: 로고 이미지 그리드로 전환
   - `grayscale` 기본 → hover 시 `grayscale-0` 컬러 전환
   - 또는 무한 롤링 배너 (marquee) 옵션
@@ -334,8 +334,8 @@
 ```
 
 - 세로 리스트 + 들여쓰기 계층
-- 좌측 `border-l-2 border-primary-400/40` 시안 라인
-- 부서 노드: `font-semibold text-white text-sm`
+- 좌측 `border-l-2 border-primary-400/40` primary-400 라인
+- 부서 노드: `font-medium text-gray-950 text-sm`
 - 팀 노드: `text-xs text-gray-500`, 부서 아래 indent (`pl-4`)
 
 ### 고객사 모바일

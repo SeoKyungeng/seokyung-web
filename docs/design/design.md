@@ -8,29 +8,30 @@
 
 | 항목 | 결정 |
 |------|------|
-| **톤 & 무드** | Industrial Precision — 다크 베이스, 정밀 가공의 날카로움과 신뢰감 |
-| **스타일** | 미니멀 구조 + 대담한 타이포 + 인터랙티브 포인트 |
-| **컬러** | 미드나잇 + 블루 악센트 (차가운 금속성, 정밀 테크) |
-| **모션** | 적극적 — GSAP 스크롤 트리거, 텍스트 리빌, 패럴랙스, 수평 스크롤 |
-| **레퍼런스 무드** | Stripe, Linear, Vercel의 구조적 깔끔함 + 산업/제조업 무게감 |
+| **톤 & 무드** | Industrial Craft — 라이트 베이스, 금속 가공의 물성과 신뢰감. 다크 포인트 섹션으로 깊이 부여 |
+| **스타일** | 미니멀 구조 + 경량 대형 타이포 + 비정형 이미지 클리핑 + 인터랙티브 포인트 |
+| **컬러** | 화이트 베이스 + 네이비/다크 포인트 + 블루 악센트 (금속 가공의 물성) |
+| **모션** | 적극적 — GSAP 스크롤 트리거, 텍스트 리빌, 페이지 전환 블러, 수평 스크롤 |
+| **레퍼런스 무드** | John Lawrie Metals의 비정형 클리핑 + 라이트/다크 교차 리듬 + 산업 제조업 물성 |
 
 ### 디자인 원칙
 
-1. **Precision** — 정밀 가공을 디자인 언어로. 날카로운 타이포, 정확한 그리드, 얇은 라인 디테일
-2. **Contrast** — 다크/라이트 전환으로 시각적 리듬 생성. 단조로운 반복 금지
-3. **Motion with Purpose** — 모든 애니메이션에 의미 부여. 장식적 모션 지양
-4. **Asymmetric Tension** — 완벽한 대칭 금지. 비대칭 레이아웃으로 시선 유도
+1. **Precision** — 정밀 가공을 디자인 언어로. 경량 대형 타이포, 타이트 자간, 정확한 그리드, 얇은 라인 디테일
+2. **Contrast** — 화이트/다크 교차로 시각적 리듬 생성. 다크는 히어로, CTA, 푸터 등 포인트 섹션에 한정
+3. **Materiality** — 금속 가공의 물성 표현. 비정형 clip-path/mask로 이미지 엣지 클리핑, 대각선 컷, 불규칙 모서리
+4. **Motion with Purpose** — 모든 애니메이션에 의미 부여. 장식적 모션 지양
+5. **Asymmetric Tension** — 완벽한 대칭 금지. 비대칭 레이아웃으로 시선 유도
 
 ### 페이지별 스타일 분기
 
 | 페이지 | 스타일 | 톤 |
 |--------|--------|-----|
-| 홈 | 영상 히어로 + 벤토 그리드 + 수평 스크롤 | Cinematic |
-| 회사소개 | 대형 타이포 + 비대칭 레이아웃 | Editorial |
-| 설비현황 | sticky 카드 스태킹 + 탭 필터 | Technical |
-| 가공제품 | 풀블리드 갤러리 + 마소닉 그리드 | Visual |
-| 지속가능경영 | 카드 그리드 + 아이콘 모션 | Clean |
-| 문의하기 | 스플릿 레이아웃 + 플로팅 라벨 | Functional |
+| 홈 | 영상 히어로 + 벤토 그리드 + 수평 스크롤 + 마키 CTA | Cinematic + Craft |
+| 회사소개 | 대형 타이포 + 비대칭 레이아웃 | Editorial + Light |
+| 설비현황 | sticky 카드 스태킹 + 탭 필터 | Technical + Light |
+| 가공제품 | 풀블리드 갤러리 + 마소닉 그리드 | Visual + Craft |
+| 지속가능경영 | 중앙 텍스트 + zigzag 레이아웃 | Clean + Light |
+| 문의하기 | 스플릿 레이아웃 + 플로팅 라벨 | Functional + Light |
 
 ---
 
@@ -40,11 +41,14 @@
 
 | 토큰 | 값 | 용도 |
 |------|----|------|
-| `midnight` | `#0A0E1A` | 히어로, 다크 섹션 배경 |
-| `slate` | `#151923` | 다크 카드, 푸터 배경 |
-| `steel` | `#1E2432` | 다크 서피스, 보더 |
-| `smoke` | `#F8F9FB` | 라이트 섹션 배경 |
-| `white` | `#FFFFFF` | 본문 배경 |
+| `white` | `#FFFFFF` | **주 배경** — 대부분의 콘텐츠 섹션 기본 배경 |
+| `smoke` | `#F8F9FB` | 서브 배경 — white와 번갈아 교차 리듬용 |
+| `midnight` | `#0A0E1A` | **다크 포인트 전용** — 히어로, 페이지 헤더, 푸터 |
+| `navy` | `#0F1B3D` | 마키 CTA 밴드 배경 (midnight보다 약간 밝은 네이비) |
+| `slate` | `#151923` | 푸터 배경, 다크 섹션 내 카드 |
+| `steel` | `#1E2432` | 다크 섹션 내부 전용 보더/서피스 |
+| `gray-200` | `#E5E7EB` | 라이트 배경 위 보더, 구분선 |
+| `gray-100` | `#F3F4F6` | 라이트 배경 위 카드 호버 배경 |
 
 ### Accent
 
@@ -68,17 +72,30 @@
 
 | 이름 | 값 | 용도 |
 |------|----|------|
-| `glow` | `radial-gradient(ellipse, primary-400/15, transparent 70%)` | 배경 글로우 이펙트 |
+| `glow` | `radial-gradient(ellipse, primary-400/15, transparent 70%)` | 다크 포인트 섹션 배경 글로우 이펙트 |
 | `hero-overlay` | `linear-gradient(to bottom, midnight/80, midnight/95)` | 히어로 영상 오버레이 |
-| `section-fade` | `linear-gradient(to bottom, midnight, slate)` | 다크 섹션 전환 |
+| `section-divide` | `linear-gradient(to bottom, white, smoke)` | 라이트 섹션 간 부드러운 전환 |
 
 ### Texture
 
-- **그레인 오버레이**: `noise.svg` 또는 CSS grain — 다크 배경에 미세한 노이즈 텍스처 (opacity 3-5%)
-- **글로우 블롭**: 시안 계열 radial gradient blob — 히어로, CTA 섹션 배경에 은은한 빛 효과
-- **얇은 라인**: 1px `steel` 보더 — 카드, 섹션 구분
+- **그레인 오버레이**: SVG feTurbulence — **다크 포인트 섹션에만** 미세한 노이즈 텍스처 (opacity 3-5%). 라이트 섹션에서는 비활성
+- **글로우 블롭**: 블루 계열 radial gradient blob — **다크 포인트 섹션에만** 사용 (히어로, 페이지 헤더). 라이트 섹션에서 제거
+- **얇은 라인**: 다크 섹션 1px `steel` 보더 / **라이트 섹션 1px `gray-200` 보더** — 카드, 섹션 구분
 
-> 클라이언트 브랜드 컬러 수령 후 악센트 컬러 조정 예정
+### Image Clipping (금속 가공 물성)
+
+이미지에 비정형 clip-path / CSS mask 적용으로 금속 절단/가공 느낌 표현.
+
+| 패턴 | CSS | 용도 |
+|------|-----|------|
+| `diagonal-cut` | `clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%)` | 히어로 하단, 페이지 헤더 |
+| `corner-notch` | `clip-path: polygon(0 0, calc(100% - 48px) 0, 100% 48px, 100% 100%, 0 100%)` | 설비 사진, ESG 이미지 |
+| `edge-bite` | `clip-path: polygon(0 0, 100% 0, 100% 100%, 48px 100%, 0 calc(100% - 48px))` | 갤러리 이미지, 제품 하이라이트 |
+| `asymmetric-cut` | `clip-path: polygon(32px 0, 100% 0, 100% calc(100% - 32px), calc(100% - 32px) 100%, 0 100%, 0 32px)` | 대형 히어로 이미지, about 페이지 |
+
+- 모바일: notch/bite 크기 48px → 24px 축소
+- prefers-reduced-motion: 클리핑 유지 (정적 장식이므로 영향 없음)
+- 적용 대상: 설비 사진, 제품 갤러리, 히어로 영상/포스터, ESG 이미지
 
 ---
 
@@ -95,20 +112,26 @@
 
 ### 스케일
 
-| 레벨 | 크기 (PC) | 크기 (모바일) | weight | 용도 |
-|------|-----------|---------------|--------|------|
-| Display | 72–80px | 40–48px | 700 | 히어로 타이틀 (Syne) |
-| H1 | 56–64px | 32–40px | 700 | 페이지 타이틀 |
-| H2 | 40–48px | 28–32px | 600 | 섹션 타이틀 |
-| H3 | 24–28px | 20–24px | 600 | 서브 타이틀 |
-| Body L | 18–20px | 16–18px | 400 | 리드 텍스트 |
-| Body | 16px | 15px | 400 | 본문 |
-| Caption | 13–14px | 12–13px | 400 | 라벨, 보조 |
-| Mono | 14–16px | 13–14px | 400 | 스펙 데이터, 수치 (Geist Mono) |
+| 레벨 | 크기 (PC) | 크기 (모바일) | weight | line-height | 용도 |
+|------|-----------|---------------|--------|-------------|------|
+| Display | 58–64px | 36–42px | 400 | 1.05 | 히어로 타이틀 (Syne) |
+| H1 | 48–56px | 28–36px | 400 | 1.05 | 페이지 타이틀 |
+| H2 | 36–42px | 24–28px | 400 | 1.15 | 섹션 타이틀 |
+| H3 | 24–28px | 20–24px | 500 | 1.25 | 서브 타이틀 |
+| Body L | 17–19px | 16–18px | 400 | 1.6 | 리드 텍스트 |
+| Body | 17px | 16px | 400 | 1.6 | 본문 |
+| Caption | 13–14px | 12–13px | 400 | 1.4 | 라벨, 보조 |
+| Mono | 14–16px | 13–14px | 400 | 1.4 | 스펙 데이터, 수치 (Geist Mono) |
+
+> **위계 표현 방식 변경**: weight → **크기 + 자간**으로 시각 위계 표현. Display~H2가 모두 weight 400이므로 크기 차이와 타이트한 자간이 위계를 대체한다.
 
 ### 타이포 디테일
 
-- 영어 Display: **letter-spacing -0.03em** (타이트한 자간으로 임팩트)
+- Display: **letter-spacing -0.04em** (~-2.5px at 64px, 타이트한 자간으로 임팩트)
+- H1: **letter-spacing -0.035em** (~-1.7px at 48px)
+- H2: **letter-spacing -0.025em** (~-1.0px at 40px)
+- H3: **letter-spacing -0.02em** (~-0.56px at 28px)
+- Body: **letter-spacing -0.01em** (~-0.17px at 17px)
 - 섹션 라벨: **uppercase + letter-spacing 0.15em + Caption 크기** (예: "EQUIPMENT", "PRODUCTS")
 - 숫자 데이터: **Geist Mono + tabular-nums** (정렬된 데이터 표현)
 
@@ -136,9 +159,22 @@
 | 수평 스크롤 | GSAP pin + horizontal translateX | `none (scrub)` | scroll-driven |
 | 갤러리 아이템 | stagger fade-in + y(30→0) | `power2.out` | 0.5s (stagger 0.08s) |
 | CTA 버튼 | 마그네틱 커서 + 배경 그라디언트 시프트 | `spring` | 0.3s |
-| 카드 호버 | translate-y(-4px) + border-color 전환 | `ease-out` | 0.25s |
+| 카드 호버 | translate-y(-4px) + border-color gray-200→primary-400 + shadow-md | `ease-out` | 0.25s |
 | 라이트박스 | scale(0.9→1) + backdrop-blur fade-in | `spring` | 0.4s |
-| 페이지 전환 | 컨텐츠 fade + slide (Framer Motion AnimatePresence) | `ease-in-out` | 0.3s |
+| 페이지 전환 (블러) | opacity + filter: blur (0→8px→0) | `ease-in-out` | 0.4s |
+| 마키 CTA 텍스트 | translateX 무한 루프 | `linear` | 20s (무한 반복) |
+| 이미지 클리핑 reveal | clip-path 점진적 확장 (scroll-driven) | `power2.out` | scroll-driven |
+
+### 페이지 전환 (Blur Transition)
+
+Next.js App Router + Framer Motion AnimatePresence 기반. `Template.tsx` 활용 (페이지 전환 시 re-mount 보장).
+
+| 항목 | 스펙 |
+|------|------|
+| exit | opacity 1→0, filter: blur(0→8px), duration 0.25s |
+| enter | opacity 0→1, filter: blur(8px→0), duration 0.3s, delay 0.1s |
+| easing | ease-in-out |
+| reduced-motion | blur 제거, opacity fade만 (0.15s) |
 
 ### 커스텀 커서 (선택)
 
@@ -170,6 +206,9 @@
 | **sticky 카드 스태킹** | 설비현황 갤러리 |
 | **마소닉 그리드** | 가공제품 갤러리 |
 | **스플릿 레이아웃** (6:4) | 문의하기 폼 + 정보 |
+| **마키 CTA 밴드** | navy 배경 + 무한 롤링 텍스트 + 쉐브론 패턴 + CTA 버튼 2개 |
+| **비대칭 이미지 배치** | 큰 이미지(60%) + 작은 이미지(40%) 엇갈림, 넘버링(01, 02) |
+| **클리핑 이미지** | clip-path 적용 비정형 엣지 이미지 |
 
 ---
 
@@ -177,15 +216,18 @@
 
 | 컴포넌트 | 설명 |
 |----------|------|
-| **Header** | 로고 좌측, 네비 중앙, 언어토글+CTA 우측. 투명 시작 → 스크롤 시 `midnight` + backdrop-blur 전환. 1px 하단 보더 |
-| **Footer** | `midnight` 배경 + 그레인 텍스처. 상단에 대형 CTA 밴드. 3컬럼 (회사정보 / 네비 / 연락처). 하단 카피라이트 + 1px 상단 보더 |
-| **SectionLabel** | uppercase 영문 라벨 (Caption, `gray-400`, letter-spacing 0.15em) + 좌측 시안 dot 또는 짧은 라인 |
-| **SectionTitle** | 대형 타이포 (Syne). 워드별 reveal 애니메이션 |
-| **CTAButton** | 시안 배경, `midnight` 텍스트. 호버 시 마그네틱 + 글로우. 또는 아웃라인 변형 (시안 보더, 투명 배경) |
-| **Card** | `steel` 보더 1px, 투명 배경. 호버 시 보더 `primary-400` 전환 + translate-y(-4px) |
+| **Header** | 로고 좌측, 네비 중앙, 언어토글+CTA 우측. **다크 히어로 페이지**: 투명 → `midnight/90` + backdrop-blur. **라이트 페이지**: 투명 → `white/90` + backdrop-blur + 1px `gray-200` 하단 보더. 다크 위 텍스트 white, 라이트 위 텍스트 `gray-950` |
+| **Footer** | `midnight` 배경 + 그레인 텍스처. 상단에 **마키 CTA 밴드** (navy 배경, 무한 롤링 텍스트). 3컬럼 (회사정보 / 네비 / 연락처). 하단 카피라이트 + 1px 상단 보더 |
+| **SectionLabel** | uppercase 영문 라벨 (Caption, letter-spacing 0.15em). **라이트 배경**: `gray-500` + `primary-400` dot. **다크 배경**: `white/60` + `primary-300` dot |
+| **SectionTitle** | 대형 타이포 (Syne, weight 400). 워드별 reveal 애니메이션 |
+| **CTAButton** | primary-400 배경, white 텍스트. 호버 시 마그네틱 + 글로우. 아웃라인 변형 (primary-400 보더, 투명 배경). dark 변형 (midnight 배경, white 텍스트) |
+| **Card** | **라이트 배경**: `gray-200` 보더 1px, `white` 배경. 호버 시 `primary-400` 보더 + `shadow-md` + translate-y(-4px). **다크 배경**: `steel` 보더 유지 |
 | **ImageLightbox** | backdrop-blur + 다크 오버레이. 이미지 scale-in. 좌우 네비 + ESC 닫기 |
-| **GrainOverlay** | 전체 페이지 노이즈 텍스처 (pointer-events: none, opacity 3%) |
-| **GlowBlob** | 시안 radial gradient — 마우스 따라가기 또는 고정 위치 배경 장식 |
+| **GrainOverlay** | **다크 포인트 섹션에만** 노이즈 텍스처 (pointer-events: none, opacity 3%). 전역 적용 대신 섹션별 적용 |
+| **GlowBlob** | 블루 radial gradient — **다크 포인트 섹션에만** 사용. 라이트 섹션에서 제거 |
+| **ClippedImage** | `next/image` wrapper. `variant` prop으로 clip-path 패턴 선택 (`diagonal-cut`, `corner-notch`, `edge-bite`, `asymmetric-cut`). 모바일 축소 대응 |
+| **MarqueeCTABand** | navy 배경 + 쉐브론 SVG 패턴 + 무한 롤링 텍스트 (2행 반대 방향) + CTA 버튼 2개. reduced-motion 시 정적 표시 |
+| **PageTransition** | `Template.tsx` 기반 Framer Motion wrapper. 진입/퇴장 시 blur + opacity 전환 |
 
 ---
 
@@ -198,7 +240,10 @@
 | 컴포넌트 애니메이션 | `framer-motion` |
 | 갤러리 라이트박스 | 커스텀 구현 (Framer Motion + Dialog) |
 | 아이콘 | `lucide-react` (얇은 라인 스타일, 미니멀) |
-| 노이즈 텍스처 | SVG filter `feTurbulence` 또는 CSS background-image |
+| 노이즈 텍스처 | SVG filter `feTurbulence` — 다크 포인트 섹션에만 적용 (컴포넌트 props로 제어) |
+| 이미지 클리핑 | CSS `clip-path: polygon()` — `ClippedImage` 컴포넌트 `variant` prop으로 패턴 선택 |
+| 페이지 전환 | Framer Motion AnimatePresence + Next.js `Template.tsx` (`filter: blur` + opacity) |
+| 마키 애니메이션 | CSS `@keyframes marquee` 또는 Framer Motion `animate={{ x }}` 무한 루프 |
 | 폰트 로딩 | `next/font` (Syne, Geist, Geist Mono) + `next/font/local` (Pretendard) |
 
 ---
@@ -226,9 +271,9 @@ PC:
 | 형태 | 텍스트 토글 (`KO` / `EN`), 구분자 `|` |
 | 위치 (PC) | Header 우측, CTA 버튼 좌측 |
 | 위치 (모바일) | 햄버거 메뉴 패널 하단 |
-| 활성 상태 | `white`, font-weight 600 |
-| 비활성 상태 | `white/40`, font-weight 400 |
-| 호버 (PC) | 비활성 항목 → `white/70` |
+| 활성 상태 | **다크 위**: `white`, font-weight 600. **라이트 위**: `gray-950`, font-weight 600 |
+| 비활성 상태 | **다크 위**: `white/40`, font-weight 400. **라이트 위**: `gray-400` |
+| 호버 (PC) | **다크 위**: `white/70`. **라이트 위**: `gray-700` |
 | 전환 애니메이션 | 텍스트 cross-fade (0.2s ease) |
 
 ### URL 구조
@@ -310,25 +355,27 @@ PC:
 | 항목 | 스펙 |
 |------|------|
 | 트리거 | 스크롤 60px 이상 |
-| 전환 | 투명 → `midnight/90` + `backdrop-blur-lg` (blur 12px) |
+| 전환 (다크 히어로) | 투명 → `midnight/90` + `backdrop-blur-lg` (blur 12px) + 1px `steel` 하단 보더 |
+| 전환 (라이트 페이지) | 투명 → `white/90` + `backdrop-blur-lg` + 1px `gray-200` 하단 보더 |
 | duration | 0.3s ease |
-| 하단 보더 | `1px steel` (스크롤 후에만 표시) |
 
 ### 활성 메뉴 표시
 
 | 항목 | 스펙 |
 |------|------|
-| PC | 현재 페이지 메뉴: `white` 텍스트 + `primary-400` 하단 2px 밑줄 (offset 4px) |
+| PC (다크 위) | 현재 페이지 메뉴: `white` 텍스트 + `primary-400` 하단 2px 밑줄 (offset 4px) |
+| PC (라이트 위) | 현재 페이지 메뉴: `gray-950` 텍스트 + `primary-400` 하단 2px 밑줄 |
 | 모바일 | 현재 페이지 메뉴: `primary-400` 텍스트 |
-| 비활성 | `white/70` |
-| 호버 (PC) | `white` (비활성→활성 전환, 0.2s) |
+| 비활성 (다크 위) | `white/70` |
+| 비활성 (라이트 위) | `gray-500` |
+| 호버 (PC) | 비활성→활성 전환 (0.2s) |
 
 ### 모바일 Footer
 
 ```
 ┌─────────────────────────────────┐
-│         [CTA 밴드]              │
-│   정밀 가공이 필요하신가요?        │
+│       [마키 CTA 밴드]            │
+│  ← 정밀 가공 파트너가 필요하신가요?  │
 │       [ 문의하기 → ]            │
 │                                 │
 │  ─────────────────────────      │
@@ -363,7 +410,7 @@ PC:
 | 스켈레톤 (카드) | `smoke` 배경 + 펄스 애니메이션 (opacity 0.5↔1, 1.5s) | 설비 카드 |
 | 스켈레톤 (이미지) | `smoke` 배경, 원본 비율 유지 + 펄스 | 갤러리, 설비 사진 |
 | Blur-up | 20px blur 저해상도 → 원본 fade-in (0.5s) | 가공제품 갤러리 이미지 |
-| 인라인 스피너 | 16px 시안 원형 스피너 | 버튼 내부 (전송 중) |
+| 인라인 스피너 | 16px primary-400 원형 스피너 | 버튼 내부 (전송 중) |
 
 ### 데이터 의존 컴포넌트 상태 매핑
 
@@ -385,7 +432,7 @@ PC:
 │                                             │
 │     페이지를 찾을 수 없습니다       ← H2, white │
 │                                             │
-│     [ 홈으로 돌아가기 → ]          ← 시안 CTA  │
+│     [ 홈으로 돌아가기 → ]          ← primary-400 CTA  │
 │                                             │
 └─────────────────────────────────────────────┘
 ```
@@ -423,7 +470,8 @@ PC:
 | 카운터 롤링 | 비활성화. 최종 숫자 즉시 표시 |
 | 패럴랙스 | 비활성화. 고정 배경 |
 | 수평 스크롤 | 유지 (기능적 인터랙션) |
-| 페이지 전환 | fade만 유지 (0.15s) |
+| 페이지 전환 (블러) | blur 제거, opacity fade만 (0.15s) |
+| 마키 CTA 밴드 | 롤링 정지, 텍스트 정적 중앙 표시 |
 | 호버 효과 | 유지 (transform 제거, opacity만) |
 | Lenis 스무스 스크롤 | 비활성화. 네이티브 스크롤 |
 
@@ -468,10 +516,10 @@ PC:
 
 | 폰트 | 로딩 방식 | 서브셋 |
 |------|----------|--------|
-| Syne | `next/font/google` | weight 600, 700 |
+| Syne | `next/font/google` | weight 400, 500 |
 | Geist | `next/font/local` | weight 400, 600 |
 | Geist Mono | `next/font/local` | weight 400 |
-| Pretendard | `next/font/local` (Variable) | weight 400, 600, 700만 서브셋 |
+| Pretendard | `next/font/local` (Variable) | weight 400, 500, 600만 서브셋 |
 
 - `font-display: swap` (모든 폰트)
 - Critical font (Pretendard 400): preload 적용
