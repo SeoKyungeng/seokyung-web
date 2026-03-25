@@ -13,7 +13,7 @@ interface CTAButtonProps {
 const base =
   "inline-flex items-center gap-2 rounded-full px-8 py-3 font-semibold transition-colors duration-200";
 const variants = {
-  solid: "bg-primary-400 text-midnight hover:bg-primary-300",
+  solid: "bg-primary-400 text-white hover:bg-primary-300",
   outline: "border border-primary-400 text-primary-400 hover:bg-primary-400/10",
   dark: "bg-midnight text-white hover:bg-midnight/80",
 };

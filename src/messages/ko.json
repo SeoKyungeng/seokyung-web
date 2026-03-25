@@ -22,7 +22,10 @@
   },
   "footer": {
     "copyright": "© 2026 (주)서경엔지니어링. All rights reserved.",
-    "ctaTitle": "정밀 가공이 필요하신가요?",
+    "ctaMarqueeKo": "정밀 가공 파트너가 필요하신가요?",
+    "ctaMarqueeEn": "HOW CAN WE HELP?",
+    "ctaButton": "문의하기",
+    "ctaButtonSecondary": "설비 보기",
     "address": "경기도 OO시 OO구 OO로 000",
     "quickLinks": "바로가기",
     "contactTitle": "연락처",
@@ -49,9 +52,10 @@
       "productsLabel": "PRODUCTS",
       "productsTitle": "가공제품",
       "productsViewAll": "전체 보기 →",
-      "ctaTitle": "정밀 가공이 필요하신가요?",
-      "ctaSubtitle": "지금 문의하세요.",
-      "ctaButton": "문의하기"
+      "ctaMarqueeKo": "정밀 가공 파트너가 필요하신가요?",
+      "ctaMarqueeEn": "HOW CAN WE HELP?",
+      "ctaButton": "문의하기",
+      "ctaButtonSecondary": "설비 보기"
     },
     "about": {
       "title": "회사소개",

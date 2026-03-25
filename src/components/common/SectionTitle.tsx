@@ -6,27 +6,30 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 interface SectionTitleProps {
   children: string;
   as?: "h2" | "h3";
+  weight?: "semibold" | "normal";
   className?: string;
 }
 
 export function SectionTitle({
   children,
   as: Tag = "h2",
+  weight = "semibold",
   className = "",
 }: SectionTitleProps) {
   const reducedMotion = useReducedMotion();
   const words = children.split(" ");
+  const weightClass = weight === "normal" ? "font-normal" : "font-semibold";
 
   if (reducedMotion) {
     return (
-      <Tag className={`font-display font-semibold ${className}`}>
+      <Tag className={`font-display ${weightClass} ${className}`}>
         {children}
       </Tag>
     );
   }
 
   return (
-    <Tag className={`font-display font-semibold ${className}`}>
+    <Tag className={`font-display ${weightClass} ${className}`}>
       {words.map((word, i) => (
         <motion.span
           key={i}

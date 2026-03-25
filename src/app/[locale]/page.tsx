@@ -55,9 +55,10 @@ export default async function HomePage() {
         categories={categoryItems}
       />
       <CTABand
-        ctaTitle={t("ctaTitle")}
-        ctaSubtitle={t("ctaSubtitle")}
+        ctaMarqueeKo={t("ctaMarqueeKo")}
+        ctaMarqueeEn={t("ctaMarqueeEn")}
         ctaButton={t("ctaButton")}
+        ctaButtonSecondary={t("ctaButtonSecondary")}
       />
     </>
   );

@@ -6,6 +6,7 @@
   --color-slate: #151923;
   --color-steel: #1E2432;
   --color-smoke: #F8F9FB;
+  --color-navy: #0F1B3D;
 
   /* Accent */
   --color-primary-300: #6B8AF5;
@@ -46,4 +47,18 @@
 
 .skip-link:focus {
   top: 0;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
 }

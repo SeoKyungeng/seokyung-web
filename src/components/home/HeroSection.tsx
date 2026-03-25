@@ -29,7 +29,7 @@ export function HeroSection({
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "linear-gradient(135deg, rgba(6,182,212,0.06) 0%, transparent 50%, rgba(6,182,212,0.03) 100%)",
+            "linear-gradient(135deg, rgba(20,71,230,0.06) 0%, transparent 50%, rgba(20,71,230,0.03) 100%)",
         }}
         aria-hidden="true"
       />
@@ -38,14 +38,14 @@ export function HeroSection({
       <GlowBlob className="-right-48 bottom-1/4" size={500} />
 
       <div className="relative z-10 max-w-7xl w-full mx-auto px-5 md:px-10 lg:px-20 py-24">
-        <h1 className="mb-6 font-display font-bold tracking-tight text-white leading-none">
+        <h1 className="mb-6 font-display font-normal tracking-[-0.04em] text-white leading-none">
           {lines.map((line, i) => (
             <span key={i} className="block overflow-hidden">
               {reducedMotion ? (
-                <span className="block text-[clamp(40px,8vw,80px)]">{line}</span>
+                <span className="block text-[clamp(36px,7vw,64px)]">{line}</span>
               ) : (
                 <motion.span
-                  className="block text-[clamp(40px,8vw,80px)]"
+                  className="block text-[clamp(36px,7vw,64px)]"
                   initial={{ clipPath: "inset(100% 0 0 0)" }}
                   animate={{ clipPath: "inset(0% 0 0 0)" }}
                   transition={{
@@ -115,6 +115,13 @@ export function HeroSection({
           />
         )}
       </div>
+
+      {/* Diagonal cut — 다음 섹션과의 경계 */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-16 bg-white"
+        style={{ clipPath: "polygon(0 100%, 100% 0, 100% 100%)" }}
+        aria-hidden="true"
+      />
     </section>
   );
 }

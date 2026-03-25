@@ -65,7 +65,7 @@ function StatCard({ item, locale, triggered, reducedMotion }: StatCardProps) {
   const displayValue = Number.isInteger(item.value) ? count : count.toFixed(2);
 
   return (
-    <Card className="flex flex-col justify-center p-6 md:p-8">
+    <Card variant="light" className="flex flex-col justify-center p-6 md:p-8">
       <p className="font-mono text-4xl md:text-5xl font-bold text-primary-400 leading-none">
         {displayValue}
         <span className="text-2xl md:text-3xl ml-1 text-primary-400/80">{suffix}</span>
@@ -116,18 +116,18 @@ export function StatsSection({
   );
 
   return (
-    <section ref={sectionRef} className="bg-smoke py-24 md:py-40">
+    <section ref={sectionRef} className="bg-white py-24 md:py-40">
       <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-20">
         <div className="mb-12 md:mb-16">
           <SectionLabel>{statsLabel}</SectionLabel>
-          <SectionTitle className="mt-3 text-2xl md:text-4xl text-midnight">
+          <SectionTitle weight="normal" className="mt-3 text-2xl md:text-4xl text-midnight">
             {statsTitle}
           </SectionTitle>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:grid-rows-2">
           <div className="md:col-span-2 md:row-span-2">
-            <Card className="h-full p-8 md:p-12 bg-midnight/5 flex flex-col justify-between min-h-[220px] md:min-h-0">
+            <Card variant="light" className="h-full p-8 md:p-12 flex flex-col justify-between min-h-[220px] md:min-h-0">
               <div>
                 <p className="text-sm uppercase tracking-widest text-gray-500 mb-4">
                   {statsSince}

@@ -12,11 +12,12 @@ import { ToastProvider } from "@/providers/ToastProvider";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
 import { GrainOverlay } from "@/components/common/GrainOverlay";
+import { LayoutTransition } from "@/components/common/LayoutTransition";
 import "@/styles/globals.css";
 
 const syne = Syne({
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-syne",
   display: "swap",
 });
@@ -63,7 +64,9 @@ export default async function LocaleLayout({
             <ToastProvider>
               <GrainOverlay />
               <Header />
-              <main id="main-content">{children}</main>
+              <main id="main-content">
+                <LayoutTransition>{children}</LayoutTransition>
+              </main>
               <Footer />
             </ToastProvider>
           </LenisProvider>

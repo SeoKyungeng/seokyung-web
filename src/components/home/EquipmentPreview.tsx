@@ -22,7 +22,10 @@ function EquipmentCard({ item, locale }: { item: EquipmentItem; locale: "ko" | "
 
   return (
     <div className="flex-shrink-0 w-[85vw] sm:w-[350px] rounded-lg border border-steel bg-midnight/60 overflow-hidden">
-      <div className="relative h-48 bg-steel/30 flex items-center justify-center">
+      <div
+        className="relative h-48 bg-steel/30 flex items-center justify-center"
+        style={{ clipPath: "polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 0 100%)" }}
+      >
         <div className="text-center">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full border border-primary-400/30 mb-3">
             <svg
@@ -138,8 +141,8 @@ export function EquipmentPreview({
         className="relative"
       >
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-20 mb-12">
-          <SectionLabel>{equipmentLabel}</SectionLabel>
-          <SectionTitle className="mt-3 text-2xl md:text-4xl text-white">
+          <SectionLabel variant="dark">{equipmentLabel}</SectionLabel>
+          <SectionTitle weight="normal" className="mt-3 text-2xl md:text-4xl text-white">
             {equipmentTitle}
           </SectionTitle>
         </div>

@@ -22,7 +22,10 @@
   },
   "footer": {
     "copyright": "© 2026 Seokyung Engineering Co., Ltd. All rights reserved.",
-    "ctaTitle": "Need precision machining?",
+    "ctaMarqueeKo": "정밀 가공 파트너가 필요하신가요?",
+    "ctaMarqueeEn": "HOW CAN WE HELP?",
+    "ctaButton": "Contact Us",
+    "ctaButtonSecondary": "Our Equipment",
     "address": "000, OO-ro, OO-gu, OO-si, Gyeonggi-do",
     "quickLinks": "Quick Links",
     "contactTitle": "Contact",
@@ -49,9 +52,10 @@
       "productsLabel": "PRODUCTS",
       "productsTitle": "Products",
       "productsViewAll": "View All →",
-      "ctaTitle": "Need precision machining?",
-      "ctaSubtitle": "Contact us today.",
-      "ctaButton": "Contact Us"
+      "ctaMarqueeKo": "정밀 가공 파트너가 필요하신가요?",
+      "ctaMarqueeEn": "HOW CAN WE HELP?",
+      "ctaButton": "Contact Us",
+      "ctaButtonSecondary": "Our Equipment"
     },
     "about": {
       "title": "About Us",
