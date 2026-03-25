@@ -66,11 +66,21 @@
     {
       "id": "eq-13",
       "type": "cnc",
-      "name": { "ko": "CNC 선반 SL 시리즈", "en": "CNC Lathe SL Series" },
-      "model": "SL 2500 / SL 3000",
+      "name": { "ko": "CNC 선반", "en": "CNC Lathe" },
+      "model": "SL 2500",
       "manufacturer": { "ko": "SMEC", "en": "SMEC" },
-      "quantity": 1,
+      "quantity": 2,
       "photo": "/images/equipment/eq-13.jpg",
+      "specs": []
+    },
+    {
+      "id": "eq-14",
+      "type": "cnc",
+      "name": { "ko": "CNC 선반", "en": "CNC Lathe" },
+      "model": "SL 3000",
+      "manufacturer": { "ko": "SMEC", "en": "SMEC" },
+      "quantity": 2,
+      "photo": "/images/equipment/eq-14.jpg",
       "specs": []
     }
   ],
@@ -116,16 +126,21 @@
       "manufacturer": { "ko": "미상", "en": "Unknown" },
       "quantity": 1,
       "photo": "/images/equipment/eq-12.jpg",
-      "specs": []
+      "specs": [
+        { "label": { "ko": "가공 제품", "en": "Product" }, "value": "LIFT FAN Center Disk" },
+        { "label": { "ko": "제품 크기", "en": "Product Size" }, "value": "60T × Φ1610" },
+        { "label": { "ko": "소재", "en": "Material" }, "value": "6061-T6 Alloy" },
+        { "label": { "ko": "공차", "en": "Tolerance" }, "value": "0.03 이내" }
+      ]
     },
     {
-      "id": "eq-14",
+      "id": "eq-15",
       "type": "mct",
       "name": { "ko": "머시닝 센터", "en": "Machining Center" },
       "model": "VM960",
       "manufacturer": { "ko": "두산", "en": "Doosan" },
       "quantity": 1,
-      "photo": "/images/equipment/eq-14.jpg",
+      "photo": "/images/equipment/eq-15.jpg",
       "specs": []
     }
   ],
@@ -147,7 +162,7 @@
     {
       "id": "eq-08",
       "type": "lathe",
-      "name": { "ko": "고속정밀선반", "en": "High Precision Lathe" },
+      "name": { "ko": "강력중절삭 대형선반", "en": "Heavy Duty Large Lathe" },
       "model": "범용",
       "manufacturer": { "ko": "이케가이 (일본)", "en": "Ikegai Machinery (Japan)" },
       "quantity": 1,
@@ -161,7 +176,7 @@
     {
       "id": "eq-09",
       "type": "lathe",
-      "name": { "ko": "강력중절삭 대형선반", "en": "Heavy Duty Large Lathe" },
+      "name": { "ko": "고속정밀선반", "en": "High Precision Lathe" },
       "model": "범용",
       "manufacturer": { "ko": "한국기계", "en": "Hankook Machinery" },
       "quantity": 1,
