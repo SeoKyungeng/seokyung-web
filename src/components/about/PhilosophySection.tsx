@@ -6,6 +6,7 @@ import { SectionLabel } from "@/components/common/SectionLabel";
 import { SectionTitle } from "@/components/common/SectionTitle";
 import { Card } from "@/components/common/Card";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { EASE_SMOOTH } from "@/lib/motion";
 import type { PhilosophyValue } from "@/lib/types";
 
 const ICON_MAP = {
@@ -38,7 +39,7 @@ const cardVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
+      ease: EASE_SMOOTH,
     },
   },
 };

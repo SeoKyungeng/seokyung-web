@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { EASE_SMOOTH, DURATION_NORMAL } from "@/lib/motion";
 
 interface SectionTitleProps {
   children: string;
@@ -38,9 +39,9 @@ export function SectionTitle({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{
-            duration: 0.5,
+            duration: DURATION_NORMAL,
             delay: i * 0.05,
-            ease: [0.25, 0.46, 0.45, 0.94],
+            ease: EASE_SMOOTH,
           }}
         >
           {word}

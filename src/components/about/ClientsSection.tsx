@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { SectionTitle } from "@/components/common/SectionTitle";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { EASE_SMOOTH } from "@/lib/motion";
 import type { Client } from "@/lib/types";
 
 interface ClientsSectionProps {
@@ -28,7 +29,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.4,
-      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
+      ease: EASE_SMOOTH,
     },
   },
 };

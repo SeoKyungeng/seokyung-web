@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cog } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { EASE_SMOOTH } from "@/lib/motion";
 import {
   EquipmentCategoryFilter,
   type EquipmentCategory,
@@ -44,7 +45,7 @@ const imageReveal = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
+    transition: { duration: 0.7, ease: EASE_SMOOTH },
   },
 };
 

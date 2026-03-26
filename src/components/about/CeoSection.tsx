@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { EASE_SMOOTH } from "@/lib/motion";
 import type { CEO } from "@/lib/types";
 
 interface CeoSectionProps {
@@ -16,7 +17,7 @@ const fadeIn = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
+    transition: { duration: 0.6, ease: EASE_SMOOTH },
   },
 };
 
@@ -24,7 +25,7 @@ const lineReveal = {
   hidden: { scaleX: 0 },
   visible: {
     scaleX: 1,
-    transition: { duration: 0.6, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
+    transition: { duration: 0.6, delay: 0.3, ease: EASE_SMOOTH },
   },
 };
 

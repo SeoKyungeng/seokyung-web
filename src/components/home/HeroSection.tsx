@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { CTAButton } from "@/components/common/CTAButton";
 import { GlowBlob } from "@/components/common/GlowBlob";
+import { EASE_SPRING, DURATION_SLOW } from "@/lib/motion";
 
 interface HeroSectionProps {
   heroTitle: string;
@@ -60,19 +61,22 @@ export function HeroSection({
         <div
           className="absolute inset-0"
           style={{
-            background:
+            background: [
               "linear-gradient(135deg, rgba(20,71,230,0.06) 0%, transparent 50%, rgba(20,71,230,0.03) 100%)",
+              "radial-gradient(ellipse 80% 50% at 20% 40%, rgba(20,71,230,0.08), transparent)",
+              "radial-gradient(ellipse 60% 40% at 80% 60%, rgba(107,138,245,0.05), transparent)",
+            ].join(", "),
           }}
         />
-        <GlowBlob className="-left-32 top-1/4" size={600} />
-        <GlowBlob className="-right-48 bottom-1/4" size={500} />
+        <GlowBlob className="-left-32 top-1/4 will-change-transform" size={600} />
+        <GlowBlob className="-right-48 bottom-1/4 will-change-transform" size={500} />
       </motion.div>
 
       <motion.div
         className="relative z-10 max-w-7xl w-full mx-auto px-5 md:px-10 lg:px-20 py-24"
         style={reducedMotion ? undefined : { y, opacity }}
       >
-        <h1 className="mb-8 font-display font-normal tracking-[-0.05em] text-white leading-[0.95]">
+        <h1 className="mb-8 font-display font-normal tracking-[-0.05em] text-white leading-[1.05]">
           {wordLines.map((words, li) => (
             <span key={li} className="block">
               {words.map((w, wi) => (
@@ -87,9 +91,9 @@ export function HeroSection({
                       initial={{ y: "110%", opacity: 0 }}
                       animate={{ y: "0%", opacity: 1 }}
                       transition={{
-                        duration: 0.7,
+                        duration: DURATION_SLOW,
                         delay: w.delay,
-                        ease: [0.16, 1, 0.3, 1],
+                        ease: EASE_SPRING,
                       }}
                     >
                       {w.word}
@@ -144,15 +148,15 @@ export function HeroSection({
         )}
       </motion.div>
 
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 md:bottom-24">
-        <span className="text-[11px] uppercase tracking-widest text-white/40">
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 md:bottom-24">
+        <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[11px] uppercase tracking-widest text-white/50 backdrop-blur-sm ring-1 ring-white/10">
           {scrollIndicator}
         </span>
         {reducedMotion ? (
-          <div className="h-12 w-px bg-white/30" />
+          <div className="h-10 w-px bg-white/30" />
         ) : (
           <motion.div
-            className="h-12 w-px bg-white/30"
+            className="h-10 w-px bg-white/30"
             animate={{ scaleY: [1, 0.4, 1] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             style={{ transformOrigin: "top" }}

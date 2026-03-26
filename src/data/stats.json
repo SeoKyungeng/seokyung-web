@@ -1,7 +1,7 @@
 {
   "items": [
-    { "label": { "ko": "설립", "en": "Since" }, "value": 2005, "suffix": { "ko": "년", "en": "" } },
-    { "label": { "ko": "보유 설비", "en": "Machines" }, "value": 8, "suffix": { "ko": "대", "en": "+" } },
+    { "label": { "ko": "설립", "en": "Since" }, "value": 2011, "suffix": { "ko": "년", "en": "" } },
+    { "label": { "ko": "보유 설비", "en": "Machines" }, "value": 10, "suffix": { "ko": "대", "en": "+" } },
     { "label": { "ko": "납품 실적", "en": "Deliveries" }, "value": 500, "suffix": { "ko": "건+", "en": "+" } },
     { "label": { "ko": "가공 정밀도", "en": "Precision" }, "value": 0.01, "suffix": { "ko": "mm", "en": "mm" } }
   ]

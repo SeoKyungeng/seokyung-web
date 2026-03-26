@@ -8,6 +8,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { LanguageToggle } from "./LanguageToggle";
 import { CTAButton } from "./CTAButton";
+import { EASE_SPRING, EASE_SPRING_CSS } from "@/lib/motion";
 
 const NAV_ITEMS = [
   { href: "/", key: "home" },
@@ -62,13 +63,18 @@ export function Header() {
       </a>
 
       <header
-        className={`fixed top-0 right-0 left-0 z-40 transition-all duration-300 ${
+        className={`fixed z-40 transition-all duration-500 ${
           scrolled
-            ? "border-b border-steel bg-midnight/90 backdrop-blur-lg"
-            : "bg-transparent"
+            ? "top-3 right-4 left-4 mx-auto max-w-4xl rounded-full border border-white/10 bg-midnight/80 ring-1 ring-white/10 backdrop-blur-xl lg:top-4 lg:right-0 lg:left-0"
+            : "top-0 right-0 left-0 bg-transparent"
         }`}
+        style={{ transitionTimingFunction: EASE_SPRING_CSS }}
       >
-        <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 md:h-20 md:px-10 lg:px-20">
+        <div className={`mx-auto flex items-center justify-between ${
+          scrolled
+            ? "h-14 px-6 md:h-14 lg:px-8"
+            : "h-16 max-w-[1400px] px-5 md:h-20 md:px-10 lg:px-20"
+        }`}>
           {/* Logo */}
           <Link
             href="/"
@@ -104,7 +110,7 @@ export function Header() {
           {/* PC Right */}
           <div className="hidden items-center gap-6 lg:flex">
             <LanguageToggle />
-            <CTAButton href="/contact" className="px-6 py-2 text-sm">
+            <CTAButton href="/contact" size="sm">
               {t("contact")}
             </CTAButton>
           </div>
@@ -159,7 +165,7 @@ export function Header() {
                   transition={
                     reducedMotion
                       ? { duration: 0 }
-                      : { delay: i * 0.05, duration: 0.3 }
+                      : { delay: i * 0.05, duration: 0.3, ease: EASE_SPRING }
                   }
                 >
                   <Link

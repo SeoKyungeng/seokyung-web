@@ -6,6 +6,7 @@ import { SectionLabel } from "@/components/common/SectionLabel";
 import { SectionTitle } from "@/components/common/SectionTitle";
 import { CTAButton } from "@/components/common/CTAButton";
 import { Link } from "@/i18n/navigation";
+import { EASE_SPRING } from "@/lib/motion";
 
 interface CategoryItem {
   category: string;
@@ -24,7 +25,7 @@ const clipPaths = {
   "corner-notch": "polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 0 100%)",
 };
 
-const ease = [0.16, 1, 0.3, 1] as const;
+const ease = EASE_SPRING;
 
 function ProductCard({
   category,
@@ -67,7 +68,7 @@ function ProductCard({
       <div className="absolute inset-0 bg-midnight/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       {/* 오버사이즈 넘버링 — 상시 노출 워터마크 */}
-      <span className="absolute -bottom-6 -right-2 font-mono text-[120px] md:text-[160px] leading-none text-black/[0.04] select-none pointer-events-none z-0 group-hover:text-white/10 transition-colors duration-500">
+      <span className="absolute -bottom-6 -right-2 font-mono text-[120px] md:text-[160px] leading-none text-black/[0.04] select-none pointer-events-none z-0 group-hover:text-primary-400/10 transition-colors duration-500">
         {String(index + 1).padStart(2, "0")}
       </span>
 
@@ -119,7 +120,7 @@ export function ProductsHighlight({
   ];
 
   return (
-    <section className="bg-white py-24 md:py-40">
+    <section className="bg-smoke py-24 md:py-40">
       <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-20">
         <div className="mb-12 md:mb-16">
           <SectionLabel>{productsLabel}</SectionLabel>

@@ -23,7 +23,7 @@ function EquipmentCard({ item, locale }: { item: EquipmentItem; locale: "ko" | "
   const specEntries = item.specs.slice(0, 2);
 
   return (
-    <div className="group flex-shrink-0 w-[85vw] sm:w-[350px] rounded-lg border border-steel hover:border-primary-400 bg-midnight/60 overflow-hidden transition-colors duration-300">
+    <div className="group flex-shrink-0 w-[85vw] sm:w-[350px] rounded-lg border border-steel ring-1 ring-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] hover:border-primary-400 hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_0_15px_rgba(20,71,230,0.15)] bg-midnight/60 overflow-hidden transition-all duration-300">
       <div
         className="relative h-48 bg-steel/30 flex items-center justify-center overflow-hidden"
         style={{ clipPath: "polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 0 100%)" }}
@@ -165,7 +165,7 @@ export function EquipmentPreview({
           <div className="h-px bg-white/10 rounded-full overflow-hidden">
             <div
               ref={progressRef}
-              className="h-full bg-primary-400 rounded-full transition-none"
+              className="h-full bg-primary-400 rounded-full transition-none shadow-[0_0_8px_rgba(20,71,230,0.5)]"
               style={{ width: reducedMotion ? "100%" : "0%" }}
             />
           </div>
