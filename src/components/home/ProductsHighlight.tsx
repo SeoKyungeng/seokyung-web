@@ -24,6 +24,8 @@ const clipPaths = {
   "corner-notch": "polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 0 100%)",
 };
 
+const ease = [0.16, 1, 0.3, 1] as const;
+
 function ProductCard({
   category,
   label,
@@ -61,19 +63,18 @@ function ProductCard({
         </svg>
       </div>
 
+      {/* 호버 오버레이 */}
       <div className="absolute inset-0 bg-midnight/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-      {/* 넘버링 */}
-      <span className="absolute top-4 left-5 font-mono text-sm text-gray-500/60 group-hover:text-white/60 transition-colors duration-300">
+      {/* 오버사이즈 넘버링 — 상시 노출 워터마크 */}
+      <span className="absolute -bottom-6 -right-2 font-mono text-[120px] md:text-[160px] leading-none text-black/[0.04] select-none pointer-events-none z-0 group-hover:text-white/10 transition-colors duration-500">
         {String(index + 1).padStart(2, "0")}
       </span>
 
-      <div className="absolute inset-0 flex items-end p-5">
-        <span
-          className="px-3 py-1 rounded text-xs font-medium uppercase tracking-wider bg-white/90 text-gray-900 border border-gray-200 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
-        >
-          {label}
-        </span>
+      {/* hover 시 하단 슬라이드업 오버레이 */}
+      <div className="absolute bottom-0 left-0 right-0 bg-midnight/85 px-6 py-5 translate-y-full group-hover:translate-y-0 transition-transform duration-350 ease-out">
+        <p className="text-white font-display text-lg">{label}</p>
+        <p className="text-white/50 text-sm mt-1">더 보기 →</p>
       </div>
 
       <div className="absolute inset-0 scale-100 group-hover:scale-105 transition-transform duration-500 -z-10 bg-gray-200" />
@@ -91,10 +92,10 @@ function ProductCard({
   return (
     <motion.div
       className="h-full"
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ clipPath: "inset(100% 0 0 0)" }}
+      whileInView={{ clipPath: "inset(0% 0 0 0)" }}
       viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.8, ease }}
     >
       <Link href={`/products?category=${category}`} className="block h-full">
         {inner}

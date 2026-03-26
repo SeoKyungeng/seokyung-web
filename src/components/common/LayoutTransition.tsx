@@ -37,6 +37,7 @@ export function LayoutTransition({ children }: { children: React.ReactNode }) {
     <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={segment}
+        className="relative"
         initial={{ opacity: 0, ...(reducedMotion ? {} : { filter: "blur(12px)" }) }}
         animate={{ opacity: 1, ...(reducedMotion ? {} : { filter: "blur(0px)" }) }}
         exit={{ opacity: 0, ...(reducedMotion ? {} : { filter: "blur(6px)" }) }}

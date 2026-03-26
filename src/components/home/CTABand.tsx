@@ -25,8 +25,8 @@ export function CTABand({ ctaMarqueeKo, ctaMarqueeEn, ctaButton, ctaButtonSecond
 
       <div className="relative z-10">
         <div className="mb-10 md:mb-14 space-y-3">
-          <MarqueeRow text={`${ctaMarqueeKo} · ${ctaMarqueeEn}`} />
-          <MarqueeRow text={`${ctaMarqueeEn} · ${ctaMarqueeKo}`} reverse />
+          <MarqueeRow text={`${ctaMarqueeKo} · ${ctaMarqueeEn}`} size="xl" duration={15} />
+          <MarqueeRow text={`${ctaMarqueeEn} · ${ctaMarqueeKo}`} size="xl" duration={25} reverse />
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-5">

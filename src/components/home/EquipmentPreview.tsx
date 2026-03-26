@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { SectionTitle } from "@/components/common/SectionTitle";
@@ -21,9 +23,9 @@ function EquipmentCard({ item, locale }: { item: EquipmentItem; locale: "ko" | "
   const specEntries = item.specs.slice(0, 2);
 
   return (
-    <div className="flex-shrink-0 w-[85vw] sm:w-[350px] rounded-lg border border-steel bg-midnight/60 overflow-hidden">
+    <div className="group flex-shrink-0 w-[85vw] sm:w-[350px] rounded-lg border border-steel hover:border-primary-400 bg-midnight/60 overflow-hidden transition-colors duration-300">
       <div
-        className="relative h-48 bg-steel/30 flex items-center justify-center"
+        className="relative h-48 bg-steel/30 flex items-center justify-center overflow-hidden"
         style={{ clipPath: "polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 0 100%)" }}
       >
         <div className="text-center">
@@ -60,7 +62,7 @@ function EquipmentCard({ item, locale }: { item: EquipmentItem; locale: "ko" | "
 
       <div className="p-5">
         <p className="text-xs text-gray-500 mb-1">{item.manufacturer[locale]}</p>
-        <h3 className="font-mono text-lg font-semibold text-white mb-4">{item.model}</h3>
+        <h3 className="font-mono text-lg font-semibold text-white mb-4 group-hover:text-primary-300 transition-colors duration-200">{item.model}</h3>
         <dl className="space-y-1.5">
           {specEntries.map((spec) => (
             <div key={spec.label.ko} className="flex justify-between gap-4">
@@ -88,49 +90,42 @@ export function EquipmentPreview({
 
   useEffect(() => {
     if (reducedMotion) return;
-    // 모바일에서는 GSAP 사용 안 함
     if (window.innerWidth < 768) return;
 
-    let ctx: { revert: () => void } | null = null;
+    const ctx = gsap.context(() => {
+      const track = trackRef.current;
+      const container = containerRef.current;
+      const progress = progressRef.current;
+      if (!track || !container) return;
 
-    const loadGsap = async () => {
-      const { gsap } = await import("gsap");
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      gsap.registerPlugin(ScrollTrigger);
+      const totalWidth = track.scrollWidth;
+      const viewportWidth = window.innerWidth;
+      const distance = totalWidth - viewportWidth + 160;
 
-      ctx = gsap.context(() => {
-        const track = trackRef.current;
-        const container = containerRef.current;
-        const progress = progressRef.current;
-        if (!track || !container) return;
-
-        const totalWidth = track.scrollWidth;
-        const viewportWidth = window.innerWidth;
-        const distance = totalWidth - viewportWidth + 160;
-
-        gsap.to(track, {
-          x: () => -distance,
-          ease: "none",
-          scrollTrigger: {
-            trigger: container,
-            start: "top top",
-            end: () => `+=${totalWidth}`,
-            pin: true,
-            scrub: 1,
-            onUpdate: (self) => {
-              if (progress) {
-                progress.style.width = `${self.progress * 100}%`;
-              }
-            },
+      gsap.to(track, {
+        x: () => -distance,
+        ease: "none",
+        scrollTrigger: {
+          trigger: container,
+          start: "top top",
+          end: () => `+=${totalWidth}`,
+          pin: true,
+          pinSpacing: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            if (progress) {
+              progress.style.width = `${self.progress * 100}%`;
+            }
           },
-        });
-      }, containerRef);
-    };
+        },
+      });
+    }, containerRef);
 
-    loadGsap();
+    ScrollTrigger.refresh();
 
     return () => {
-      ctx?.revert();
+      ctx.revert();
     };
   }, [reducedMotion]);
 

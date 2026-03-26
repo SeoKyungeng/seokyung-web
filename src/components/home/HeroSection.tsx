@@ -22,7 +22,6 @@ export function HeroSection({
   scrollIndicator,
 }: HeroSectionProps) {
   const reducedMotion = useReducedMotion();
-  const lines = heroTitle.split("\n");
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -30,44 +29,78 @@ export function HeroSection({
   });
   const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const opacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+
+  // 라인별 → 단어별 2단계 분해
+  const lines = heroTitle.split("\n");
+  let wordIndex = 0;
+  const wordLines = lines.map((line) =>
+    line.split(" ").map((word) => ({
+      word,
+      delay: wordIndex++ * 0.06,
+    }))
+  );
+  // 라인간 추가 딜레이
+  let lineOffset = 0;
+  for (let li = 0; li < wordLines.length; li++) {
+    for (const w of wordLines[li]) {
+      w.delay += lineOffset;
+    }
+    lineOffset += 0.15;
+  }
 
   return (
     <section ref={sectionRef} className="relative flex min-h-[calc(100vh+48px)] items-center overflow-hidden bg-midnight">
-      <div
+      {/* 배경 scale-up on scroll */}
+      <motion.div
         className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(135deg, rgba(20,71,230,0.06) 0%, transparent 50%, rgba(20,71,230,0.03) 100%)",
-        }}
+        style={reducedMotion ? undefined : { scale: bgScale }}
         aria-hidden="true"
-      />
-
-      <GlowBlob className="-left-32 top-1/4" size={600} />
-      <GlowBlob className="-right-48 bottom-1/4" size={500} />
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(20,71,230,0.06) 0%, transparent 50%, rgba(20,71,230,0.03) 100%)",
+          }}
+        />
+        <GlowBlob className="-left-32 top-1/4" size={600} />
+        <GlowBlob className="-right-48 bottom-1/4" size={500} />
+      </motion.div>
 
       <motion.div
         className="relative z-10 max-w-7xl w-full mx-auto px-5 md:px-10 lg:px-20 py-24"
         style={reducedMotion ? undefined : { y, opacity }}
       >
-        <h1 className="mb-6 font-display font-normal tracking-[-0.04em] text-white leading-none">
-          {lines.map((line, i) => (
-            <span key={i} className="block overflow-hidden">
-              {reducedMotion ? (
-                <span className="block text-[clamp(28px,7vw,64px)]">{line}</span>
-              ) : (
-                <motion.span
-                  className="block text-[clamp(28px,7vw,64px)]"
-                  initial={{ clipPath: "inset(100% 0 0 0)" }}
-                  animate={{ clipPath: "inset(0% 0 0 0)" }}
-                  transition={{
-                    duration: 0.7,
-                    delay: i * 0.15,
-                    ease: "easeOut",
-                  }}
-                >
-                  {line}
-                </motion.span>
-              )}
+        <h1 className="mb-8 font-display font-normal tracking-[-0.05em] text-white leading-[0.95]">
+          {wordLines.map((words, li) => (
+            <span key={li} className="block">
+              {words.map((w, wi) => (
+                <span key={wi} className="inline-block overflow-hidden">
+                  {reducedMotion ? (
+                    <span className="inline-block text-[clamp(40px,9vw,88px)]">
+                      {w.word}
+                    </span>
+                  ) : (
+                    <motion.span
+                      className="inline-block text-[clamp(40px,9vw,88px)]"
+                      initial={{ y: "110%", opacity: 0 }}
+                      animate={{ y: "0%", opacity: 1 }}
+                      transition={{
+                        duration: 0.7,
+                        delay: w.delay,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
+                    >
+                      {w.word}
+                    </motion.span>
+                  )}
+                  {/* 단어 사이 공백 */}
+                  {wi < words.length - 1 && (
+                    <span className="inline-block text-[clamp(40px,9vw,88px)]">&nbsp;</span>
+                  )}
+                </span>
+              ))}
             </span>
           ))}
         </h1>
@@ -79,7 +112,7 @@ export function HeroSection({
             className="mb-10 text-lg md:text-xl text-white/60"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
           >
             {heroSubtitle}
           </motion.p>
@@ -99,7 +132,7 @@ export function HeroSection({
             className="flex flex-col sm:flex-row gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
           >
             <CTAButton href="/contact" variant="solid" className="w-full sm:w-auto justify-center">
               {heroCta}
@@ -129,7 +162,7 @@ export function HeroSection({
 
       {/* Notch — 왼쪽 수평 bar + 오른쪽 SVG 커브 하강 */}
       <div
-        className="absolute bottom-0 left-0 right-[33%] h-[36px] bg-white md:right-[40%] md:h-[48px]"
+        className="absolute bottom-0 left-0 right-[33%] h-9 bg-white md:right-[40%] md:h-12"
         aria-hidden="true"
       >
         <svg

@@ -64,7 +64,7 @@ export default async function LocaleLayout({
             <ToastProvider>
               <GrainOverlay />
               <Header />
-              <main id="main-content">
+              <main id="main-content" className="relative">
                 <LayoutTransition>{children}</LayoutTransition>
               </main>
               <Footer />
