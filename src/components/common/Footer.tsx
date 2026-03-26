@@ -1,9 +1,6 @@
-"use client";
-
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { CTAButton } from "./CTAButton";
+import { FooterMarqueeBand } from "./FooterMarqueeBand";
 
 const QUICK_LINKS = [
   { href: "/about", key: "about" },
@@ -13,69 +10,14 @@ const QUICK_LINKS = [
   { href: "/contact", key: "contact" },
 ] as const;
 
-function MarqueeRow({ text, reverse = false, paused = false }: { text: string; reverse?: boolean; paused?: boolean }) {
-  const repeated = `${text} · ${text} · ${text} · ${text} · `;
-
-  return (
-    <div className="overflow-hidden whitespace-nowrap">
-      <div
-        className={`inline-block ${paused ? "" : "animate-marquee"}`}
-        style={{
-          animationDirection: reverse ? "reverse" : "normal",
-          animationPlayState: paused ? "paused" : "running",
-        }}
-      >
-        <span className="font-display font-normal text-xl md:text-2xl leading-none text-white/70 tracking-[-0.02em]">
-          {repeated}
-        </span>
-        <span className="font-display font-normal text-xl md:text-2xl leading-none text-white/70 tracking-[-0.02em]">
-          {repeated}
-        </span>
-      </div>
-    </div>
-  );
-}
-
 export function Footer() {
   const t = useTranslations("nav");
   const tCommon = useTranslations("common");
   const tFooter = useTranslations("footer");
-  const reducedMotion = useReducedMotion();
 
   return (
     <footer className="bg-midnight text-white">
-      {/* Marquee CTA Band */}
-      <div className="relative overflow-hidden bg-navy px-5 py-12 md:py-16">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.06]"
-          aria-hidden="true"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E")`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-        <div className="relative z-10">
-          <div className="mb-8 space-y-2">
-            <MarqueeRow
-              text={`${tFooter("ctaMarqueeKo")} · ${tFooter("ctaMarqueeEn")}`}
-              paused={reducedMotion}
-            />
-            <MarqueeRow
-              text={`${tFooter("ctaMarqueeEn")} · ${tFooter("ctaMarqueeKo")}`}
-              reverse
-              paused={reducedMotion}
-            />
-          </div>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <CTAButton href="/contact" variant="solid">
-              {tFooter("ctaButton")}
-            </CTAButton>
-            <CTAButton href="/equipment" variant="outline" className="border-white/30 text-white hover:bg-white/10">
-              {tFooter("ctaButtonSecondary")}
-            </CTAButton>
-          </div>
-        </div>
-      </div>
+      <FooterMarqueeBand />
 
       {/* Main Footer */}
       <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-10 lg:px-20">

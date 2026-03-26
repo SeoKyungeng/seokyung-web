@@ -12,12 +12,13 @@ function FrozenRouter({ children }: { children: React.ReactNode }) {
   const context = useContext(LayoutRouterContext);
   const segment = useSelectedLayoutSegment();
 
-  const [frozenContext] = useState(context);
+  const [frozenContext, setFrozenContext] = useState(context);
   const [prevSegment, setPrevSegment] = useState(segment);
 
   const changed = segment !== prevSegment;
 
   if (changed) {
+    setFrozenContext(context);
     setPrevSegment(segment);
   }
 
