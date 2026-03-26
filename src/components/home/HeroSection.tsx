@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { CTAButton } from "@/components/common/CTAButton";
 import { GlowBlob } from "@/components/common/GlowBlob";
@@ -22,9 +23,16 @@ export function HeroSection({
 }: HeroSectionProps) {
   const reducedMotion = useReducedMotion();
   const lines = heroTitle.split("\n");
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const opacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
 
   return (
-    <section className="relative flex min-h-[calc(100vh+48px)] items-center overflow-hidden bg-midnight">
+    <section ref={sectionRef} className="relative flex min-h-[calc(100vh+48px)] items-center overflow-hidden bg-midnight">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -37,7 +45,10 @@ export function HeroSection({
       <GlowBlob className="-left-32 top-1/4" size={600} />
       <GlowBlob className="-right-48 bottom-1/4" size={500} />
 
-      <div className="relative z-10 max-w-7xl w-full mx-auto px-5 md:px-10 lg:px-20 py-24">
+      <motion.div
+        className="relative z-10 max-w-7xl w-full mx-auto px-5 md:px-10 lg:px-20 py-24"
+        style={reducedMotion ? undefined : { y, opacity }}
+      >
         <h1 className="mb-6 font-display font-normal tracking-[-0.04em] text-white leading-none">
           {lines.map((line, i) => (
             <span key={i} className="block overflow-hidden">
@@ -98,7 +109,7 @@ export function HeroSection({
             </CTAButton>
           </motion.div>
         )}
-      </div>
+      </motion.div>
 
       <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 md:bottom-24">
         <span className="text-[11px] uppercase tracking-widest text-white/40">
