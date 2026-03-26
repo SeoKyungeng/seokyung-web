@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { CTAButton } from "@/components/common/CTAButton";
 import { GlowBlob } from "@/components/common/GlowBlob";
@@ -23,7 +23,10 @@ export function HeroSection({
   scrollIndicator,
 }: HeroSectionProps) {
   const reducedMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => setMounted(true), []);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
@@ -89,7 +92,7 @@ export function HeroSection({
                     <motion.span
                       className="inline-block text-[clamp(40px,9vw,88px)]"
                       initial={{ y: "110%", opacity: 0 }}
-                      animate={{ y: "0%", opacity: 1 }}
+                      animate={mounted ? { y: "0%", opacity: 1 } : { y: "110%", opacity: 0 }}
                       transition={{
                         duration: DURATION_SLOW,
                         delay: w.delay,
@@ -115,7 +118,7 @@ export function HeroSection({
           <motion.p
             className="mb-10 text-lg md:text-xl text-white/60"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={mounted ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
           >
             {heroSubtitle}
@@ -135,7 +138,7 @@ export function HeroSection({
           <motion.div
             className="flex flex-col sm:flex-row gap-4"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={mounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
           >
             <CTAButton href="/contact" variant="solid" className="w-full sm:w-auto justify-center">

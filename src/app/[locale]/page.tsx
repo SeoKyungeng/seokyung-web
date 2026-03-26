@@ -4,7 +4,6 @@ import { StatsSection } from "@/components/home/StatsSection";
 import { ClientsMarquee } from "@/components/home/ClientsMarquee";
 import { EquipmentPreview } from "@/components/home/EquipmentPreview";
 import { ProductsHighlight } from "@/components/home/ProductsHighlight";
-import { CTABand } from "@/components/home/CTABand";
 import statsData from "@/data/stats.json";
 import equipmentRaw from "@/data/equipment.json";
 import productsData from "@/data/products.json";
@@ -65,12 +64,6 @@ export default async function HomePage() {
         productsTitle={t("productsTitle")}
         productsViewAll={t("productsViewAll")}
         categories={categoryItems}
-      />
-      <CTABand
-        ctaMarqueeKo={t("ctaMarqueeKo")}
-        ctaMarqueeEn={t("ctaMarqueeEn")}
-        ctaButton={t("ctaButton")}
-        ctaButtonSecondary={t("ctaButtonSecondary")}
       />
     </>
   );
