@@ -24,7 +24,7 @@ export function HeroSection({
   const lines = heroTitle.split("\n");
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-midnight">
+    <section className="relative flex min-h-[calc(100vh+48px)] items-center overflow-hidden bg-midnight">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -100,7 +100,7 @@ export function HeroSection({
         )}
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 md:bottom-24">
         <span className="text-[11px] uppercase tracking-widest text-white/40">
           {scrollIndicator}
         </span>
@@ -116,12 +116,21 @@ export function HeroSection({
         )}
       </div>
 
-      {/* Diagonal cut — 다음 섹션과의 경계 */}
+      {/* Notch — 왼쪽 수평 bar + 오른쪽 SVG 커브 하강 */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-16 bg-white"
-        style={{ clipPath: "polygon(0 100%, 100% 0, 100% 100%)" }}
+        className="absolute bottom-0 left-0 right-[33%] h-[36px] bg-white md:right-[40%] md:h-[48px]"
         aria-hidden="true"
-      />
+      >
+        <svg
+          className="absolute right-0 top-0 h-full translate-x-[99%]"
+          viewBox="0 0 51 30"
+          fill="white"
+          preserveAspectRatio="none"
+          style={{ width: "clamp(60px, 6vw, 100px)" }}
+        >
+          <path d="M0 0h3.565c3.212 0 6.293 1.264 8.565 3.513l23.207 22.974A12.175 12.175 0 0 0 43.902 30H51 0V0Z" />
+        </svg>
+      </div>
     </section>
   );
 }
