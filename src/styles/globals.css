@@ -26,8 +26,7 @@
   --font-mono: var(--font-geist-mono), monospace;
 }
 
-/* Body positioning — framer-motion useScroll offsetParent chain */
-body {
+html {
   position: relative;
 }
 
