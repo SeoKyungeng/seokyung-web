@@ -101,7 +101,7 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3
 
 | No. | 항목 | 선택지 | 담당 | 상태 |
 |-----|------|--------|------|------|
-| 1 | 히어로 오버레이 텍스트 | A: "PRECISION MACHINING EXCELLENCE" / B: "We are one of best CNC,MCT machining field" (기획서 원문) | 클라이언트 | ⬜ 미결 |
+| 1 | 히어로 오버레이 텍스트 | 기획서 원문 기반, 문법 수정: "WE ARE ONE OF / THE BEST IN CNC, / MCT MACHINING" | 클라이언트 | ✅ 완료 |
 | 2 | 회사 연혁 섹션 포함 여부 | 포함 / 미포함 | 클라이언트 | ⬜ 미결 |
 | 3 | 문의 폼 파일 첨부 기능 | 포함 / 미포함 | 클라이언트 | ⬜ 미결 |
 | 4 | 디자인 컨셉 최종 확정 | 기획서 Section 8 "미정" 상태 | 클라이언트 | ⬜ 미결 |

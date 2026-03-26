@@ -42,10 +42,10 @@ export function HeroSection({
           {lines.map((line, i) => (
             <span key={i} className="block overflow-hidden">
               {reducedMotion ? (
-                <span className="block text-[clamp(36px,7vw,64px)]">{line}</span>
+                <span className="block text-[clamp(28px,7vw,64px)]">{line}</span>
               ) : (
                 <motion.span
-                  className="block text-[clamp(36px,7vw,64px)]"
+                  className="block text-[clamp(28px,7vw,64px)]"
                   initial={{ clipPath: "inset(100% 0 0 0)" }}
                   animate={{ clipPath: "inset(0% 0 0 0)" }}
                   transition={{
@@ -61,7 +61,7 @@ export function HeroSection({
           ))}
         </h1>
 
-        {reducedMotion ? (
+        {heroSubtitle && (reducedMotion ? (
           <p className="mb-10 text-lg md:text-xl text-white/60">{heroSubtitle}</p>
         ) : (
           <motion.p
@@ -72,7 +72,7 @@ export function HeroSection({
           >
             {heroSubtitle}
           </motion.p>
-        )}
+        ))}
 
         {reducedMotion ? (
           <div className="flex flex-col sm:flex-row gap-4">
