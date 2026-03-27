@@ -73,7 +73,8 @@ export function EquipmentPreview({
 
   useEffect(() => {
     if (reducedMotion) return;
-    if (window.innerWidth < 768) return;
+
+    ScrollTrigger.config({ ignoreMobileResize: true });
 
     const ctx = gsap.context(() => {
       const track = trackRef.current;
@@ -82,7 +83,10 @@ export function EquipmentPreview({
 
       const totalWidth = track.scrollWidth;
       const viewportWidth = window.innerWidth;
-      const distance = totalWidth - viewportWidth + 160;
+      const isMobile = viewportWidth < 768;
+      const distance = isMobile
+        ? (totalWidth - viewportWidth) * 0.6
+        : totalWidth - viewportWidth + 160;
 
       gsap.to(track, {
         x: () => -distance,
@@ -93,7 +97,7 @@ export function EquipmentPreview({
           end: () => `+=${distance}`,
           pin: true,
           pinSpacing: true,
-          scrub: 1,
+          scrub: isMobile ? 0.5 : 1,
           invalidateOnRefresh: true,
         },
       });
