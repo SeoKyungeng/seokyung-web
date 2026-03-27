@@ -17,13 +17,19 @@ interface ProductItem {
 
 interface ProductGalleryProps {
   items: ProductItem[];
+  initialCategory?: string;
 }
 
-export function ProductGallery({ items }: ProductGalleryProps) {
+export function ProductGallery({ items, initialCategory }: ProductGalleryProps) {
   const t = useTranslations("pages.products");
   const reducedMotion = useReducedMotion();
 
-  const [activeCategory, setActiveCategory] = useState<CategoryKey>("all");
+  const validCategories: CategoryKey[] = ["all", "defense", "heat-exchanger", "industrial"];
+  const [activeCategory, setActiveCategory] = useState<CategoryKey>(
+    validCategories.includes(initialCategory as CategoryKey)
+      ? (initialCategory as CategoryKey)
+      : "all"
+  );
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 

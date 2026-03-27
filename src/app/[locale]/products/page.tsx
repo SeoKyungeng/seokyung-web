@@ -12,9 +12,14 @@ function getPlaceholderHeight(id: string): number {
   return heights[hash % heights.length];
 }
 
-export default async function ProductsPage() {
+export default async function ProductsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>;
+}) {
   const locale = (await getLocale()) as "ko" | "en";
   const t = await getTranslations("pages.products");
+  const { category } = await searchParams;
 
   const items = productsRaw.items.map((item) => ({
     id: item.id,
@@ -31,7 +36,7 @@ export default async function ProductsPage() {
         title={t("title")}
         subtitle={t("subtitle")}
       />
-      <ProductGallery items={items} />
+      <ProductGallery items={items} initialCategory={category} />
     </>
   );
 }
