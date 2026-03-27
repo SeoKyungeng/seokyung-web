@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { AnimateInView } from "@/components/common/AnimateInView";
-import { EASE_SPRING, DURATION_SLOW, STAGGER_DEFAULT } from "@/lib/motion";
+import { DURATION_SLOW, STAGGER_DEFAULT } from "@/lib/motion";
 
 interface StatItem {
   label: { ko: string; en: string };

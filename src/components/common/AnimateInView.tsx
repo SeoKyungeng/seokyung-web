@@ -40,14 +40,12 @@ export function AnimateInView({
   y = 30,
   delay = 0,
   duration = DURATION_NORMAL,
-  ease = EASE_SPRING as unknown as Easing[],
+  ease = [...EASE_SPRING] as [number, number, number, number],
   className,
   once = true,
   margin = "-10%",
 }: AnimateInViewProps) {
-  const ref = useRef(null);
-  const reducedMotion = useReducedMotion();
-  const isInView = useInView(ref, { once, margin: margin as UseInViewOptions["margin"] });
+  const { ref, isInView, reducedMotion } = useAnimateInView({ once, margin });
 
   if (reducedMotion) {
     return <div className={className}>{children}</div>;

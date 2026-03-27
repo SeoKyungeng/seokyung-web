@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { motion } from "framer-motion";
+import { useAnimateInView } from "@/components/common/AnimateInView";
 import { EASE_SMOOTH, DURATION_NORMAL } from "@/lib/motion";
 
 interface SectionTitleProps {
@@ -18,9 +17,7 @@ export function SectionTitle({
   weight = "semibold",
   className = "",
 }: SectionTitleProps) {
-  const ref = useRef(null);
-  const reducedMotion = useReducedMotion();
-  const isInView = useInView(ref, { once: true, margin: "-10%" });
+  const { ref, isInView, reducedMotion } = useAnimateInView();
   const words = children.split(" ");
   const weightClass = weight === "normal" ? "font-normal" : "font-semibold";
 

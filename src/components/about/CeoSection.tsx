@@ -30,42 +30,59 @@ const lineReveal = {
 };
 
 export function CeoSection({ ceo, locale, label }: CeoSectionProps) {
-  const { ref, isInView } = useAnimateInView();
+  const { ref, isInView, reducedMotion } = useAnimateInView();
   const paragraphs = ceo.greeting.body[locale].split("\n\n");
 
   const content = (
     <div className="mx-auto max-w-3xl text-center">
       <SectionLabel>{label}</SectionLabel>
 
-      <div ref={ref}>
-        <motion.h2
-          id="ceo-heading"
-          className="mt-5 font-display text-2xl font-semibold leading-snug text-gray-950 md:text-3xl"
-          variants={fadeIn}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {ceo.greeting.highlight[locale]}
-        </motion.h2>
+      {reducedMotion ? (
+        <>
+          <h2
+            id="ceo-heading"
+            className="mt-5 font-display text-2xl font-semibold leading-snug text-gray-950 md:text-3xl"
+          >
+            {ceo.greeting.highlight[locale]}
+          </h2>
+          <div className="mx-auto mt-8 h-0.5 w-16 bg-primary-400" />
+          <div className="mt-8 space-y-6 text-left text-base leading-relaxed text-gray-600 md:text-lg">
+            {paragraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        </>
+      ) : (
+        <div ref={ref}>
+          <motion.h2
+            id="ceo-heading"
+            className="mt-5 font-display text-2xl font-semibold leading-snug text-gray-950 md:text-3xl"
+            variants={fadeIn}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            {ceo.greeting.highlight[locale]}
+          </motion.h2>
 
-        <motion.div
-          className="mx-auto mt-8 h-0.5 w-16 origin-left bg-primary-400"
-          variants={lineReveal}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        />
+          <motion.div
+            className="mx-auto mt-8 h-0.5 w-16 origin-left bg-primary-400"
+            variants={lineReveal}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          />
 
-        <motion.div
-          className="mt-8 space-y-6 text-left text-base leading-relaxed text-gray-600 md:text-lg"
-          variants={fadeIn}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {paragraphs.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
-        </motion.div>
-      </div>
+          <motion.div
+            className="mt-8 space-y-6 text-left text-base leading-relaxed text-gray-600 md:text-lg"
+            variants={fadeIn}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            {paragraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </motion.div>
+        </div>
+      )}
 
       <div className="mt-10 border-t border-gray-200 pt-6 text-right">
         <p className="font-display text-lg font-semibold text-gray-900">

@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { SectionTitle } from "@/components/common/SectionTitle";
+import { useAnimateInView } from "@/components/common/AnimateInView";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import type { Department } from "@/lib/types";
 
@@ -57,8 +57,7 @@ function DesktopTree({
   locale: "ko" | "en";
   reducedMotion: boolean;
 }) {
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-10%" });
+  const { ref: containerRef, isInView } = useAnimateInView();
 
   const content = (
     <>
@@ -142,8 +141,7 @@ function MobileList({
   locale: "ko" | "en";
   reducedMotion: boolean;
 }) {
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-10%" });
+  const { ref: containerRef, isInView } = useAnimateInView();
 
   const content = (
     <>

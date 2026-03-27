@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, useState, useMemo } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Cog } from "lucide-react";
+import { useAnimateInView } from "@/components/common/AnimateInView";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { EASE_SMOOTH } from "@/lib/motion";
 import {
@@ -75,8 +76,7 @@ interface EquipmentRowProps {
 }
 
 function EquipmentRow({ item, specUnit, reducedMotion, reversed }: EquipmentRowProps) {
-  const rowRef = useRef(null);
-  const isInView = useInView(rowRef, { once: true, margin: "-10%" });
+  const { ref: rowRef, isInView } = useAnimateInView();
 
   const imageBlock = reducedMotion ? (
     <ImagePlaceholder model={item.model} />
