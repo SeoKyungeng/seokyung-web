@@ -11,7 +11,7 @@ export function FooterMarqueeBand() {
   const reducedMotion = useReducedMotion();
 
   const marqueeText = `${tFooter("ctaMarqueeKo")} · ${tFooter("ctaMarqueeEn")} · `;
-  const repeated = marqueeText.repeat(6);
+  const repeated = marqueeText.repeat(3);
 
   const ctaContent = (
     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
