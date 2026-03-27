@@ -13,8 +13,7 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type Phase = "idle" | "exiting" | "snap-blur" | "entering";
 
-const BLUR_MS = 800;
-const REVEAL_MS = 800;
+const REVEAL_MS = 400;
 
 interface TransitionContextValue {
   navigateWithTransition: (href: string) => void;
@@ -79,33 +78,29 @@ export function TransitionProvider({
         return;
       }
 
-      phaseRef.current = "exiting";
-      setPhase("exiting");
-
-      exitTimerRef.current = setTimeout(() => {
-        exitTimerRef.current = null;
-        router.push(href);
-        phaseRef.current = "entering";
-        setPhase("entering");
-      }, BLUR_MS);
+      phaseRef.current = "snap-blur";
+      setPhase("snap-blur");
+      router.push(href);
     },
     [router, pathname, reducedMotion],
   );
 
-  // exiting 중 popstate(뒤로가기) → 진행 중인 전환 취소 + snap-blur
+  // popstate(뒤로/앞으로) → 어떤 phase든 취소 + snap-blur
   useEffect(() => {
     const handlePopState = () => {
-      if (phaseRef.current === "exiting") {
+      if (phaseRef.current !== "idle") {
         clearTimers();
+      }
+      if (!reducedMotion) {
         phaseRef.current = "snap-blur";
         setPhase("snap-blur");
       }
     };
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
-  }, [clearTimers]);
+  }, [clearTimers, reducedMotion]);
 
-  // 경로 변경 감지 (popstate, locale 변경 등)
+  // 경로 변경 감지 (navigateWithTransition 경유 제외 — exiting/entering은 이미 처리됨)
   const [prevPath, setPrevPath] = useState(pathname);
   if (pathname !== prevPath) {
     setPrevPath(pathname);
@@ -143,48 +138,44 @@ export function TransitionProvider({
     <TransitionContext.Provider value={{ navigateWithTransition, phase }}>
       <PageTransitionContext.Provider value={phase === "idle"}>
         {children}
+        <TransitionOverlay phase={phase} reducedMotion={reducedMotion} />
       </PageTransitionContext.Provider>
     </TransitionContext.Provider>
   );
 }
 
-/* ── TransitionOverlay: blur/opacity 시각 효과 래퍼 ──
-   Header/GrainOverlay는 이 래퍼 바깥에 배치하여
-   CSS filter의 containing block 영향을 받지 않도록 함. */
-export function TransitionOverlay({
-  children,
+/* ── TransitionOverlay: 콘텐츠 위에 올라가는 blur 오버레이 ──
+   콘텐츠 자체에 filter를 적용하지 않으므로
+   CSS containing block 문제가 없고 fixed 요소에 영향 없음. */
+function TransitionOverlay({
+  phase,
+  reducedMotion,
 }: {
-  children: React.ReactNode;
+  phase: Phase;
+  reducedMotion: boolean;
 }) {
-  const { phase } = usePageTransition();
-  const reducedMotion = useReducedMotion();
+  if (reducedMotion) return null;
 
-  const isBlurred = phase === "exiting" || phase === "snap-blur";
-
-  const style: React.CSSProperties = reducedMotion
-    ? {}
-    : isBlurred
-      ? {
-          opacity: 0.4,
-          filter: "blur(12px)",
-          willChange: "filter, opacity",
-          transition:
-            phase === "snap-blur"
-              ? "none"
-              : `opacity ${BLUR_MS}ms ease, filter ${BLUR_MS}ms ease`,
-        }
-      : phase === "entering"
-        ? {
-            opacity: 1,
-            filter: "blur(0px)",
-            willChange: "filter, opacity",
-            transition: `opacity ${REVEAL_MS}ms ease, filter ${REVEAL_MS}ms ease`,
-          }
-        : {};
+  const active = phase !== "idle";
+  const instant = phase === "snap-blur";
 
   return (
-    <div style={style} {...(isBlurred ? { inert: "" as never } : {})}>
-      {children}
-    </div>
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 45,
+        backdropFilter: active ? "blur(12px)" : "blur(0px)",
+        WebkitBackdropFilter: active ? "blur(12px)" : "blur(0px)",
+        backgroundColor: active
+          ? "rgba(2, 6, 23, 0.6)"
+          : "rgba(2, 6, 23, 0)",
+        transition: instant
+          ? "none"
+          : `backdrop-filter ${REVEAL_MS}ms ease, -webkit-backdrop-filter ${REVEAL_MS}ms ease, background-color ${REVEAL_MS}ms ease`,
+        pointerEvents: active ? "auto" : "none",
+      }}
+      aria-hidden="true"
+    />
   );
 }
