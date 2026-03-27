@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { EASE_SMOOTH, DURATION_NORMAL } from "@/lib/motion";
 
@@ -17,7 +18,9 @@ export function SectionTitle({
   weight = "semibold",
   className = "",
 }: SectionTitleProps) {
+  const ref = useRef(null);
   const reducedMotion = useReducedMotion();
+  const isInView = useInView(ref, { once: true, margin: "-10%" });
   const words = children.split(" ");
   const weightClass = weight === "normal" ? "font-normal" : "font-semibold";
 
@@ -30,14 +33,13 @@ export function SectionTitle({
   }
 
   return (
-    <Tag className={`font-display ${weightClass} ${className}`}>
+    <Tag ref={ref} className={`font-display ${weightClass} ${className}`}>
       {words.map((word, i) => (
         <motion.span
           key={i}
           className="mr-[0.3em] inline-block last:mr-0"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10%" }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{
             duration: DURATION_NORMAL,
             delay: i * 0.05,

@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { SectionLabel } from "@/components/common/SectionLabel";
-import { EASE_SPRING, DURATION_NORMAL, DURATION_SLOW, STAGGER_DEFAULT } from "@/lib/motion";
+import { AnimateInView } from "@/components/common/AnimateInView";
+import { EASE_SPRING, DURATION_SLOW, STAGGER_DEFAULT } from "@/lib/motion";
 
 interface StatItem {
   label: { ko: string; en: string };
@@ -51,8 +51,6 @@ function useCounter(target: number, duration: number, triggered: boolean, skip: 
   return skip ? target : count;
 }
 
-const ease = EASE_SPRING;
-
 function StatColumn({
   item,
   locale,
@@ -84,17 +82,10 @@ function StatColumn({
     </div>
   );
 
-  if (reducedMotion) return content;
-
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: DURATION_NORMAL, delay: index * STAGGER_DEFAULT + 0.2, ease }}
-    >
+    <AnimateInView y={40} delay={index * STAGGER_DEFAULT + 0.2}>
       {content}
-    </motion.div>
+    </AnimateInView>
   );
 }
 
@@ -161,29 +152,11 @@ export function StatsSection({
         {/* 상단: 타이틀 + Since */}
         <div className="grid grid-cols-1 items-end gap-12 md:grid-cols-2 md:gap-16">
           <div>
-            {reducedMotion ? titleContent : (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: DURATION_SLOW, ease }}
-              >
-                {titleContent}
-              </motion.div>
-            )}
+            <AnimateInView y={30} duration={DURATION_SLOW}>{titleContent}</AnimateInView>
           </div>
 
           <div>
-            {reducedMotion ? sinceBlock : (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: DURATION_SLOW, delay: 0.1, ease }}
-              >
-                {sinceBlock}
-              </motion.div>
-            )}
+            <AnimateInView y={30} duration={DURATION_SLOW} delay={0.1}>{sinceBlock}</AnimateInView>
           </div>
         </div>
 

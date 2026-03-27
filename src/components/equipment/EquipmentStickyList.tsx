@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useState, useMemo } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Cog } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { EASE_SMOOTH } from "@/lib/motion";
@@ -27,8 +27,6 @@ interface EquipmentStickyListProps {
   /** true면 홀짝 교차 레이아웃 (좌우 반전) */
   zigzag?: boolean;
 }
-
-const VIEWPORT = { once: true, margin: "-10%" } as const;
 
 const staggerContainer = {
   hidden: {},
@@ -77,14 +75,16 @@ interface EquipmentRowProps {
 }
 
 function EquipmentRow({ item, specUnit, reducedMotion, reversed }: EquipmentRowProps) {
+  const rowRef = useRef(null);
+  const isInView = useInView(rowRef, { once: true, margin: "-10%" });
+
   const imageBlock = reducedMotion ? (
     <ImagePlaceholder model={item.model} />
   ) : (
     <motion.div
       variants={imageReveal}
       initial="hidden"
-      whileInView="visible"
-      viewport={VIEWPORT}
+      animate={isInView ? "visible" : "hidden"}
     >
       <ImagePlaceholder model={item.model} />
     </motion.div>
@@ -120,8 +120,7 @@ function EquipmentRow({ item, specUnit, reducedMotion, reversed }: EquipmentRowP
       className="flex flex-col justify-center"
       variants={staggerContainer}
       initial="hidden"
-      whileInView="visible"
-      viewport={VIEWPORT}
+      animate={isInView ? "visible" : "hidden"}
     >
       <div className="flex items-start gap-4">
         <motion.div className="hidden shrink-0 md:flex md:h-8 md:items-center lg:h-9" variants={staggerItem}>
@@ -154,7 +153,7 @@ function EquipmentRow({ item, specUnit, reducedMotion, reversed }: EquipmentRowP
   );
 
   return (
-    <div className="md:sticky md:top-20">
+    <div ref={rowRef} className="md:sticky md:top-20">
       <div className="border-t border-gray-200 bg-white py-12 md:py-16">
         <div className="mx-auto max-w-6xl grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-24">
           <div className={`md:col-span-4 ${reversed ? "md:order-2" : ""}`}>

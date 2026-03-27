@@ -5,7 +5,7 @@ import { Users, ShieldCheck, Heart } from "lucide-react";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { SectionTitle } from "@/components/common/SectionTitle";
 import { Card } from "@/components/common/Card";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useAnimateInView } from "@/components/common/AnimateInView";
 import { EASE_SMOOTH } from "@/lib/motion";
 import type { PhilosophyValue } from "@/lib/types";
 
@@ -70,7 +70,7 @@ function ValueCard({ value, locale }: { value: PhilosophyValue; locale: "ko" | "
 }
 
 export function PhilosophySection({ slogan, values, locale, label, title }: PhilosophySectionProps) {
-  const reducedMotion = useReducedMotion();
+  const { ref, isInView, reducedMotion } = useAnimateInView();
 
   return (
     <section className="bg-smoke py-24 md:py-40" aria-labelledby="philosophy-heading">
@@ -96,11 +96,11 @@ export function PhilosophySection({ slogan, values, locale, label, title }: Phil
           </div>
         ) : (
           <motion.div
+            ref={ref}
             className="grid grid-cols-1 gap-8 md:grid-cols-3"
             variants={containerVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-10%" }}
+            animate={isInView ? "visible" : "hidden"}
           >
             {values.map((value) => (
               <motion.div key={value.key} variants={cardVariants}>

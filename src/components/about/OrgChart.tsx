@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView, type Variants } from "framer-motion";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { SectionTitle } from "@/components/common/SectionTitle";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -56,6 +57,9 @@ function DesktopTree({
   locale: "ko" | "en";
   reducedMotion: boolean;
 }) {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-10%" });
+
   const content = (
     <>
       {reducedMotion ? (
@@ -116,11 +120,11 @@ function DesktopTree({
 
   return (
     <motion.div
+      ref={containerRef}
       className="flex flex-col items-center"
       variants={containerVariants}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-10%" }}
+      animate={isInView ? "visible" : "hidden"}
     >
       {content}
     </motion.div>
@@ -138,6 +142,9 @@ function MobileList({
   locale: "ko" | "en";
   reducedMotion: boolean;
 }) {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-10%" });
+
   const content = (
     <>
       {reducedMotion ? (
@@ -185,11 +192,11 @@ function MobileList({
 
   return (
     <motion.div
+      ref={containerRef}
       className="flex flex-col gap-3"
       variants={containerVariants}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-10%" }}
+      animate={isInView ? "visible" : "hidden"}
     >
       {content}
     </motion.div>

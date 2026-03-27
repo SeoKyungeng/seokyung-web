@@ -1,11 +1,10 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { CTAButton } from "./CTAButton";
 import { GlowBlob } from "./GlowBlob";
-import { EASE_SPRING, DURATION_NORMAL } from "@/lib/motion";
+import { AnimateInView } from "./AnimateInView";
 
 export function FooterMarqueeBand() {
   const tFooter = useTranslations("footer");
@@ -73,16 +72,7 @@ export function FooterMarqueeBand() {
         </div>
 
         {/* CTA 버튼 */}
-        {reducedMotion ? ctaContent : (
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-10%" }}
-            transition={{ duration: DURATION_NORMAL, ease: EASE_SPRING }}
-          >
-            {ctaContent}
-          </motion.div>
-        )}
+        <AnimateInView y={24}>{ctaContent}</AnimateInView>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { SectionTitle } from "@/components/common/SectionTitle";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useAnimateInView } from "@/components/common/AnimateInView";
 import { EASE_SMOOTH } from "@/lib/motion";
 import type { Client } from "@/lib/types";
 
@@ -43,7 +43,7 @@ function ClientCell({ client, locale }: { client: Client; locale: "ko" | "en" })
 }
 
 export function ClientsSection({ clients, locale, label, title, subtitle }: ClientsSectionProps) {
-  const reducedMotion = useReducedMotion();
+  const { ref, isInView, reducedMotion } = useAnimateInView();
 
   return (
     <section className="bg-white py-24 md:py-40" aria-labelledby="clients-heading">
@@ -69,11 +69,11 @@ export function ClientsSection({ clients, locale, label, title, subtitle }: Clie
           </div>
         ) : (
           <motion.div
+            ref={ref}
             className="grid grid-cols-2 gap-6 md:grid-cols-4"
             variants={containerVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-10%" }}
+            animate={isInView ? "visible" : "hidden"}
           >
             {clients.map((client) => (
               <motion.div key={client.id} variants={itemVariants}>

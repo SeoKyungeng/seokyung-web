@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
+import { useAnimateInView } from "@/components/common/AnimateInView";
 import { Leaf, Users, Shield } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { SectionLabel } from "@/components/common/SectionLabel";
@@ -23,8 +24,6 @@ interface ESGSectionProps {
   label: string;
   title: string;
 }
-
-const VIEWPORT = { once: true, margin: "-10%" } as const;
 
 const containerVariants: Variants = {
   hidden: {},
@@ -52,6 +51,7 @@ interface ESGBlockProps {
 }
 
 function ESGBlock({ item, index, reducedMotion }: ESGBlockProps) {
+  const { ref, isInView } = useAnimateInView();
   const isReversed = index % 2 === 1;
 
   const imageEl = <ImagePlaceholder iconName={item.icon} />;
@@ -88,12 +88,11 @@ function ESGBlock({ item, index, reducedMotion }: ESGBlockProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-12">
+    <div ref={ref} className="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-12">
       <motion.div
         className={`col-span-1 md:col-span-7 ${isReversed ? "md:order-2" : ""}`}
         initial={{ opacity: 0, x: isReversed ? 60 : -60 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={VIEWPORT}
+        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isReversed ? 60 : -60 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
         {imageEl}
@@ -102,8 +101,7 @@ function ESGBlock({ item, index, reducedMotion }: ESGBlockProps) {
         className={`col-span-1 flex flex-col justify-center md:col-span-5 ${isReversed ? "md:order-1" : ""}`}
         variants={containerVariants}
         initial="hidden"
-        whileInView="visible"
-        viewport={VIEWPORT}
+        animate={isInView ? "visible" : "hidden"}
       >
         <motion.p className="font-display text-3xl font-bold text-primary-400" variants={itemVariants}>
           {item.key}

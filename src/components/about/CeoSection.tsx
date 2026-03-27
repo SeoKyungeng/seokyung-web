@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/common/SectionLabel";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useAnimateInView } from "@/components/common/AnimateInView";
 import { EASE_SMOOTH } from "@/lib/motion";
 import type { CEO } from "@/lib/types";
 
@@ -30,64 +30,42 @@ const lineReveal = {
 };
 
 export function CeoSection({ ceo, locale, label }: CeoSectionProps) {
-  const reducedMotion = useReducedMotion();
+  const { ref, isInView } = useAnimateInView();
   const paragraphs = ceo.greeting.body[locale].split("\n\n");
 
   const content = (
     <div className="mx-auto max-w-3xl text-center">
       <SectionLabel>{label}</SectionLabel>
 
-      {reducedMotion ? (
-        <>
-          <h2
-            id="ceo-heading"
-            className="mt-5 font-display text-2xl font-semibold leading-snug text-gray-950 md:text-3xl"
-          >
-            {ceo.greeting.highlight[locale]}
-          </h2>
+      <div ref={ref}>
+        <motion.h2
+          id="ceo-heading"
+          className="mt-5 font-display text-2xl font-semibold leading-snug text-gray-950 md:text-3xl"
+          variants={fadeIn}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {ceo.greeting.highlight[locale]}
+        </motion.h2>
 
-          <div className="mx-auto mt-8 h-0.5 w-16 bg-primary-400" />
+        <motion.div
+          className="mx-auto mt-8 h-0.5 w-16 origin-left bg-primary-400"
+          variants={lineReveal}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        />
 
-          <div className="mt-8 space-y-6 text-left text-base leading-relaxed text-gray-600 md:text-lg">
-            {paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
-        </>
-      ) : (
-        <>
-          <motion.h2
-            id="ceo-heading"
-            className="mt-5 font-display text-2xl font-semibold leading-snug text-gray-950 md:text-3xl"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-10%" }}
-          >
-            {ceo.greeting.highlight[locale]}
-          </motion.h2>
-
-          <motion.div
-            className="mx-auto mt-8 h-0.5 w-16 origin-left bg-primary-400"
-            variants={lineReveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-10%" }}
-          />
-
-          <motion.div
-            className="mt-8 space-y-6 text-left text-base leading-relaxed text-gray-600 md:text-lg"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-10%" }}
-          >
-            {paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </motion.div>
-        </>
-      )}
+        <motion.div
+          className="mt-8 space-y-6 text-left text-base leading-relaxed text-gray-600 md:text-lg"
+          variants={fadeIn}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {paragraphs.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </motion.div>
+      </div>
 
       <div className="mt-10 border-t border-gray-200 pt-6 text-right">
         <p className="font-display text-lg font-semibold text-gray-900">

@@ -1,11 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { CTAButton } from "@/components/common/CTAButton";
 import { MarqueeRow } from "@/components/common/MarqueeRow";
 import { GlowBlob } from "@/components/common/GlowBlob";
-import { EASE_SPRING, DURATION_NORMAL } from "@/lib/motion";
+import { AnimateInView } from "@/components/common/AnimateInView";
 
 interface CTABandProps {
   ctaMarqueeKo: string;
@@ -15,8 +13,6 @@ interface CTABandProps {
 }
 
 export function CTABand({ ctaMarqueeKo, ctaMarqueeEn, ctaButton, ctaButtonSecondary }: CTABandProps) {
-  const reducedMotion = useReducedMotion();
-
   const ctaContent = (
     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-5">
       <CTAButton href="/contact" variant="solid">
@@ -49,16 +45,7 @@ export function CTABand({ ctaMarqueeKo, ctaMarqueeEn, ctaButton, ctaButtonSecond
           <MarqueeRow text={`${ctaMarqueeEn} · ${ctaMarqueeKo}`} size="xl" duration={25} reverse />
         </div>
 
-        {reducedMotion ? ctaContent : (
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-10%" }}
-            transition={{ duration: DURATION_NORMAL, ease: EASE_SPRING }}
-          >
-            {ctaContent}
-          </motion.div>
-        )}
+        <AnimateInView y={24}>{ctaContent}</AnimateInView>
       </div>
     </section>
   );

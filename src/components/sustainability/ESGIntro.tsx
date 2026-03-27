@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/common/SectionLabel";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useAnimateInView } from "@/components/common/AnimateInView";
 import { EASE_SMOOTH } from "@/lib/motion";
 
 interface ESGIntroProps {
@@ -29,7 +29,7 @@ const lineReveal = {
 };
 
 export function ESGIntro({ vision, description, label }: ESGIntroProps) {
-  const reducedMotion = useReducedMotion();
+  const { ref, isInView, reducedMotion } = useAnimateInView();
 
   const content = (
     <div className="mx-auto max-w-3xl text-center">
@@ -48,13 +48,12 @@ export function ESGIntro({ vision, description, label }: ESGIntroProps) {
           </p>
         </>
       ) : (
-        <>
+        <div ref={ref}>
           <motion.h2
             className="mt-5 font-display text-2xl font-semibold leading-snug text-gray-950 md:text-3xl"
             variants={fadeIn}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-10%" }}
+            animate={isInView ? "visible" : "hidden"}
           >
             {vision}
           </motion.h2>
@@ -63,20 +62,18 @@ export function ESGIntro({ vision, description, label }: ESGIntroProps) {
             className="mx-auto mt-8 h-0.5 w-16 origin-left bg-primary-400"
             variants={lineReveal}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-10%" }}
+            animate={isInView ? "visible" : "hidden"}
           />
 
           <motion.p
             className="mt-8 text-base leading-relaxed text-gray-600 md:text-lg"
             variants={fadeIn}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-10%" }}
+            animate={isInView ? "visible" : "hidden"}
           >
             {description}
           </motion.p>
-        </>
+        </div>
       )}
     </div>
   );
