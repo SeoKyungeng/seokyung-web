@@ -21,20 +21,19 @@ interface EquipmentPreviewProps {
 
 function EquipmentCard({ item, locale, index }: { item: EquipmentItem; locale: "ko" | "en"; index: number }) {
   const typeLabel = item.type.toUpperCase();
-  const specEntries = item.specs.slice(0, 2);
   return (
-    <div className="group shrink-0 w-[85vw] sm:w-95 rounded-xl border border-white/10 ring-1 ring-white/5 bg-white/3 overflow-hidden transition-all duration-300 hover:border-primary-400/50 hover:shadow-[0_0_30px_rgba(20,71,230,0.15)]"
+    <div className="group shrink-0 w-[85vw] sm:w-100 rounded-xl border border-white/10 ring-1 ring-white/5 bg-white/3 overflow-hidden transition-all duration-300 hover:border-primary-400/50 hover:shadow-[0_0_30px_rgba(20,71,230,0.15)]"
       style={{ transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
     >
       <div
-        className="relative h-48 overflow-hidden rounded-t-xl"
+        className="relative h-72 overflow-hidden rounded-t-xl"
       >
         <Image
           src={item.photo}
           alt={item.model}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 640px) 85vw, 380px"
+          sizes="(max-width: 640px) 85vw, 400px"
         />
         <div className="absolute inset-0 bg-linear-to-t from-midnight/80 via-midnight/20 to-transparent" />
 
@@ -49,22 +48,13 @@ function EquipmentCard({ item, locale, index }: { item: EquipmentItem; locale: "
         </div>
       </div>
 
-      <div className="p-6">
-        <p className="text-xs uppercase tracking-[0.15em] text-white/50 mb-2">
-          {item.manufacturer[locale]}
+      <div className="p-5">
+        <p className="text-xs uppercase tracking-[0.15em] text-white/50 mb-1">
+          {item.name[locale]}
         </p>
-        <h3 className="font-mono text-2xl font-bold text-white mb-5 group-hover:text-primary-300 transition-colors duration-200 leading-tight">
+        <h3 className="font-mono text-xl font-bold text-white group-hover:text-primary-300 transition-colors duration-200 leading-tight">
           {item.model}
         </h3>
-
-        <dl className="space-y-3 border-t border-white/10 pt-4">
-          {specEntries.map((spec) => (
-            <div key={spec.label.ko} className="flex items-baseline justify-between gap-4">
-              <dt className="text-xs uppercase tracking-wider text-white/50">{spec.label[locale]}</dt>
-              <dd className="text-base text-white/80 font-mono font-medium">{spec.value}</dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </div>
   );
