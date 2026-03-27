@@ -1,10 +1,11 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useContext } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { CTAButton } from "@/components/common/CTAButton";
 import { GlowBlob } from "@/components/common/GlowBlob";
+import { PageTransitionContext } from "@/providers/TransitionProvider";
 import { EASE_SPRING, DURATION_SLOW } from "@/lib/motion";
 
 interface HeroSectionProps {
@@ -23,10 +24,8 @@ export function HeroSection({
   scrollIndicator,
 }: HeroSectionProps) {
   const reducedMotion = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
+  const ready = useContext(PageTransitionContext);
   const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => setMounted(true), []);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
@@ -92,7 +91,7 @@ export function HeroSection({
                     <motion.span
                       className="inline-block text-[clamp(40px,9vw,88px)]"
                       initial={{ y: "110%", opacity: 0 }}
-                      animate={mounted ? { y: "0%", opacity: 1 } : { y: "110%", opacity: 0 }}
+                      animate={ready ? { y: "0%", opacity: 1 } : { y: "110%", opacity: 0 }}
                       transition={{
                         duration: DURATION_SLOW,
                         delay: w.delay,
@@ -118,8 +117,8 @@ export function HeroSection({
           <motion.p
             className="mb-10 text-lg md:text-xl text-white/60"
             initial={{ opacity: 0 }}
-            animate={mounted ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
+            animate={ready ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
           >
             {heroSubtitle}
           </motion.p>
@@ -138,8 +137,8 @@ export function HeroSection({
           <motion.div
             className="flex flex-col sm:flex-row gap-4"
             initial={{ opacity: 0, y: 20 }}
-            animate={mounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
+            animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.4, delay: 0.5, ease: "easeOut" }}
           >
             <CTAButton href="/contact" variant="solid" className="w-full sm:w-auto justify-center">
               {heroCta}

@@ -1,4 +1,4 @@
-import { Link } from "@/i18n/navigation";
+import { TransitionLink as Link } from "@/components/common/TransitionLink";
 import { ArrowRight } from "lucide-react";
 
 interface CTAButtonProps {

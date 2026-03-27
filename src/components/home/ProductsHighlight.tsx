@@ -4,7 +4,7 @@ import Image from "next/image";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { SectionTitle } from "@/components/common/SectionTitle";
 import { CTAButton } from "@/components/common/CTAButton";
-import { Link } from "@/i18n/navigation";
+import { TransitionLink as Link } from "@/components/common/TransitionLink";
 import { AnimateInView } from "@/components/common/AnimateInView";
 
 interface CategoryItem {

@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import { motion, useInView, type UseInViewOptions, type Easing } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { PageTransitionContext } from "@/providers/TransitionProvider";
 import { EASE_SPRING, DURATION_NORMAL } from "@/lib/motion";
 
 /**
@@ -16,12 +17,13 @@ import { EASE_SPRING, DURATION_NORMAL } from "@/lib/motion";
 export function useAnimateInView(options?: { once?: boolean; margin?: string }) {
   const ref = useRef(null);
   const reducedMotion = useReducedMotion();
+  const transitionComplete = useContext(PageTransitionContext);
   const isInView = useInView(ref, {
     once: options?.once ?? true,
     margin: (options?.margin ?? "-10%") as UseInViewOptions["margin"],
   });
 
-  return { ref, isInView, reducedMotion };
+  return { ref, isInView: transitionComplete && isInView, reducedMotion };
 }
 
 interface AnimateInViewProps {

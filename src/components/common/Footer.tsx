@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { TransitionLink as Link } from "@/components/common/TransitionLink";
 import { FooterMarqueeBand } from "./FooterMarqueeBand";
 
 const QUICK_LINKS = [

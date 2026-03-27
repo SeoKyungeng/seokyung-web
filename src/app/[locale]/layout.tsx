@@ -12,7 +12,10 @@ import { ToastProvider } from "@/providers/ToastProvider";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
 import { GrainOverlay } from "@/components/common/GrainOverlay";
-import { LayoutTransition } from "@/components/common/LayoutTransition";
+import {
+  TransitionProvider,
+  TransitionOverlay,
+} from "@/providers/TransitionProvider";
 import "@/styles/globals.css";
 
 const syne = Syne({
@@ -62,12 +65,14 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <LenisProvider>
             <ToastProvider>
-              <GrainOverlay />
-              <Header />
-              <main id="main-content">
-                <LayoutTransition>{children}</LayoutTransition>
-              </main>
-              <Footer />
+              <TransitionProvider>
+                <GrainOverlay />
+                <Header />
+                <TransitionOverlay>
+                  <main id="main-content">{children}</main>
+                  <Footer />
+                </TransitionOverlay>
+              </TransitionProvider>
             </ToastProvider>
           </LenisProvider>
         </NextIntlClientProvider>
