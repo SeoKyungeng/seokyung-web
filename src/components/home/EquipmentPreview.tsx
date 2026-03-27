@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -18,62 +19,38 @@ interface EquipmentPreviewProps {
   locale: "ko" | "en";
 }
 
-const TYPE_ICONS: Record<string, { path: string; viewBox: string }> = {
-  cnc: {
-    viewBox: "0 0 24 24",
-    path: "M4 12a8 8 0 1116 0 8 8 0 01-16 0zm8-3v3l2.5 1.5M12 2v2m0 16v2M2 12h2m16 0h2",
-  },
-  mct: {
-    viewBox: "0 0 24 24",
-    path: "M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z",
-  },
-  lathe: {
-    viewBox: "0 0 24 24",
-    path: "M12 2a10 10 0 100 20 10 10 0 000-20zm0 6a4 4 0 110 8 4 4 0 010-8zm0 2a2 2 0 100 4 2 2 0 000-4z",
-  },
-  other: {
-    viewBox: "0 0 24 24",
-    path: "M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z",
-  },
-};
-
 function EquipmentCard({ item, locale, index }: { item: EquipmentItem; locale: "ko" | "en"; index: number }) {
   const typeLabel = item.type.toUpperCase();
   const specEntries = item.specs.slice(0, 2);
-  const icon = TYPE_ICONS[item.type] || TYPE_ICONS.other;
-
   return (
-    <div className="group shrink-0 w-[85vw] sm:w-95 rounded-xl border border-white/10 ring-1 ring-white/5 bg-white/3 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-primary-400/50 hover:shadow-[0_0_30px_rgba(20,71,230,0.15)]"
+    <div className="group shrink-0 w-[85vw] sm:w-95 rounded-xl border border-white/10 ring-1 ring-white/5 bg-white/3 overflow-hidden transition-all duration-300 hover:border-primary-400/50 hover:shadow-[0_0_30px_rgba(20,71,230,0.15)]"
       style={{ transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
     >
       <div
-        className="relative h-44 bg-linear-to-br from-white/5 to-transparent flex items-center justify-center overflow-hidden"
-        style={{ clipPath: "polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 0 100%)" }}
+        className="relative h-48 overflow-hidden rounded-t-xl"
       >
-        <span className="absolute -right-3 -bottom-4 font-mono text-[120px] leading-none text-white/3 select-none pointer-events-none group-hover:text-primary-400/6 transition-colors duration-500">
+        <Image
+          src={item.photo}
+          alt={item.model}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 640px) 85vw, 380px"
+        />
+        <div className="absolute inset-0 bg-linear-to-t from-midnight/80 via-midnight/20 to-transparent" />
+
+        <span className="absolute -right-3 -bottom-4 font-mono text-[120px] leading-none text-white/5 select-none pointer-events-none group-hover:text-primary-400/8 transition-colors duration-500">
           {String(index + 1).padStart(2, "0")}
         </span>
 
-        <div className="relative z-10 flex flex-col items-center gap-3">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-white/10 bg-white/3 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] group-hover:border-primary-400/30 group-hover:bg-primary-400/5 transition-all duration-300">
-            <svg
-              className="w-7 h-7 text-white/30 group-hover:text-primary-400/60 transition-colors duration-300"
-              fill="none"
-              viewBox={icon.viewBox}
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={icon.path} />
-            </svg>
-          </div>
-          <span className="px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest bg-white/5 text-white/40 ring-1 ring-white/10 group-hover:text-primary-400/70 group-hover:ring-primary-400/20 transition-all duration-300">
+        <div className="absolute bottom-3 left-4 z-10">
+          <span className="px-3 py-1 rounded-full text-xs font-mono uppercase tracking-widest bg-black/40 text-white/80 ring-1 ring-white/10 backdrop-blur-sm group-hover:text-primary-300 group-hover:ring-primary-400/30 transition-all duration-300">
             {typeLabel}
           </span>
         </div>
       </div>
 
       <div className="p-6">
-        <p className="text-[11px] uppercase tracking-[0.15em] text-white/30 mb-2">
+        <p className="text-xs uppercase tracking-[0.15em] text-white/50 mb-2">
           {item.manufacturer[locale]}
         </p>
         <h3 className="font-mono text-2xl font-bold text-white mb-5 group-hover:text-primary-300 transition-colors duration-200 leading-tight">
@@ -83,7 +60,7 @@ function EquipmentCard({ item, locale, index }: { item: EquipmentItem; locale: "
         <dl className="space-y-3 border-t border-white/10 pt-4">
           {specEntries.map((spec) => (
             <div key={spec.label.ko} className="flex items-baseline justify-between gap-4">
-              <dt className="text-[11px] uppercase tracking-wider text-white/30">{spec.label[locale]}</dt>
+              <dt className="text-xs uppercase tracking-wider text-white/50">{spec.label[locale]}</dt>
               <dd className="text-base text-white/80 font-mono font-medium">{spec.value}</dd>
             </div>
           ))}
