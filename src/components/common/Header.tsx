@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -26,6 +26,11 @@ export function Header() {
   const reducedMotion = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+  const [underline, setUnderline] = useState<{
+    left: number;
+    width: number;
+  } | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -54,6 +59,23 @@ export function Header() {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   }
+
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+    const measure = () => {
+      const el = nav.querySelector<HTMLElement>('[aria-current="page"]');
+      if (!el) {
+        setUnderline(null);
+        return;
+      }
+      setUnderline({ left: el.offsetLeft, width: el.offsetWidth });
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(nav);
+    return () => ro.disconnect();
+  }, [pathname]);
 
   return (
     <>
@@ -84,12 +106,16 @@ export function Header() {
           </Link>
 
           {/* PC Nav */}
-          <nav className="hidden items-center gap-8 lg:flex" aria-label="메인">
+          <nav
+            ref={navRef}
+            className="relative hidden items-center gap-8 lg:flex"
+            aria-label="메인"
+          >
             {NAV_ITEMS.map(({ href, key }) => (
               <Link
                 key={key}
                 href={href}
-                className={`relative py-1 text-sm transition-colors duration-200 ${
+                className={`py-1 text-sm transition-colors duration-200 ${
                   isActive(href)
                     ? "text-white"
                     : "text-white/70 hover:text-white"
@@ -97,14 +123,20 @@ export function Header() {
                 aria-current={isActive(href) ? "page" : undefined}
               >
                 {t(key)}
-                {isActive(href) && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute -bottom-1 left-0 h-0.5 w-full bg-primary-400"
-                  />
-                )}
               </Link>
             ))}
+            {underline && (
+              <motion.span
+                className="pointer-events-none absolute -bottom-1 left-0 h-0.5 bg-primary-400"
+                initial={false}
+                animate={{ x: underline.left, width: underline.width }}
+                transition={
+                  reducedMotion
+                    ? { duration: 0 }
+                    : { type: "spring", stiffness: 380, damping: 30 }
+                }
+              />
+            )}
           </nav>
 
           {/* PC Right */}
