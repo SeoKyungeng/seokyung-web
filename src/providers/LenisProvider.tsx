@@ -19,7 +19,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    const lenis = new Lenis({ syncTouch: true });
+    const lenis = new Lenis();
     lenisRef.current = lenis;
 
     lenis.on("scroll", ScrollTrigger.update);

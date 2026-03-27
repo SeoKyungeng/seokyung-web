@@ -74,7 +74,12 @@ export function EquipmentPreview({
   useEffect(() => {
     if (reducedMotion) return;
 
-    ScrollTrigger.config({ ignoreMobileResize: true });
+    const isMobile = window.innerWidth < 768;
+
+    if (isMobile) {
+      trackRef.current?.setAttribute("data-lenis-prevent-touch", "");
+      return;
+    }
 
     const ctx = gsap.context(() => {
       const track = trackRef.current;
@@ -83,10 +88,7 @@ export function EquipmentPreview({
 
       const totalWidth = track.scrollWidth;
       const viewportWidth = window.innerWidth;
-      const isMobile = viewportWidth < 768;
-      const distance = isMobile
-        ? (totalWidth - viewportWidth) * 0.6
-        : totalWidth - viewportWidth + 160;
+      const distance = totalWidth - viewportWidth + 160;
 
       gsap.to(track, {
         x: () => -distance,
@@ -97,7 +99,7 @@ export function EquipmentPreview({
           end: () => `+=${distance}`,
           pin: true,
           pinSpacing: true,
-          scrub: isMobile ? 0.5 : 1,
+          scrub: 1,
           invalidateOnRefresh: true,
         },
       });
@@ -130,20 +132,16 @@ export function EquipmentPreview({
           </div>
         </div>
 
-        <div className="overflow-hidden">
+        <div className="overflow-hidden max-md:overflow-x-auto">
           <div
             ref={trackRef}
-            className={
-              reducedMotion
-                ? "flex gap-5 px-5 md:px-20 overflow-x-auto pb-4 scroll-snap-x-mandatory"
-                : "flex gap-5 px-5 md:px-20 will-change-transform pb-8"
-            }
-            style={reducedMotion ? { scrollSnapType: "x mandatory" } : undefined}
+            className="flex gap-5 px-5 md:px-20 max-md:overflow-x-auto max-md:pb-4 md:will-change-transform md:pb-8"
+            style={{ scrollSnapType: "x mandatory", scrollPaddingInline: "20px" }}
           >
             {items.map((item, index) => (
               <div
                 key={item.id}
-                style={reducedMotion ? { scrollSnapAlign: "start" } : undefined}
+                style={{ scrollSnapAlign: "start" }}
               >
                 <EquipmentCard item={item} locale={locale} index={index} />
               </div>
