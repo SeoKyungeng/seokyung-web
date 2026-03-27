@@ -70,7 +70,6 @@ export function EquipmentPreview({
   const reducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -79,7 +78,6 @@ export function EquipmentPreview({
     const ctx = gsap.context(() => {
       const track = trackRef.current;
       const container = containerRef.current;
-      const progress = progressRef.current;
       if (!track || !container) return;
 
       const totalWidth = track.scrollWidth;
@@ -97,11 +95,6 @@ export function EquipmentPreview({
           pinSpacing: true,
           scrub: 1,
           invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            if (progress) {
-              progress.style.width = `${self.progress * 100}%`;
-            }
-          },
         },
       });
     }, containerRef);
@@ -127,9 +120,9 @@ export function EquipmentPreview({
                 {equipmentTitle}
               </SectionTitle>
             </div>
-            <p className="hidden md:block font-mono text-6xl font-bold text-white/10 leading-none">
-              {items.length}<span className="text-3xl text-white/6">+</span>
-            </p>
+            <CTAButton href="/equipment" variant="outline" className="border-white/20 text-white hover:bg-white/10 hover:border-white/40">
+              {equipmentViewAll}
+            </CTAButton>
           </div>
         </div>
 
@@ -155,23 +148,7 @@ export function EquipmentPreview({
         </div>
       </div>
 
-      <div className="pb-24 md:pb-40">
-        <div className="max-w-7xl mx-auto px-5 md:px-20 mt-10">
-          <div className="h-0.5 bg-white/10 rounded-full overflow-hidden">
-            <div
-              ref={progressRef}
-              className="h-full bg-primary-400 rounded-full transition-none shadow-[0_0_8px_rgba(20,71,230,0.5)]"
-              style={{ width: reducedMotion ? "100%" : "0%" }}
-            />
-          </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-5 md:px-20 mt-8 flex justify-end">
-          <CTAButton href="/equipment" variant="outline" className="border-white/20 text-white hover:bg-white/10 hover:border-white/40">
-            {equipmentViewAll}
-          </CTAButton>
-        </div>
-      </div>
+      <div className="pb-24 md:pb-40" />
     </section>
   );
 }
