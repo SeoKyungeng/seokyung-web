@@ -32,11 +32,11 @@ export function EquipmentCategoryFilter({
   ];
 
   return (
-    <div className="sticky top-0 z-30 bg-white/90 backdrop-blur-sm">
+    <div className="sticky top-16 z-30 border-b border-gray-100 bg-white/90 backdrop-blur-sm md:top-20">
       <div
         role="tablist"
         aria-label={t("title")}
-        className="mx-auto flex max-w-6xl overflow-x-auto scroll-smooth px-4 scrollbar-hide sm:px-6 lg:px-8"
+        className="mx-auto flex max-w-7xl overflow-x-auto scroll-smooth px-5 scrollbar-hide md:px-10 lg:px-20"
         style={{ scrollSnapType: "x mandatory" }}
       >
         {tabs.map((tab) => {
@@ -48,10 +48,11 @@ export function EquipmentCategoryFilter({
               aria-selected={isActive}
               onClick={() => onChange(tab.key)}
               className={[
-                "relative flex-shrink-0 scroll-snap-align-start px-5 py-4 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2",
+                "relative shrink-0 px-5 py-4 text-sm font-medium transition-colors duration-200",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2",
                 isActive
-                  ? "text-gray-950 font-semibold"
-                  : "text-gray-500 hover:text-gray-700",
+                  ? "text-gray-950"
+                  : "text-gray-400 hover:text-gray-600",
               ].join(" ")}
               style={{ scrollSnapAlign: "start" }}
             >
@@ -60,7 +61,7 @@ export function EquipmentCategoryFilter({
               {isActive && (
                 <motion.span
                   layoutId={reducedMotion ? undefined : "equipment-tab"}
-                  className="absolute bottom-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-primary-400"
+                  className="absolute inset-x-2 bottom-0 h-0.5 rounded-full bg-primary-400"
                   transition={
                     reducedMotion
                       ? { duration: 0 }
@@ -72,8 +73,6 @@ export function EquipmentCategoryFilter({
           );
         })}
       </div>
-
-      <div className="h-px bg-gray-100" />
     </div>
   );
 }

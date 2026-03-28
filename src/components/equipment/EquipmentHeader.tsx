@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { GlowBlob } from "@/components/common/GlowBlob";
 
 interface CounterStat {
   label: string;
@@ -69,14 +68,11 @@ function AnimatedCounter({ value, label }: CounterStat) {
   const displayValue = reducedMotion ? value : display;
 
   return (
-    <div
-      ref={ref}
-      className="flex flex-col items-center gap-2 rounded-lg border border-steel/60 px-6 py-5"
-    >
-      <span className="font-mono text-4xl font-bold text-white md:text-5xl">
+    <div ref={ref} className="flex flex-col items-center gap-1 px-6 py-4">
+      <span className="font-mono text-4xl font-bold tabular-nums text-primary-400 md:text-5xl">
         {displayValue}
       </span>
-      <span className="text-xs uppercase tracking-widest text-gray-500">
+      <span className="text-xs uppercase tracking-widest text-gray-400">
         {label}
       </span>
     </div>
@@ -85,12 +81,9 @@ function AnimatedCounter({ value, label }: CounterStat) {
 
 export function EquipmentHeader({ stats }: EquipmentHeaderProps) {
   return (
-    <section className="relative overflow-hidden bg-midnight px-5 py-16 text-white md:px-10 lg:px-20">
-      <GlowBlob className="-bottom-32 -left-32" size={500} />
-      <GlowBlob className="-right-32 -top-32" size={400} />
-
-      <div className="relative z-10 mx-auto max-w-3xl">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+    <section className="bg-white px-5 py-12 md:px-10 md:py-16 lg:px-20">
+      <div className="mx-auto max-w-3xl">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-0 md:divide-x md:divide-gray-200">
           {stats.map((stat) => (
             <AnimatedCounter key={stat.label} value={stat.value} label={stat.label} />
           ))}
