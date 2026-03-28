@@ -2,40 +2,34 @@
 
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
-
-export type EquipmentCategory = "all" | "cnc" | "mct" | "lathe" | "other";
 
 interface Tab {
-  key: EquipmentCategory;
+  key: string;
   label: string;
 }
 
-interface EquipmentCategoryFilterProps {
-  active: EquipmentCategory;
-  onChange: (key: EquipmentCategory) => void;
+interface StickyTabFilterProps {
+  tabs: Tab[];
+  active: string;
+  onChange: (key: string) => void;
+  ariaLabel: string;
+  layoutId: string;
 }
 
-export function EquipmentCategoryFilter({
+export function StickyTabFilter({
+  tabs,
   active,
   onChange,
-}: EquipmentCategoryFilterProps) {
-  const t = useTranslations("pages.equipment");
+  ariaLabel,
+  layoutId,
+}: StickyTabFilterProps) {
   const reducedMotion = useReducedMotion();
 
-  const tabs: Tab[] = [
-    { key: "all", label: t("filterAll") },
-    { key: "cnc", label: t("filterCnc") },
-    { key: "mct", label: t("filterMct") },
-    { key: "lathe", label: t("filterLathe") },
-    { key: "other", label: t("filterOther") },
-  ];
-
   return (
-    <div className="sticky top-16 z-30 border-b border-gray-100 bg-white/90 backdrop-blur-sm md:top-20">
+    <div className="sticky top-16 z-30 border-b border-gray-100 bg-white/90 backdrop-blur-sm md:top-20 before:absolute before:inset-x-0 before:bottom-full before:h-16 before:bg-white/90 before:backdrop-blur-sm md:before:h-20">
       <div
         role="tablist"
-        aria-label={t("title")}
+        aria-label={ariaLabel}
         className="mx-auto flex max-w-7xl overflow-x-auto scroll-smooth px-5 scrollbar-hide md:px-10 lg:px-20"
         style={{ scrollSnapType: "x mandatory" }}
       >
@@ -60,7 +54,7 @@ export function EquipmentCategoryFilter({
 
               {isActive && (
                 <motion.span
-                  layoutId={reducedMotion ? undefined : "equipment-tab"}
+                  layoutId={reducedMotion ? undefined : layoutId}
                   className="absolute inset-x-2 bottom-0 h-0.5 rounded-full bg-primary-400"
                   transition={
                     reducedMotion

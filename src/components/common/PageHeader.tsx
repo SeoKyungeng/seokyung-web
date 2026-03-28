@@ -9,7 +9,7 @@ interface PageHeaderProps {
 
 export function PageHeader({ label, title, subtitle }: PageHeaderProps) {
   return (
-    <section className="relative flex h-[70vh] items-center justify-center overflow-hidden bg-midnight text-white">
+    <section className="relative z-[35] flex h-[70vh] items-center justify-center overflow-hidden bg-midnight text-white">
       <GlowBlob className="-bottom-32 -left-32" size={500} />
       <div className="relative z-10 text-center">
         <SectionLabel>{label}</SectionLabel>

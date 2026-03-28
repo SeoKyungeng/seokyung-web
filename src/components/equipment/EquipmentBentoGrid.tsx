@@ -4,11 +4,11 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cog, ChevronDown } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useTranslations } from "next-intl";
 import { Card } from "@/components/common/Card";
-import {
-  EquipmentCategoryFilter,
-  type EquipmentCategory,
-} from "./EquipmentCategoryFilter";
+import { StickyTabFilter } from "@/components/common/StickyTabFilter";
+
+type EquipmentCategory = "all" | "cnc" | "mct" | "lathe" | "other";
 
 interface EquipmentCardItem {
   id: string;
@@ -181,6 +181,7 @@ export function EquipmentGrid({
   hideSpecs,
 }: EquipmentGridProps) {
   const reducedMotion = useReducedMotion();
+  const t = useTranslations("pages.equipment");
   const [activeCategory, setActiveCategory] =
     useState<EquipmentCategory>("all");
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -203,9 +204,18 @@ export function EquipmentGrid({
 
   return (
     <>
-      <EquipmentCategoryFilter
+      <StickyTabFilter
+        tabs={[
+          { key: "all", label: t("filterAll") },
+          { key: "cnc", label: t("filterCnc") },
+          { key: "mct", label: t("filterMct") },
+          { key: "lathe", label: t("filterLathe") },
+          { key: "other", label: t("filterOther") },
+        ]}
         active={activeCategory}
-        onChange={handleCategoryChange}
+        onChange={(key) => handleCategoryChange(key as EquipmentCategory)}
+        ariaLabel={t("title")}
+        layoutId="equipment-bento-tab"
       />
 
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">

@@ -5,11 +5,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Cog } from "lucide-react";
 import { useAnimateInView } from "@/components/common/AnimateInView";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useTranslations } from "next-intl";
 import { EASE_SMOOTH } from "@/lib/motion";
-import {
-  EquipmentCategoryFilter,
-  type EquipmentCategory,
-} from "./EquipmentCategoryFilter";
+import { StickyTabFilter } from "@/components/common/StickyTabFilter";
+
+type EquipmentCategory = "all" | "cnc" | "mct" | "lathe" | "other";
 
 interface EquipmentCardItem {
   id: string;
@@ -236,6 +236,7 @@ export function EquipmentStickyList({
   specUnit,
 }: EquipmentStickyListProps) {
   const reducedMotion = useReducedMotion();
+  const t = useTranslations("pages.equipment");
   const [activeCategory, setActiveCategory] =
     useState<EquipmentCategory>("all");
 
@@ -248,9 +249,18 @@ export function EquipmentStickyList({
 
   return (
     <>
-      <EquipmentCategoryFilter
+      <StickyTabFilter
+        tabs={[
+          { key: "all", label: t("filterAll") },
+          { key: "cnc", label: t("filterCnc") },
+          { key: "mct", label: t("filterMct") },
+          { key: "lathe", label: t("filterLathe") },
+          { key: "other", label: t("filterOther") },
+        ]}
         active={activeCategory}
-        onChange={setActiveCategory}
+        onChange={(key) => setActiveCategory(key as EquipmentCategory)}
+        ariaLabel={t("title")}
+        layoutId="equipment-tab"
       />
 
       <section>

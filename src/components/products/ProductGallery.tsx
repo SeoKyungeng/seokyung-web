@@ -4,7 +4,9 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { ImageLightbox } from "@/components/common/ImageLightbox";
-import { CategoryFilter, type CategoryKey } from "./CategoryFilter";
+import { StickyTabFilter } from "@/components/common/StickyTabFilter";
+
+type CategoryKey = "all" | "defense" | "heat-exchanger" | "industrial";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface ProductItem {
@@ -78,7 +80,18 @@ export function ProductGallery({ items, initialCategory }: ProductGalleryProps) 
 
   return (
     <>
-      <CategoryFilter active={activeCategory} onChange={setActiveCategory} />
+      <StickyTabFilter
+        tabs={[
+          { key: "all", label: t("filterAll") },
+          { key: "defense", label: t("filterDefense") },
+          { key: "heat-exchanger", label: t("filterHeatExchanger") },
+          { key: "industrial", label: t("filterIndustrial") },
+        ]}
+        active={activeCategory}
+        onChange={(key) => setActiveCategory(key as CategoryKey)}
+        ariaLabel={t("title")}
+        layoutId="products-tab"
+      />
 
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         {filteredItems.length === 0 ? (
