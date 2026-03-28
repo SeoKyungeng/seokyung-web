@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Syne } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import localFont from "next/font/local";
@@ -15,10 +15,10 @@ import { GrainOverlay } from "@/components/common/GrainOverlay";
 import { TransitionProvider } from "@/providers/TransitionProvider";
 import "@/styles/globals.css";
 
-const syne = Syne({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-syne",
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-plus-jakarta",
   display: "swap",
 });
 
@@ -56,7 +56,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${syne.variable} ${GeistSans.variable} ${GeistMono.variable} ${pretendard.variable} antialiased`}
+      className={`${plusJakartaSans.variable} ${GeistSans.variable} ${GeistMono.variable} ${pretendard.variable} antialiased`}
     >
       <body className="font-sans">
         <NextIntlClientProvider messages={messages}>
