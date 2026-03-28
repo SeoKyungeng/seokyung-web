@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { useAnimateInView } from "@/components/common/AnimateInView";
-import { EASE_SMOOTH } from "@/lib/motion";
+import { EASE_SMOOTH, DURATION_NORMAL } from "@/lib/motion";
 
 interface ESGIntroProps {
   vision: string;
@@ -16,7 +16,7 @@ const fadeIn = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: EASE_SMOOTH },
+    transition: { duration: DURATION_NORMAL, ease: EASE_SMOOTH },
   },
 };
 
@@ -24,7 +24,7 @@ const lineReveal = {
   hidden: { scaleX: 0 },
   visible: {
     scaleX: 1,
-    transition: { duration: 0.6, delay: 0.3, ease: EASE_SMOOTH },
+    transition: { duration: DURATION_NORMAL, delay: 0.3, ease: EASE_SMOOTH },
   },
 };
 
@@ -59,7 +59,7 @@ export function ESGIntro({ vision, description, label }: ESGIntroProps) {
           </motion.h2>
 
           <motion.div
-            className="mx-auto mt-8 h-0.5 w-16 origin-left bg-primary-400"
+            className="mx-auto mt-8 h-0.5 w-16 origin-center bg-primary-400"
             variants={lineReveal}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
