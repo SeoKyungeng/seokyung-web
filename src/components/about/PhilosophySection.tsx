@@ -56,10 +56,9 @@ interface BentoCardProps {
   value: PhilosophyValue;
   locale: "ko" | "en";
   className?: string;
-  horizontal?: boolean;
 }
 
-function BentoCard({ value, locale, className = "", horizontal = false }: BentoCardProps) {
+function BentoCard({ value, locale, className = "" }: BentoCardProps) {
   const Icon = ICON_MAP[value.icon as IconName];
 
   return (
@@ -85,23 +84,16 @@ function BentoCard({ value, locale, className = "", horizontal = false }: BentoC
         {value.subtitle[locale]}
       </p>
 
-      {horizontal ? (
-        <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
-          {value.items.map((item, i) => (
-            <p key={i} className="break-keep-all text-sm leading-relaxed text-gray-600">
-              {item[locale]}
-            </p>
-          ))}
-        </div>
-      ) : (
-        <ul className="mt-4 flex-1 space-y-3">
-          {value.items.map((item, i) => (
-            <li key={i} className="break-keep-all text-sm leading-relaxed text-gray-600">
-              {item[locale]}
-            </li>
-          ))}
-        </ul>
-      )}
+      <ol className="mt-4 flex-1 space-y-3">
+        {value.items.map((item, i) => (
+          <li key={i} className="flex items-start gap-3 break-keep-all text-sm leading-relaxed text-gray-600">
+            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary-400/10 font-mono text-[11px] font-semibold text-primary-400">
+              {i + 1}
+            </span>
+            <span>{item[locale]}</span>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }
@@ -110,25 +102,11 @@ export function PhilosophySection({ slogan, values, locale, label, title }: Phil
   const { ref, isInView, reducedMotion } = useAnimateInView();
   const { ref: headerRef, isInView: headerInView, reducedMotion: headerReducedMotion } = useAnimateInView();
 
-  const [firstValue, secondValue, thirdValue] = values;
-
   const bentoStatic = (
     <div className="grid grid-cols-1 gap-6">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-12">
-        {firstValue && (
-          <div className="md:col-span-7">
-            <BentoCard value={firstValue} locale={locale} className="h-full" />
-          </div>
-        )}
-        {secondValue && (
-          <div className="md:col-span-5">
-            <BentoCard value={secondValue} locale={locale} className="h-full" />
-          </div>
-        )}
-      </div>
-      {thirdValue && (
-        <BentoCard value={thirdValue} locale={locale} horizontal />
-      )}
+      {values.map((value) => (
+        <BentoCard key={value.key} value={value} locale={locale} />
+      ))}
     </div>
   );
 
@@ -140,23 +118,11 @@ export function PhilosophySection({ slogan, values, locale, label, title }: Phil
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
     >
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-12">
-        {firstValue && (
-          <motion.div className="md:col-span-7" variants={cardVariants}>
-            <BentoCard value={firstValue} locale={locale} className="h-full" />
-          </motion.div>
-        )}
-        {secondValue && (
-          <motion.div className="md:col-span-5" variants={cardVariants}>
-            <BentoCard value={secondValue} locale={locale} className="h-full" />
-          </motion.div>
-        )}
-      </div>
-      {thirdValue && (
-        <motion.div variants={cardVariants}>
-          <BentoCard value={thirdValue} locale={locale} horizontal />
+      {values.map((value) => (
+        <motion.div key={value.key} variants={cardVariants}>
+          <BentoCard value={value} locale={locale} />
         </motion.div>
-      )}
+      ))}
     </motion.div>
   );
 
