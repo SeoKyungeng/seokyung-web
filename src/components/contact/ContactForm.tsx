@@ -175,6 +175,13 @@ const staggerItem: Variants = {
   },
 };
 
+const FADE_PROPS = {
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -16 },
+  transition: { duration: 0.4 },
+} as const;
+
 /* ─── ContactForm ─── */
 
 type FormStatus = "idle" | "success" | "error";
@@ -237,17 +244,9 @@ export function ContactForm() {
     setStatus("idle");
   };
 
-  const fadeProps = reducedMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 16 },
-        animate: { opacity: 1, y: 0 },
-        exit: { opacity: 0, y: -16 },
-        transition: { duration: 0.4 },
-      };
+  const fadeProps = reducedMotion ? {} : FADE_PROPS;
 
-  const Wrap = reducedMotion ? "div" : motion.div;
-  const Item = reducedMotion ? "div" : motion.div;
+  const MotionDiv = reducedMotion ? "div" : motion.div;
 
   return (
     <div ref={ref}>
@@ -282,7 +281,7 @@ export function ContactForm() {
               <p className="mt-3 text-gray-500">{t("successMessage")}</p>
             </motion.div>
           ) : (
-            <Wrap
+            <MotionDiv
               key="form-wrap"
               {...(reducedMotion
                 ? {}
@@ -297,7 +296,7 @@ export function ContactForm() {
                 noValidate
                 className="flex flex-col gap-8"
               >
-                <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
+                <MotionDiv {...(reducedMotion ? {} : { variants: staggerItem })}>
                   <Controller
                     name="company"
                     control={control}
@@ -314,9 +313,9 @@ export function ContactForm() {
                       />
                     )}
                   />
-                </Item>
+                </MotionDiv>
 
-                <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
+                <MotionDiv {...(reducedMotion ? {} : { variants: staggerItem })}>
                   <Controller
                     name="person"
                     control={control}
@@ -333,9 +332,9 @@ export function ContactForm() {
                       />
                     )}
                   />
-                </Item>
+                </MotionDiv>
 
-                <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
+                <MotionDiv {...(reducedMotion ? {} : { variants: staggerItem })}>
                   <Controller
                     name="phone"
                     control={control}
@@ -353,9 +352,9 @@ export function ContactForm() {
                       />
                     )}
                   />
-                </Item>
+                </MotionDiv>
 
-                <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
+                <MotionDiv {...(reducedMotion ? {} : { variants: staggerItem })}>
                   <Controller
                     name="email"
                     control={control}
@@ -373,9 +372,9 @@ export function ContactForm() {
                       />
                     )}
                   />
-                </Item>
+                </MotionDiv>
 
-                <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
+                <MotionDiv {...(reducedMotion ? {} : { variants: staggerItem })}>
                   <Controller
                     name="message"
                     control={control}
@@ -391,20 +390,20 @@ export function ContactForm() {
                       />
                     )}
                   />
-                </Item>
+                </MotionDiv>
 
                 {status === "error" && (
-                  <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
+                  <MotionDiv {...(reducedMotion ? {} : { variants: staggerItem })}>
                     <div
                       role="alert"
                       className="rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-600 shadow-sm"
                     >
                       {t("errorMessage")}
                     </div>
-                  </Item>
+                  </MotionDiv>
                 )}
 
-                <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
+                <MotionDiv {...(reducedMotion ? {} : { variants: staggerItem })}>
                   <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
                     <button
                       type="submit"
@@ -440,9 +439,9 @@ export function ContactForm() {
                       </button>
                     )}
                   </div>
-                </Item>
+                </MotionDiv>
               </form>
-            </Wrap>
+            </MotionDiv>
           )}
         </AnimatePresence>
       </div>
