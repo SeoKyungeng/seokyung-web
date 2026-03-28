@@ -37,8 +37,8 @@ function RootCard({
   locale: "ko" | "en";
 }) {
   return (
-    <div className="rounded-lg border border-gray-200 bg-white px-6 py-4 text-center min-w-[140px] ring-1 ring-gray-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:border-primary-400/30 hover:shadow-sm">
-      <p className="break-keep-all font-display text-base font-semibold text-gray-950">
+    <div className="w-full rounded-xl border border-gray-200 bg-white px-8 py-5 text-center min-w-[160px] ring-1 ring-gray-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:border-primary-400/30 hover:shadow-sm">
+      <p className="break-keep-all font-display text-lg font-semibold text-gray-950 md:text-xl">
         {dept.name[locale]}
       </p>
     </div>
@@ -53,8 +53,8 @@ function DeptCard({
   locale: "ko" | "en";
 }) {
   return (
-    <div className="rounded-lg border border-gray-200 border-l-2 border-l-primary-400 bg-white px-4 py-3 min-w-[120px] ring-1 ring-gray-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:border-primary-400/30 hover:shadow-sm">
-      <p className="break-keep-all font-display text-sm font-semibold text-gray-950">
+    <div className="min-w-[120px] rounded-xl border border-gray-200 border-l-2 border-l-primary-400 bg-white px-5 py-4 ring-1 ring-gray-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:border-primary-400/30 hover:shadow-sm">
+      <p className="break-keep-all font-display text-left text-base font-semibold text-gray-950">
         {dept.name[locale]}
       </p>
     </div>
@@ -93,19 +93,25 @@ function DesktopTree({
       )}
 
       {deptGroups.length > 0 && (
-        <div className="relative">
-          <div className="absolute top-0 right-0 left-0 h-px bg-gray-300" aria-hidden="true" />
-          <div className="grid grid-cols-5 gap-4 md:gap-6">
-            {deptGroups.map(({ dept, teams }) => (
-              <div key={dept.id} className="flex flex-col items-center">
-                <div className="h-8 w-px bg-gray-300" aria-hidden="true" />
+        <div className="grid grid-cols-5 gap-4 md:gap-6">
+          {deptGroups.map(({ dept, teams }, index) => (
+            <div key={dept.id} className="relative flex flex-col items-center">
+              <div
+                className={`absolute top-0 h-px bg-gray-300 ${
+                  index === 0 ? "left-1/2" : "-left-2 md:-left-3"
+                } ${
+                  index === deptGroups.length - 1 ? "right-1/2" : "-right-2 md:-right-3"
+                }`}
+                aria-hidden="true"
+              />
+              <div className="h-8 w-px bg-gray-300" aria-hidden="true" />
                 {reducedMotion ? (
                   <div className="flex w-full flex-col items-center">
                     <DeptCard dept={dept} locale={locale} />
                     {teams.length > 0 && (
-                      <ul className="mt-3 w-full space-y-1">
+                      <ul className="mt-3 min-w-[120px] space-y-1 px-5">
                         {teams.map((team) => (
-                          <li key={team.id} className="text-center text-xs text-gray-500">
+                          <li key={team.id} className="text-left text-sm text-gray-500">
                             {team.name[locale]}
                           </li>
                         ))}
@@ -116,9 +122,9 @@ function DesktopTree({
                   <motion.div variants={nodeVariants} className="flex w-full flex-col items-center">
                     <DeptCard dept={dept} locale={locale} />
                     {teams.length > 0 && (
-                      <ul className="mt-3 w-full space-y-1">
+                      <ul className="mt-3 min-w-[120px] space-y-1 px-5">
                         {teams.map((team) => (
-                          <li key={team.id} className="text-center text-xs text-gray-500">
+                          <li key={team.id} className="text-left text-sm text-gray-500">
                             {team.name[locale]}
                           </li>
                         ))}
@@ -129,7 +135,6 @@ function DesktopTree({
               </div>
             ))}
           </div>
-        </div>
       )}
     </>
   );
@@ -183,7 +188,7 @@ function MobileList({
                 {teams.length > 0 && (
                   <ul className="mt-1 space-y-0.5 pl-4">
                     {teams.map((team) => (
-                      <li key={team.id} className="text-xs text-gray-500">
+                      <li key={team.id} className="text-sm text-gray-500">
                         {team.name[locale]}
                       </li>
                     ))}
