@@ -160,7 +160,7 @@ function GalleryItem({ item, reducedMotion, onClick }: GalleryItemProps) {
 
   if (reducedMotion) {
     return (
-      <div ref={ref} className="mb-2 break-inside-avoid">
+      <div ref={ref} className="mb-3 break-inside-avoid">
         {content}
       </div>
     );
@@ -169,7 +169,7 @@ function GalleryItem({ item, reducedMotion, onClick }: GalleryItemProps) {
   return (
     <motion.div
       ref={ref}
-      className="mb-2 break-inside-avoid"
+      className="mb-3 break-inside-avoid"
       variants={staggerItem}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
