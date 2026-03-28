@@ -133,7 +133,8 @@
         "emailRequired": "Please enter email",
         "emailFormat": "Please enter a valid email",
         "messageRequired": "Please enter your message",
-        "messageLength": "Message must be at least 10 characters"
+        "messageLength": "Message must be at least 10 characters",
+        "messageMaxLength": "Message must be under 2,000 characters"
       }
     }
   }

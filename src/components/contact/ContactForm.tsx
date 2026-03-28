@@ -1,33 +1,24 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { Loader2, CheckCircle, ArrowRight } from "lucide-react";
 import { useToast } from "@/providers/ToastProvider";
 import { useAnimateInView } from "@/components/common/AnimateInView";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { EASE_SPRING, DURATION_NORMAL } from "@/lib/motion";
+import {
+  createContactSchema,
+  type ContactFormData,
+} from "@/lib/schemas/contact";
+import { submitContactForm } from "@/lib/actions/contact";
 
 const SPRING_EASE = [...EASE_SPRING] as [number, number, number, number];
 
-interface FormFields {
-  company: string;
-  person: string;
-  phone: string;
-  email: string;
-  message: string;
-}
-
-type FormStatus = "idle" | "submitting" | "success" | "error";
-
-const INITIAL_FIELDS: FormFields = {
-  company: "",
-  person: "",
-  phone: "",
-  email: "",
-  message: "",
-};
+/* ─── Float Label 입력 필드 ─── */
 
 interface FloatFieldProps {
   id: string;
@@ -83,7 +74,11 @@ function FloatField({
         }`}
       >
         {label}
-        {required && <span className="ml-0.5 text-primary-400" aria-hidden="true">*</span>}
+        {required && (
+          <span className="ml-0.5 text-primary-400" aria-hidden="true">
+            *
+          </span>
+        )}
       </label>
       {error && (
         <p id={errorId} role="alert" className="mt-1.5 text-sm text-red-400">
@@ -144,7 +139,11 @@ function FloatTextarea({
         }`}
       >
         {label}
-        {required && <span className="ml-0.5 text-primary-400" aria-hidden="true">*</span>}
+        {required && (
+          <span className="ml-0.5 text-primary-400" aria-hidden="true">
+            *
+          </span>
+        )}
       </label>
       {error && (
         <p id={errorId} role="alert" className="mt-1.5 text-sm text-red-400">
@@ -154,6 +153,8 @@ function FloatTextarea({
     </div>
   );
 }
+
+/* ─── 애니메이션 ─── */
 
 const staggerContainer: Variants = {
   hidden: {},
@@ -174,84 +175,59 @@ const staggerItem: Variants = {
   },
 };
 
+/* ─── ContactForm ─── */
+
+type FormStatus = "idle" | "success" | "error";
+
 export function ContactForm() {
   const t = useTranslations("pages.contact");
   const { toast } = useToast();
   const { ref, isInView, reducedMotion } = useAnimateInView();
 
-  const [fields, setFields] = useState<FormFields>(INITIAL_FIELDS);
-  const [errors, setErrors] = useState<Partial<Record<keyof FormFields, string | null>>>({});
-  const [status, setStatus] = useState<FormStatus>("idle");
-
-  const validateField = useCallback(
-    (name: keyof FormFields, value: string): string | null => {
-      switch (name) {
-        case "company":
-          if (!value.trim()) return t("validation.companyRequired");
-          if (value.length < 2 || value.length > 50) return t("validation.companyLength");
-          return null;
-        case "person":
-          if (!value.trim()) return t("validation.personRequired");
-          if (value.length < 2 || value.length > 20) return t("validation.personLength");
-          return null;
-        case "phone":
-          if (!value.trim()) return t("validation.phoneRequired");
-          if (!/^0\d{1,2}-?\d{3,4}-?\d{4}$/.test(value)) return t("validation.phoneFormat");
-          return null;
-        case "email":
-          if (!value.trim()) return t("validation.emailRequired");
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return t("validation.emailFormat");
-          return null;
-        case "message":
-          if (!value.trim()) return t("validation.messageRequired");
-          if (value.length < 10) return t("validation.messageLength");
-          return null;
-        default:
-          return null;
-      }
-    },
+  const schema = useMemo(
+    () => createContactSchema((key) => t(`validation.${key}`)),
     [t],
   );
 
-  const handleChange = (name: keyof FormFields) => (value: string) => {
-    setFields((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: validateField(name, value) }));
-    }
-  };
+  const {
+    control,
+    handleSubmit,
+    setError,
+    reset,
+    formState: { isSubmitting },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      company: "",
+      person: "",
+      phone: "",
+      email: "",
+      message: "",
+    },
+    mode: "onTouched",
+  });
 
-  const handleBlur = (name: keyof FormFields) => () => {
-    const error = validateField(name, fields[name]);
-    setErrors((prev) => ({ ...prev, [name]: error }));
-  };
+  const [status, setStatus] = useState<FormStatus>("idle");
 
-  const validateAll = (): boolean => {
-    const newErrors: Partial<Record<keyof FormFields, string | null>> = {};
-    let valid = true;
-    (Object.keys(fields) as (keyof FormFields)[]).forEach((name) => {
-      const error = validateField(name, fields[name]);
-      newErrors[name] = error;
-      if (error) valid = false;
-    });
-    setErrors(newErrors);
-    return valid;
-  };
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      const result = await submitContactForm(data);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!validateAll()) return;
-
-    setStatus("submitting");
-
-    // 모의 전송 (API 미연동)
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    // 임시로 항상 성공 처리
-    const success = true;
-
-    if (success) {
-      setStatus("success");
-    } else {
+      if (result.success) {
+        setStatus("success");
+        reset();
+      } else {
+        setStatus("error");
+        if (result.fieldErrors) {
+          Object.entries(result.fieldErrors).forEach(([field, messages]) => {
+            setError(field as keyof ContactFormData, {
+              message: messages[0],
+            });
+          });
+        }
+        toast("error", t("errorMessage"));
+      }
+    } catch {
       setStatus("error");
       toast("error", t("errorMessage"));
     }
@@ -295,7 +271,10 @@ export function ContactForm() {
                       transition: { duration: 0.5, ease: SPRING_EASE },
                     })}
               >
-                <CheckCircle className="h-8 w-8 text-primary-400" aria-hidden="true" />
+                <CheckCircle
+                  className="h-8 w-8 text-primary-400"
+                  aria-hidden="true"
+                />
               </motion.div>
               <h2 className="font-display text-2xl font-semibold text-gray-950">
                 {t("successTitle")}
@@ -314,79 +293,112 @@ export function ContactForm() {
                   })}
             >
               <form
-                onSubmit={handleSubmit}
+                onSubmit={handleSubmit(onSubmit)}
                 noValidate
                 className="flex flex-col gap-8"
               >
                 <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
-                  <FloatField
-                    id="contact-company"
-                    label={t("companyName")}
-                    value={fields.company}
-                    onChange={handleChange("company")}
-                    onBlur={handleBlur("company")}
-                    error={errors.company}
-                    required
-                    autoComplete="organization"
+                  <Controller
+                    name="company"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <FloatField
+                        id="contact-company"
+                        label={t("companyName")}
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        error={fieldState.error?.message}
+                        required
+                        autoComplete="organization"
+                      />
+                    )}
                   />
                 </Item>
 
                 <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
-                  <FloatField
-                    id="contact-person"
-                    label={t("contactPerson")}
-                    value={fields.person}
-                    onChange={handleChange("person")}
-                    onBlur={handleBlur("person")}
-                    error={errors.person}
-                    required
-                    autoComplete="name"
+                  <Controller
+                    name="person"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <FloatField
+                        id="contact-person"
+                        label={t("contactPerson")}
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        error={fieldState.error?.message}
+                        required
+                        autoComplete="name"
+                      />
+                    )}
                   />
                 </Item>
 
                 <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
-                  <FloatField
-                    id="contact-phone"
-                    label={t("phone")}
-                    type="tel"
-                    value={fields.phone}
-                    onChange={handleChange("phone")}
-                    onBlur={handleBlur("phone")}
-                    error={errors.phone}
-                    required
-                    autoComplete="tel"
+                  <Controller
+                    name="phone"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <FloatField
+                        id="contact-phone"
+                        label={t("phone")}
+                        type="tel"
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        error={fieldState.error?.message}
+                        required
+                        autoComplete="tel"
+                      />
+                    )}
                   />
                 </Item>
 
                 <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
-                  <FloatField
-                    id="contact-email"
-                    label={t("email")}
-                    type="email"
-                    value={fields.email}
-                    onChange={handleChange("email")}
-                    onBlur={handleBlur("email")}
-                    error={errors.email}
-                    required
-                    autoComplete="email"
+                  <Controller
+                    name="email"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <FloatField
+                        id="contact-email"
+                        label={t("email")}
+                        type="email"
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        error={fieldState.error?.message}
+                        required
+                        autoComplete="email"
+                      />
+                    )}
                   />
                 </Item>
 
                 <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
-                  <FloatTextarea
-                    id="contact-message"
-                    label={t("message")}
-                    value={fields.message}
-                    onChange={handleChange("message")}
-                    onBlur={handleBlur("message")}
-                    error={errors.message}
-                    required
+                  <Controller
+                    name="message"
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <FloatTextarea
+                        id="contact-message"
+                        label={t("message")}
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        error={fieldState.error?.message}
+                        required
+                      />
+                    )}
                   />
                 </Item>
 
                 {status === "error" && (
                   <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
-                    <div role="alert" className="rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-600 shadow-sm">
+                    <div
+                      role="alert"
+                      className="rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-600 shadow-sm"
+                    >
                       {t("errorMessage")}
                     </div>
                   </Item>
@@ -396,18 +408,24 @@ export function ContactForm() {
                   <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
                     <button
                       type="submit"
-                      disabled={status === "submitting"}
+                      disabled={isSubmitting}
                       className="group/btn inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary-400 px-8 py-3.5 font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-300 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-sm"
                     >
-                      {status === "submitting" ? (
+                      {isSubmitting ? (
                         <>
-                          <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                          <Loader2
+                            className="h-4 w-4 animate-spin"
+                            aria-hidden="true"
+                          />
                           {t("submitting")}
                         </>
                       ) : (
                         <>
                           {t("submit")}
-                          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-1" aria-hidden="true" />
+                          <ArrowRight
+                            className="h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-1"
+                            aria-hidden="true"
+                          />
                         </>
                       )}
                     </button>
