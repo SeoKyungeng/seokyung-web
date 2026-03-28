@@ -171,53 +171,56 @@ function MobileList({
 
   const content = (
     <>
+      {/* CEO — 대형 타이포 (카드 없음) */}
       {reducedMotion ? (
-        <RootCard dept={root} locale={locale} />
+        <p className="break-keep-all font-display text-lg font-semibold text-gray-950">
+          {root.name[locale]}
+        </p>
       ) : (
-        <motion.div variants={nodeVariants}>
-          <RootCard dept={root} locale={locale} />
-        </motion.div>
+        <motion.p variants={nodeVariants} className="break-keep-all font-display text-lg font-semibold text-gray-950">
+          {root.name[locale]}
+        </motion.p>
       )}
 
-      <div className="ml-4 border-l-2 border-primary-400/40 pl-4">
-        <div className="flex flex-col gap-3">
-          {deptGroups.map(({ dept, teams }) => {
-            const node = (
-              <div key={dept.id} className="w-full">
-                <p className="text-sm font-medium text-gray-950">{dept.name[locale]}</p>
-                {teams.length > 0 && (
-                  <ul className="mt-1 space-y-0.5 pl-4">
-                    {teams.map((team) => (
-                      <li key={team.id} className="text-sm text-gray-500">
-                        {team.name[locale]}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            );
+      {/* 부서 + 팀 — 들여쓰기 리스트 */}
+      <div className="mt-4 ml-4 border-l-2 border-primary-400/40 pl-4 space-y-4">
+        {deptGroups.map(({ dept, teams }) => {
+          const node = (
+            <div key={dept.id}>
+              <p className="break-keep-all font-display text-base font-semibold text-gray-950">
+                {dept.name[locale]}
+              </p>
+              {teams.length > 0 && (
+                <ul className="mt-1.5 space-y-1 pl-3">
+                  {teams.map((team) => (
+                    <li key={team.id} className="break-keep-all text-sm text-gray-500">
+                      {team.name[locale]}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          );
 
-            return reducedMotion ? (
-              <div key={dept.id}>{node}</div>
-            ) : (
-              <motion.div key={dept.id} variants={nodeVariants}>
-                {node}
-              </motion.div>
-            );
-          })}
-        </div>
+          return reducedMotion ? (
+            <div key={dept.id}>{node}</div>
+          ) : (
+            <motion.div key={dept.id} variants={nodeVariants}>
+              {node}
+            </motion.div>
+          );
+        })}
       </div>
     </>
   );
 
   if (reducedMotion) {
-    return <div className="flex flex-col gap-3">{content}</div>;
+    return <div>{content}</div>;
   }
 
   return (
     <motion.div
       ref={containerRef}
-      className="flex flex-col gap-3"
       variants={containerVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
