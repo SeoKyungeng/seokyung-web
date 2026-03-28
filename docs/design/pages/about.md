@@ -128,7 +128,7 @@
 - **사진 미사용** — 에디토리얼 비대칭 2컬럼 레이아웃 (5:7)
 - 좌측 5col: highlight 인용문 + accent line + 서명
 - 우측 7col: 본문 텍스트 단락
-- highlight: `font-display text-2xl md:text-3xl lg:text-[42px] font-normal` (weight 400, letter-spacing -0.025em) 좌측 정렬
+- highlight: `font-display text-3xl md:text-4xl lg:text-5xl font-normal` (weight 400, letter-spacing -0.03em) 좌측 정렬
 - accent line: primary-400, `w-16 h-0.5`, highlight와 서명 사이 시각 분리
 - body: `text-base md:text-lg text-gray-700 leading-relaxed`, 단락 간 `mb-6`
 - 이름: `font-display text-lg font-semibold text-gray-950`
@@ -166,14 +166,14 @@
 - 각 카드 (더블 베젤 로컬 스타일):
   - 배경: `white`, `rounded-xl`, `p-8 md:p-10`
   - 외곽: `border border-gray-200` + 내부: `ring-1 ring-gray-100` (이중 테두리)
-  - 상단 아이콘: lucide-react 라인 아이콘 (`w-12 h-12`, primary-400)
+  - 상단 아이콘: lucide-react 라인 아이콘 (`h-6 w-6`, primary-400, 래퍼 `w-12 h-12 rounded-full bg-primary-400/10`)
     - 고객: Users 아이콘
     - 품질: ShieldCheck 아이콘
     - 사람: Heart 아이콘
   - 제목: `font-display text-xl font-medium text-gray-950`
   - 부제: `text-sm text-primary-500 font-medium` (인용구 스타일)
   - 항목 리스트: `text-sm text-gray-600 leading-relaxed`, 좌측 정렬
-  - hover: `shadow-md` + `border-primary-400` 전환
+  - hover: `-translate-y-1` + `scale-[1.02]` + `border-primary-400/30` + `shadow-md` 전환 (spring easing)
 
 ### Section 4 — 조직도 (라이트 섹션, 2단계 계층)
 
@@ -207,7 +207,7 @@
 - 팀 노드: 부서 카드 하단에 `text-xs text-gray-500` 리스트로 표시 (별도 카드 X)
 - 연결선: **`gray-300`** 1px 세로/가로 라인
 - 노드: 상→하 순차 fade-in (stagger 0.1s)
-- hover: `border-color` → `primary-400` 전환
+- hover: `border-color` → `primary-400/30` + `-translate-y-0.5` + `shadow-sm` 전환 (spring easing)
 - **인원수 미기재** — `members` 텍스트 비표시
 
 ### Section 5 — 주요 고객사 (white 배경, 에디토리얼 헤더)
@@ -240,10 +240,10 @@
 - 에디토리얼 비대칭 헤더: 좌측 5col 타이틀 + 우측 7col 서브타이틀
 - **로고 미수령 시 (현재)**: 이니셜 + 텍스트 카드 그리드
   - `grid-cols-2 md:grid-cols-4 gap-6`
-  - 각 셀: `aspect-[3/2]`, **`bg-white border border-gray-200 rounded-lg`**
+  - 각 셀: `aspect-[3/2]`, **`bg-white border border-gray-200 rounded-xl ring-1 ring-gray-100`**
   - 이니셜: `font-mono text-2xl md:text-3xl font-bold text-gray-300` (영문 이름 첫 글자 조합)
-  - 사명: `text-sm font-medium text-gray-700`
-  - hover: `shadow-sm` + `border-primary-400/30` + `translate-y(-2px)`
+  - 사명: `text-sm font-medium break-keep-all text-gray-700`
+  - hover: `-translate-y-1` + `scale-[1.02]` + `border-primary-400/30` + `shadow-md` (spring easing)
 - **로고 수령 시**: 로고 이미지 그리드로 전환
   - `grayscale` 기본 → hover 시 `grayscale-0` 컬러 전환
   - 또는 무한 롤링 배너 (marquee) 옵션
@@ -261,7 +261,7 @@
 │  · CEO MESSAGE       │  ← 좌측 정렬
 │                      │
 │  "변화 속에서도       │
-│   지속 성장과         │  ← text-2xl, 좌측 정렬
+│   지속 성장과         │  ← text-3xl~5xl, 좌측 정렬
 │   경쟁력 확보를       │     font-display
 │   약속합니다"         │
 │                      │
@@ -277,7 +277,7 @@
 ```
 
 - 풀너비 1컬럼, 모든 요소 좌측 정렬 (중앙 아님)
-- highlight: `text-2xl font-display` — 대형 타이포로 본문과 크기 대비
+- highlight: `text-3xl font-display` — 대형 타이포로 본문과 크기 대비
 - accent line: 좌측 정렬 `w-16`
 - body: `text-base`, 좌측 정렬
 

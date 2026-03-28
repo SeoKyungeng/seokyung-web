@@ -37,7 +37,7 @@ function RootCard({
   locale: "ko" | "en";
 }) {
   return (
-    <div className="rounded-lg border border-gray-200 bg-white px-6 py-4 text-center min-w-[140px] ring-1 ring-gray-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:border-primary-400 hover:shadow-sm">
+    <div className="rounded-lg border border-gray-200 bg-white px-6 py-4 text-center min-w-[140px] ring-1 ring-gray-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:border-primary-400/30 hover:shadow-sm">
       <p className="break-keep-all font-display text-base font-semibold text-gray-950">
         {dept.name[locale]}
       </p>
@@ -53,7 +53,7 @@ function DeptCard({
   locale: "ko" | "en";
 }) {
   return (
-    <div className="rounded-lg border border-gray-200 border-l-2 border-l-primary-400 bg-white px-4 py-3 min-w-[120px] ring-1 ring-gray-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:border-primary-400 hover:shadow-sm">
+    <div className="rounded-lg border border-gray-200 border-l-2 border-l-primary-400 bg-white px-4 py-3 min-w-[120px] ring-1 ring-gray-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:border-primary-400/30 hover:shadow-sm">
       <p className="break-keep-all font-display text-sm font-semibold text-gray-950">
         {dept.name[locale]}
       </p>

@@ -70,10 +70,11 @@ function BentoCard({ value, locale, className = "", horizontal = false }: BentoC
         "ring-1 ring-gray-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]",
         "p-8 md:p-10",
         "transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
-        "hover:-translate-y-1 hover:scale-[1.02] hover:border-primary-400 hover:shadow-md",
+        "hover:-translate-y-1 hover:scale-[1.02] hover:border-primary-400/30 hover:shadow-md",
         className,
       ].join(" ")}
     >
+
       <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary-400/10">
         {Icon && <Icon className="h-6 w-6 text-primary-400" aria-hidden="true" />}
       </div>
