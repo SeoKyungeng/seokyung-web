@@ -88,34 +88,27 @@ export function ClientsSection({ clients, locale, label, title, subtitle }: Clie
   return (
     <section className="bg-white py-24 md:py-40" aria-labelledby="clients-heading">
       <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-20">
-        {/* 에디토리얼 비대칭 헤더 */}
-        <div ref={headerRef} className="mb-16 grid grid-cols-1 gap-8 md:mb-20 md:grid-cols-12 md:gap-16">
-          {/* 좌측 5col: SectionLabel + SectionTitle */}
-          <div className="md:col-span-5">
-            <SectionLabel>{label}</SectionLabel>
-            <h2 id="clients-heading" className="sr-only">{title}</h2>
-            <div className="mt-4" aria-hidden="true">
-              <SectionTitle as="h2" className="text-4xl text-midnight md:text-5xl">
-                {title}
-              </SectionTitle>
-            </div>
+        {/* 스택 헤더 */}
+        <div ref={headerRef} className="mb-16 md:mb-20">
+          <SectionLabel>{label}</SectionLabel>
+          <h2 id="clients-heading" className="sr-only">{title}</h2>
+          <div className="mt-4" aria-hidden="true">
+            <SectionTitle as="h2" className="text-4xl text-midnight md:text-5xl">
+              {title}
+            </SectionTitle>
           </div>
-
-          {/* 우측 7col: subtitle */}
-          <div className="md:col-span-7 md:flex md:items-end">
-            {reducedMotion ? (
-              <p className="break-keep-all text-base leading-relaxed text-gray-600 md:text-lg">{subtitle}</p>
-            ) : (
-              <motion.p
-                className="break-keep-all text-base leading-relaxed text-gray-600 md:text-lg"
-                variants={subtitleVariants}
-                initial="hidden"
-                animate={headerInView ? "visible" : "hidden"}
-              >
-                {subtitle}
-              </motion.p>
-            )}
-          </div>
+          {reducedMotion ? (
+            <p className="mt-6 max-w-xl break-keep-all text-base leading-relaxed text-gray-600 md:text-lg">{subtitle}</p>
+          ) : (
+            <motion.p
+              className="mt-6 max-w-xl break-keep-all text-base leading-relaxed text-gray-600 md:text-lg"
+              variants={subtitleVariants}
+              initial="hidden"
+              animate={headerInView ? "visible" : "hidden"}
+            >
+              {subtitle}
+            </motion.p>
+          )}
         </div>
 
         {/* 클라이언트 카드 그리드 */}
