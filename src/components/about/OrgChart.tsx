@@ -5,6 +5,7 @@ import { SectionLabel } from "@/components/common/SectionLabel";
 import { SectionTitle } from "@/components/common/SectionTitle";
 import { useAnimateInView } from "@/components/common/AnimateInView";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { EASE_SPRING } from "@/lib/motion";
 import type { Department } from "@/lib/types";
 
 interface OrgChartProps {
@@ -21,25 +22,39 @@ const containerVariants: Variants = {
 
 const nodeVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: EASE_SPRING },
+  },
 };
+
+function RootCard({
+  dept,
+  locale,
+}: {
+  dept: Department;
+  locale: "ko" | "en";
+}) {
+  return (
+    <div className="rounded-lg border border-gray-200 bg-white px-6 py-4 text-center min-w-[140px] ring-1 ring-gray-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:border-primary-400 hover:shadow-sm">
+      <p className="break-keep-all font-display text-base font-semibold text-gray-950">
+        {dept.name[locale]}
+      </p>
+    </div>
+  );
+}
 
 function DeptCard({
   dept,
   locale,
-  isRoot = false,
 }: {
   dept: Department;
   locale: "ko" | "en";
-  isRoot?: boolean;
 }) {
   return (
-    <div
-      className={`rounded-lg border border-steel px-5 py-4 text-center transition-[border-color] duration-250 hover:border-primary-400 ${
-        isRoot ? "bg-steel/60 min-w-[140px]" : "bg-slate/60 min-w-[120px]"
-      }`}
-    >
-      <p className={`font-display font-semibold text-white ${isRoot ? "text-base" : "text-sm"}`}>
+    <div className="rounded-lg border border-gray-200 border-l-2 border-l-primary-400 bg-white px-4 py-3 min-w-[120px] ring-1 ring-gray-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:border-primary-400 hover:shadow-sm">
+      <p className="break-keep-all font-display text-sm font-semibold text-gray-950">
         {dept.name[locale]}
       </p>
     </div>
@@ -61,66 +76,72 @@ function DesktopTree({
 
   const content = (
     <>
-      {reducedMotion ? (
-        <DeptCard dept={root} locale={locale} isRoot />
-      ) : (
-        <motion.div variants={nodeVariants}>
-          <DeptCard dept={root} locale={locale} isRoot />
-        </motion.div>
+      <div className="flex justify-center">
+        {reducedMotion ? (
+          <RootCard dept={root} locale={locale} />
+        ) : (
+          <motion.div variants={nodeVariants}>
+            <RootCard dept={root} locale={locale} />
+          </motion.div>
+        )}
+      </div>
+
+      {deptGroups.length > 0 && (
+        <div className="flex justify-center">
+          <div className="h-8 w-px bg-gray-300" aria-hidden="true" />
+        </div>
       )}
 
       {deptGroups.length > 0 && (
-        <div className="h-8 w-px bg-primary-400/40" aria-hidden="true" />
-      )}
-
-      {deptGroups.length > 0 && (
-        <div className="relative flex items-start gap-6">
-          <div className="absolute top-0 right-0 left-0 h-px bg-primary-400/40" aria-hidden="true" />
-          {deptGroups.map(({ dept, teams }) => (
-            <div key={dept.id} className="relative flex flex-col items-center">
-              <div className="h-8 w-px bg-primary-400/40" aria-hidden="true" />
-              {reducedMotion ? (
-                <div className="flex flex-col items-center">
-                  <DeptCard dept={dept} locale={locale} />
-                  {teams.length > 0 && (
-                    <div className="mt-3 space-y-1">
-                      {teams.map((team) => (
-                        <p key={team.id} className="text-xs text-gray-500">
-                          {team.name[locale]}
-                        </p>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <motion.div variants={nodeVariants} className="flex flex-col items-center">
-                  <DeptCard dept={dept} locale={locale} />
-                  {teams.length > 0 && (
-                    <div className="mt-3 space-y-1">
-                      {teams.map((team) => (
-                        <p key={team.id} className="text-xs text-gray-500">
-                          {team.name[locale]}
-                        </p>
-                      ))}
-                    </div>
-                  )}
-                </motion.div>
-              )}
-            </div>
-          ))}
+        <div className="relative">
+          <div className="absolute top-0 right-0 left-0 h-px bg-gray-300" aria-hidden="true" />
+          <div className="grid grid-cols-5 gap-4 md:gap-6">
+            {deptGroups.map(({ dept, teams }) => (
+              <div key={dept.id} className="flex flex-col items-center">
+                <div className="h-8 w-px bg-gray-300" aria-hidden="true" />
+                {reducedMotion ? (
+                  <div className="flex w-full flex-col items-center">
+                    <DeptCard dept={dept} locale={locale} />
+                    {teams.length > 0 && (
+                      <ul className="mt-3 w-full space-y-1">
+                        {teams.map((team) => (
+                          <li key={team.id} className="text-center text-xs text-gray-500">
+                            {team.name[locale]}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ) : (
+                  <motion.div variants={nodeVariants} className="flex w-full flex-col items-center">
+                    <DeptCard dept={dept} locale={locale} />
+                    {teams.length > 0 && (
+                      <ul className="mt-3 w-full space-y-1">
+                        {teams.map((team) => (
+                          <li key={team.id} className="text-center text-xs text-gray-500">
+                            {team.name[locale]}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </motion.div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </>
   );
 
   if (reducedMotion) {
-    return <div className="flex flex-col items-center">{content}</div>;
+    return <div className="flex flex-col gap-0">{content}</div>;
   }
 
   return (
     <motion.div
       ref={containerRef}
-      className="flex flex-col items-center"
+      className="flex flex-col gap-0"
       variants={containerVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
@@ -146,10 +167,10 @@ function MobileList({
   const content = (
     <>
       {reducedMotion ? (
-        <DeptCard dept={root} locale={locale} isRoot />
+        <RootCard dept={root} locale={locale} />
       ) : (
         <motion.div variants={nodeVariants}>
-          <DeptCard dept={root} locale={locale} isRoot />
+          <RootCard dept={root} locale={locale} />
         </motion.div>
       )}
 
@@ -158,15 +179,15 @@ function MobileList({
           {deptGroups.map(({ dept, teams }) => {
             const node = (
               <div key={dept.id} className="w-full">
-                <DeptCard dept={dept} locale={locale} />
+                <p className="text-sm font-medium text-gray-950">{dept.name[locale]}</p>
                 {teams.length > 0 && (
-                  <div className="mt-2 space-y-1 pl-4">
+                  <ul className="mt-1 space-y-0.5 pl-4">
                     {teams.map((team) => (
-                      <p key={team.id} className="text-xs text-gray-500">
+                      <li key={team.id} className="text-xs text-gray-500">
                         {team.name[locale]}
-                      </p>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 )}
               </div>
             );
@@ -214,24 +235,42 @@ export function OrgChart({ departments, locale, label, title }: OrgChartProps) {
   if (!root) return null;
 
   return (
-    <section className="bg-slate py-24 md:py-40" aria-labelledby="org-heading">
+    <section
+      className="border-t border-gray-200 bg-smoke py-24 md:py-40"
+      aria-labelledby="org-heading"
+    >
       <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-20">
-        <div className="mb-16 text-center">
-          <SectionLabel>{label}</SectionLabel>
-          <h2 id="org-heading" className="sr-only">{title}</h2>
-          <div className="mt-4" aria-hidden="true">
-            <SectionTitle as="h2" className="text-3xl text-white md:text-4xl">
+        <div className="mb-16 grid grid-cols-1 md:grid-cols-12">
+          <div className="md:col-span-5">
+            <SectionLabel>{label}</SectionLabel>
+            <h2 id="org-heading" className="sr-only">
               {title}
-            </SectionTitle>
+            </h2>
+            <div className="mt-4" aria-hidden="true">
+              <SectionTitle as="h2" className="text-4xl text-midnight md:text-5xl">
+                {title}
+              </SectionTitle>
+            </div>
           </div>
+          <div className="hidden md:col-span-7 md:block" />
         </div>
 
         <div className="hidden md:block">
-          <DesktopTree root={root} deptGroups={deptGroups} locale={locale} reducedMotion={reducedMotion} />
+          <DesktopTree
+            root={root}
+            deptGroups={deptGroups}
+            locale={locale}
+            reducedMotion={reducedMotion}
+          />
         </div>
 
         <div className="md:hidden">
-          <MobileList root={root} deptGroups={deptGroups} locale={locale} reducedMotion={reducedMotion} />
+          <MobileList
+            root={root}
+            deptGroups={deptGroups}
+            locale={locale}
+            reducedMotion={reducedMotion}
+          />
         </div>
       </div>
     </section>
