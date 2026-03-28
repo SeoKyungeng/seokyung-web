@@ -118,6 +118,7 @@
       "errorMessage": "전송에 실패했습니다. 다시 시도하거나 이메일로 직접 문의해주세요.",
       "retryButton": "다시 시도",
       "mapFallback": "지도에서 보기",
+      "mapTitle": "LOCATION",
       "addressLabel": "주소",
       "phoneLabel": "전화",
       "faxLabel": "팩스",

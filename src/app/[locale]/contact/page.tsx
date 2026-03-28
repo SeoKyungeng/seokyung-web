@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/common/PageHeader";
+import { AnimateInView } from "@/components/common/AnimateInView";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { CompanyInfo } from "@/components/contact/CompanyInfo";
 import { MapPlaceholder } from "@/components/contact/MapPlaceholder";
@@ -17,24 +18,26 @@ export default async function ContactPage() {
       />
 
       {/* Section 2: 문의 폼 + 회사 정보 스플릿 레이아웃 */}
-      <section className="bg-white py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-6 md:px-10">
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-10 md:gap-16">
+      <section className="bg-white py-20 md:py-28 lg:py-32">
+        <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-20">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-10 lg:gap-20">
             {/* 문의 폼 (6/10) */}
             <div className="md:col-span-6">
               <ContactForm />
             </div>
 
             {/* 회사 정보 (4/10) */}
-            <div className="md:col-span-4">
+            <AnimateInView delay={0.2} className="md:col-span-4">
               <CompanyInfo />
-            </div>
+            </AnimateInView>
           </div>
         </div>
       </section>
 
       {/* Section 3: 지도 플레이스홀더 */}
-      <MapPlaceholder />
+      <AnimateInView>
+        <MapPlaceholder />
+      </AnimateInView>
     </>
   );
 }

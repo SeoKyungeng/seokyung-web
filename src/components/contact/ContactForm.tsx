@@ -2,11 +2,14 @@
 
 import { useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { AnimatePresence, motion } from "framer-motion";
-import { Loader2, CheckCircle } from "lucide-react";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
+import { Loader2, CheckCircle, ArrowRight } from "lucide-react";
 import { useToast } from "@/providers/ToastProvider";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useAnimateInView } from "@/components/common/AnimateInView";
 import { SectionLabel } from "@/components/common/SectionLabel";
+import { EASE_SPRING, DURATION_NORMAL } from "@/lib/motion";
+
+const SPRING_EASE = [...EASE_SPRING] as [number, number, number, number];
 
 interface FormFields {
   company: string;
@@ -65,7 +68,7 @@ function FloatField({
         aria-invalid={!!error}
         aria-describedby={error ? errorId : undefined}
         autoComplete={autoComplete}
-        className={`peer w-full border-b bg-transparent pt-6 pb-2 text-gray-950 transition-colors focus:outline-none ${
+        className={`peer w-full border-b-2 bg-transparent pt-6 pb-2 text-gray-950 transition-all duration-300 ${
           error
             ? "border-red-400 focus:border-red-400"
             : "border-gray-200 focus:border-primary-400"
@@ -73,7 +76,7 @@ function FloatField({
       />
       <label
         htmlFor={id}
-        className={`pointer-events-none absolute left-0 top-4 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs ${
+        className={`pointer-events-none absolute left-0 top-4 text-sm transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs ${
           error
             ? "text-red-400 peer-focus:text-red-400"
             : "text-gray-500 peer-focus:text-primary-400"
@@ -125,7 +128,7 @@ function FloatTextarea({
         aria-invalid={!!error}
         aria-describedby={error ? errorId : undefined}
         rows={5}
-        className={`peer w-full resize-none border-b bg-transparent pt-6 pb-2 text-gray-950 transition-colors focus:outline-none ${
+        className={`peer w-full resize-none border-b-2 bg-transparent pt-6 pb-2 text-gray-950 transition-all duration-300 ${
           error
             ? "border-red-400 focus:border-red-400"
             : "border-gray-200 focus:border-primary-400"
@@ -134,7 +137,7 @@ function FloatTextarea({
       />
       <label
         htmlFor={id}
-        className={`pointer-events-none absolute left-0 top-4 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs ${
+        className={`pointer-events-none absolute left-0 top-4 text-sm transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs ${
           error
             ? "text-red-400 peer-focus:text-red-400"
             : "text-gray-500 peer-focus:text-primary-400"
@@ -152,10 +155,29 @@ function FloatTextarea({
   );
 }
 
+const staggerContainer: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.08 },
+  },
+};
+
+const staggerItem: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: DURATION_NORMAL,
+      ease: SPRING_EASE,
+    },
+  },
+};
+
 export function ContactForm() {
   const t = useTranslations("pages.contact");
   const { toast } = useToast();
-  const reducedMotion = useReducedMotion();
+  const { ref, isInView, reducedMotion } = useAnimateInView();
 
   const [fields, setFields] = useState<FormFields>(INITIAL_FIELDS);
   const [errors, setErrors] = useState<Partial<Record<keyof FormFields, string | null>>>({});
@@ -248,8 +270,11 @@ export function ContactForm() {
         transition: { duration: 0.4 },
       };
 
+  const Wrap = reducedMotion ? "div" : motion.div;
+  const Item = reducedMotion ? "div" : motion.div;
+
   return (
-    <div>
+    <div ref={ref}>
       <SectionLabel>{t("formLabel")}</SectionLabel>
 
       <div className="mt-8">
@@ -260,109 +285,146 @@ export function ContactForm() {
               {...fadeProps}
               className="flex flex-col items-center justify-center py-16 text-center"
             >
-              <CheckCircle className="mb-4 h-12 w-12 text-primary-400" aria-hidden="true" />
-              <h2 className="font-display text-2xl font-bold text-gray-950">
+              <motion.div
+                className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary-400/10"
+                {...(reducedMotion
+                  ? {}
+                  : {
+                      initial: { scale: 0 },
+                      animate: { scale: 1 },
+                      transition: { duration: 0.5, ease: SPRING_EASE },
+                    })}
+              >
+                <CheckCircle className="h-8 w-8 text-primary-400" aria-hidden="true" />
+              </motion.div>
+              <h2 className="font-display text-2xl font-semibold text-gray-950">
                 {t("successTitle")}
               </h2>
               <p className="mt-3 text-gray-500">{t("successMessage")}</p>
             </motion.div>
           ) : (
-            <motion.form
-              key="form"
-              onSubmit={handleSubmit}
-              noValidate
-              className="flex flex-col gap-8"
-              {...(reducedMotion ? {} : { initial: { opacity: 1 }, animate: { opacity: 1 } })}
+            <Wrap
+              key="form-wrap"
+              {...(reducedMotion
+                ? {}
+                : {
+                    variants: staggerContainer,
+                    initial: "hidden",
+                    animate: isInView ? "visible" : "hidden",
+                  })}
             >
-              <FloatField
-                id="contact-company"
-                label={t("companyName")}
-                value={fields.company}
-                onChange={handleChange("company")}
-                onBlur={handleBlur("company")}
-                error={errors.company}
-                required
-                autoComplete="organization"
-              />
+              <form
+                onSubmit={handleSubmit}
+                noValidate
+                className="flex flex-col gap-8"
+              >
+                <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
+                  <FloatField
+                    id="contact-company"
+                    label={t("companyName")}
+                    value={fields.company}
+                    onChange={handleChange("company")}
+                    onBlur={handleBlur("company")}
+                    error={errors.company}
+                    required
+                    autoComplete="organization"
+                  />
+                </Item>
 
-              <FloatField
-                id="contact-person"
-                label={t("contactPerson")}
-                value={fields.person}
-                onChange={handleChange("person")}
-                onBlur={handleBlur("person")}
-                error={errors.person}
-                required
-                autoComplete="name"
-              />
+                <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
+                  <FloatField
+                    id="contact-person"
+                    label={t("contactPerson")}
+                    value={fields.person}
+                    onChange={handleChange("person")}
+                    onBlur={handleBlur("person")}
+                    error={errors.person}
+                    required
+                    autoComplete="name"
+                  />
+                </Item>
 
-              <FloatField
-                id="contact-phone"
-                label={t("phone")}
-                type="tel"
-                value={fields.phone}
-                onChange={handleChange("phone")}
-                onBlur={handleBlur("phone")}
-                error={errors.phone}
-                required
-                autoComplete="tel"
-              />
+                <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
+                  <FloatField
+                    id="contact-phone"
+                    label={t("phone")}
+                    type="tel"
+                    value={fields.phone}
+                    onChange={handleChange("phone")}
+                    onBlur={handleBlur("phone")}
+                    error={errors.phone}
+                    required
+                    autoComplete="tel"
+                  />
+                </Item>
 
-              <FloatField
-                id="contact-email"
-                label={t("email")}
-                type="email"
-                value={fields.email}
-                onChange={handleChange("email")}
-                onBlur={handleBlur("email")}
-                error={errors.email}
-                required
-                autoComplete="email"
-              />
+                <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
+                  <FloatField
+                    id="contact-email"
+                    label={t("email")}
+                    type="email"
+                    value={fields.email}
+                    onChange={handleChange("email")}
+                    onBlur={handleBlur("email")}
+                    error={errors.email}
+                    required
+                    autoComplete="email"
+                  />
+                </Item>
 
-              <FloatTextarea
-                id="contact-message"
-                label={t("message")}
-                value={fields.message}
-                onChange={handleChange("message")}
-                onBlur={handleBlur("message")}
-                error={errors.message}
-                required
-              />
-
-              {status === "error" && (
-                <div role="alert" className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
-                  {t("errorMessage")}
-                </div>
-              )}
-
-              <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-                <button
-                  type="submit"
-                  disabled={status === "submitting"}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary-400 px-8 py-3 font-semibold text-midnight transition-colors duration-200 hover:bg-primary-300 disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  {status === "submitting" ? (
-                    <>
-                      <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                      {t("submitting")}
-                    </>
-                  ) : (
-                    t("submit")
-                  )}
-                </button>
+                <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
+                  <FloatTextarea
+                    id="contact-message"
+                    label={t("message")}
+                    value={fields.message}
+                    onChange={handleChange("message")}
+                    onBlur={handleBlur("message")}
+                    error={errors.message}
+                    required
+                  />
+                </Item>
 
                 {status === "error" && (
-                  <button
-                    type="button"
-                    onClick={handleRetry}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 px-8 py-3 font-semibold text-gray-700 transition-colors duration-200 hover:bg-gray-50 sm:w-auto"
-                  >
-                    {t("retryButton")}
-                  </button>
+                  <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
+                    <div role="alert" className="rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-600 shadow-sm">
+                      {t("errorMessage")}
+                    </div>
+                  </Item>
                 )}
-              </div>
-            </motion.form>
+
+                <Item {...(reducedMotion ? {} : { variants: staggerItem })}>
+                  <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
+                    <button
+                      type="submit"
+                      disabled={status === "submitting"}
+                      className="group/btn inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary-400 px-8 py-3.5 font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-300 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-sm"
+                    >
+                      {status === "submitting" ? (
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                          {t("submitting")}
+                        </>
+                      ) : (
+                        <>
+                          {t("submit")}
+                          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-1" aria-hidden="true" />
+                        </>
+                      )}
+                    </button>
+
+                    {status === "error" && (
+                      <button
+                        type="button"
+                        onClick={handleRetry}
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 px-8 py-3.5 font-semibold text-gray-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-gray-50 hover:shadow-md sm:w-auto"
+                      >
+                        {t("retryButton")}
+                      </button>
+                    )}
+                  </div>
+                </Item>
+              </form>
+            </Wrap>
           )}
         </AnimatePresence>
       </div>

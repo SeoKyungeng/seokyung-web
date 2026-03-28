@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { MapPin, ExternalLink } from "lucide-react";
+import { SectionLabel } from "@/components/common/SectionLabel";
 import companyData from "@/data/company.json";
 
 export async function MapPlaceholder() {
@@ -15,20 +16,19 @@ export async function MapPlaceholder() {
         aria-hidden="true"
       />
 
-      <div className="flex h-[300px] w-full items-center justify-center bg-smoke md:h-[400px]">
-        <div className="flex flex-col items-center gap-4 text-center">
-          <MapPin className="h-10 w-10 text-gray-400" aria-hidden="true" />
-          <p className="text-sm text-gray-500">{companyData.address.ko}</p>
-          <a
-            href={mapUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-gray-300 px-5 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-primary-400 hover:text-primary-500"
-          >
-            {t("mapFallback")}
-            <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-          </a>
-        </div>
+      <div className="flex h-[300px] w-full flex-col items-center justify-center gap-5 bg-smoke md:h-[400px]">
+        <SectionLabel>{t("mapTitle")}</SectionLabel>
+        <MapPin className="h-12 w-12 text-primary-400" aria-hidden="true" />
+        <p className="text-base text-gray-600">{companyData.address.ko}</p>
+        <a
+          href={mapUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-full bg-primary-400 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-300 hover:shadow-lg"
+        >
+          {t("mapFallback")}
+          <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+        </a>
       </div>
     </section>
   );

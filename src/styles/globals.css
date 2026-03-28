@@ -39,6 +39,12 @@ html {
   outline-offset: 2px;
 }
 
+/* 폼 인풋은 하단 보더로 포커스 표현 — 글로벌 outline 제외 */
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+}
+
 /* Skip link */
 .skip-link {
   position: absolute;

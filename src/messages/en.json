@@ -118,6 +118,7 @@
       "errorMessage": "Failed to send. Please try again or contact us directly via email.",
       "retryButton": "Try Again",
       "mapFallback": "View on Map",
+      "mapTitle": "LOCATION",
       "addressLabel": "Address",
       "phoneLabel": "Phone",
       "faxLabel": "Fax",
