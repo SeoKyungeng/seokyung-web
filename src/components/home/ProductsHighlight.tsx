@@ -58,16 +58,11 @@ export function ProductsHighlight({
     <section className="bg-smoke py-24 md:py-40">
       <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-20">
         {/* 헤더 */}
-        <div className="flex items-end justify-between gap-8 mb-12 md:mb-16">
-          <div>
-            <SectionLabel>{productsLabel}</SectionLabel>
-            <SectionTitle weight="normal" className="mt-3 text-2xl md:text-4xl text-midnight">
-              {productsTitle}
-            </SectionTitle>
-          </div>
-          <p className="hidden md:block font-mono text-6xl font-bold text-midnight/[0.04] leading-none select-none">
-            14
-          </p>
+        <div className="mb-12 md:mb-16">
+          <SectionLabel>{productsLabel}</SectionLabel>
+          <SectionTitle weight="normal" className="mt-3 text-2xl md:text-4xl text-midnight">
+            {productsTitle}
+          </SectionTitle>
         </div>
 
         {/* Asymmetrical Bento Grid */}

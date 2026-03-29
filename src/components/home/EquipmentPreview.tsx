@@ -19,7 +19,7 @@ interface EquipmentPreviewProps {
   locale: "ko" | "en";
 }
 
-function EquipmentCard({ item, locale, index }: { item: EquipmentItem; locale: "ko" | "en"; index: number }) {
+function EquipmentCard({ item, locale }: { item: EquipmentItem; locale: "ko" | "en" }) {
   const typeLabel = item.type.toUpperCase();
   return (
     <div className="group shrink-0 w-[85vw] sm:w-100 rounded-xl border border-white/10 ring-1 ring-white/5 bg-white/3 overflow-hidden transition-all duration-300 hover:border-primary-400/50 hover:shadow-[0_0_30px_rgba(20,71,230,0.15)]"
@@ -36,10 +36,6 @@ function EquipmentCard({ item, locale, index }: { item: EquipmentItem; locale: "
           sizes="(max-width: 640px) 85vw, 400px"
         />
         <div className="absolute inset-0 bg-linear-to-t from-midnight/80 via-midnight/20 to-transparent" />
-
-        <span className="absolute -right-3 -bottom-4 font-mono text-[120px] leading-none text-white/5 select-none pointer-events-none group-hover:text-primary-400/8 transition-colors duration-500">
-          {String(index + 1).padStart(2, "0")}
-        </span>
 
         <div className="absolute bottom-3 left-4 z-10">
           <span className="px-3 py-1 rounded-full text-xs font-mono uppercase tracking-widest bg-black/40 text-white/80 ring-1 ring-white/10 backdrop-blur-sm group-hover:text-primary-300 group-hover:ring-primary-400/30 transition-all duration-300">
@@ -143,7 +139,7 @@ export function EquipmentPreview({
                 key={item.id}
                 style={{ scrollSnapAlign: "start" }}
               >
-                <EquipmentCard item={item} locale={locale} index={index} />
+                <EquipmentCard item={item} locale={locale} />
               </div>
             ))}
           </div>

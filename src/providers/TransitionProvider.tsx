@@ -10,6 +10,7 @@ import {
 } from "react";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useLenis } from "@/providers/LenisProvider";
 
 type Phase = "idle" | "exiting" | "snap-blur" | "entering";
 
@@ -50,12 +51,24 @@ export function TransitionProvider({
 function PassthroughProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
+  const lenis = useLenis();
+
+  const scrollToTop = useCallback(() => {
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [lenis]);
 
   const navigateWithTransition = useCallback(
     (href: string) => {
-      if (href !== pathname) router.push(href);
+      if (href !== pathname) {
+        router.push(href);
+        scrollToTop();
+      }
     },
-    [router, pathname],
+    [router, pathname, scrollToTop],
   );
 
   return (
@@ -78,7 +91,16 @@ function EnabledTransitionProvider({
   const router = useRouter();
   const pathname = usePathname();
   const reducedMotion = useReducedMotion();
+  const lenis = useLenis();
   const skipTransition = reducedMotion;
+
+  const scrollToTop = useCallback(() => {
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [lenis]);
 
   const [phase, setPhase] = useState<Phase>("idle");
   const phaseRef = useRef<Phase>("idle");
@@ -114,14 +136,16 @@ function EnabledTransitionProvider({
 
       if (skipTransition) {
         router.push(href);
+        scrollToTop();
         return;
       }
 
       phaseRef.current = "snap-blur";
       setPhase("snap-blur");
       router.push(href);
+      scrollToTop();
     },
-    [router, pathname, skipTransition],
+    [router, pathname, skipTransition, scrollToTop],
   );
 
   // popstate(뒤로/앞으로) → 어떤 phase든 취소 + snap-blur
