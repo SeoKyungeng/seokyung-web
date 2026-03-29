@@ -12,8 +12,9 @@ import { EASE_SPRING, EASE_SMOOTH } from "@/lib/motion";
 interface ProductItem {
   id: string;
   image: string;
+  width: number;
+  height: number;
   alt: string;
-  placeholderHeight: number;
 }
 
 interface ProductGalleryProps {
@@ -58,6 +59,7 @@ interface GalleryItemProps {
 function GalleryItem({ item, reducedMotion, onClick }: GalleryItemProps) {
   const { ref, isInView } = useAnimateInView();
   const [imgError, setImgError] = useState(false);
+  const aspectRatio = item.width / item.height;
 
   const content = (
     <button
@@ -68,7 +70,7 @@ function GalleryItem({ item, reducedMotion, onClick }: GalleryItemProps) {
     >
       <div
         className="relative w-full bg-smoke transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-        style={{ height: `${item.placeholderHeight}px`, maxHeight: "300px" }}
+        style={{ aspectRatio }}
       >
         {imgError ? (
           <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-smoke">
@@ -139,8 +141,8 @@ export function ProductGallery({ items }: ProductGalleryProps) {
   const lightboxImages = items.map((item) => ({
     src: item.image,
     alt: item.alt,
-    width: 800,
-    height: item.placeholderHeight * 3,
+    width: item.width,
+    height: item.height,
   }));
 
   return (

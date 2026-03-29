@@ -3,15 +3,6 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { ProductGallery } from "@/components/products/ProductGallery";
 import productsRaw from "@/data/products.json";
 
-function getPlaceholderHeight(id: string): number {
-  const heights = [150, 180, 200, 220, 250, 280, 300];
-  let hash = 0;
-  for (let i = 0; i < id.length; i++) {
-    hash = (hash * 31 + id.charCodeAt(i)) & 0xffff;
-  }
-  return heights[hash % heights.length];
-}
-
 export default async function ProductsPage() {
   const locale = (await getLocale()) as "ko" | "en";
   const t = await getTranslations("pages.products");
@@ -19,8 +10,9 @@ export default async function ProductsPage() {
   const items = productsRaw.items.map((item) => ({
     id: item.id,
     image: item.image,
+    width: item.width,
+    height: item.height,
     alt: item.alt[locale],
-    placeholderHeight: getPlaceholderHeight(item.id),
   }));
 
   return (

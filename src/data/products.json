@@ -1,18 +1,18 @@
 {
   "items": [
-    { "id": "p1", "image": "/images/products/01.jpeg", "alt": { "ko": "가공제품 01", "en": "Product 01" } },
-    { "id": "p2", "image": "/images/products/02.jpeg", "alt": { "ko": "가공제품 02", "en": "Product 02" } },
-    { "id": "p3", "image": "/images/products/03.jpeg", "alt": { "ko": "가공제품 03", "en": "Product 03" } },
-    { "id": "p4", "image": "/images/products/04.jpeg", "alt": { "ko": "가공제품 04", "en": "Product 04" } },
-    { "id": "p5", "image": "/images/products/05.jpeg", "alt": { "ko": "가공제품 05", "en": "Product 05" } },
-    { "id": "p6", "image": "/images/products/06.jpeg", "alt": { "ko": "가공제품 06", "en": "Product 06" } },
-    { "id": "p7", "image": "/images/products/07.jpeg", "alt": { "ko": "가공제품 07", "en": "Product 07" } },
-    { "id": "p8", "image": "/images/products/08.jpeg", "alt": { "ko": "가공제품 08", "en": "Product 08" } },
-    { "id": "p9", "image": "/images/products/09.jpeg", "alt": { "ko": "가공제품 09", "en": "Product 09" } },
-    { "id": "p10", "image": "/images/products/10.jpeg", "alt": { "ko": "가공제품 10", "en": "Product 10" } },
-    { "id": "p11", "image": "/images/products/11.jpeg", "alt": { "ko": "가공제품 11", "en": "Product 11" } },
-    { "id": "p12", "image": "/images/products/12.jpeg", "alt": { "ko": "가공제품 12", "en": "Product 12" } },
-    { "id": "p13", "image": "/images/products/13.jpeg", "alt": { "ko": "가공제품 13", "en": "Product 13" } },
-    { "id": "p14", "image": "/images/products/14.jpeg", "alt": { "ko": "가공제품 14", "en": "Product 14" } }
+    { "id": "p1", "image": "/images/products/01.jpeg", "width": 442, "height": 542, "alt": { "ko": "가공제품 01", "en": "Product 01" } },
+    { "id": "p2", "image": "/images/products/02.jpeg", "width": 442, "height": 325, "alt": { "ko": "가공제품 02", "en": "Product 02" } },
+    { "id": "p3", "image": "/images/products/03.jpeg", "width": 442, "height": 541, "alt": { "ko": "가공제품 03", "en": "Product 03" } },
+    { "id": "p4", "image": "/images/products/04.jpeg", "width": 442, "height": 252, "alt": { "ko": "가공제품 04", "en": "Product 04" } },
+    { "id": "p5", "image": "/images/products/05.jpeg", "width": 442, "height": 540, "alt": { "ko": "가공제품 05", "en": "Product 05" } },
+    { "id": "p6", "image": "/images/products/06.jpeg", "width": 442, "height": 340, "alt": { "ko": "가공제품 06", "en": "Product 06" } },
+    { "id": "p7", "image": "/images/products/07.jpeg", "width": 442, "height": 488, "alt": { "ko": "가공제품 07", "en": "Product 07" } },
+    { "id": "p8", "image": "/images/products/08.jpeg", "width": 442, "height": 564, "alt": { "ko": "가공제품 08", "en": "Product 08" } },
+    { "id": "p9", "image": "/images/products/09.jpeg", "width": 442, "height": 531, "alt": { "ko": "가공제품 09", "en": "Product 09" } },
+    { "id": "p10", "image": "/images/products/10.jpeg", "width": 442, "height": 567, "alt": { "ko": "가공제품 10", "en": "Product 10" } },
+    { "id": "p11", "image": "/images/products/11.jpeg", "width": 442, "height": 535, "alt": { "ko": "가공제품 11", "en": "Product 11" } },
+    { "id": "p12", "image": "/images/products/12.jpeg", "width": 442, "height": 549, "alt": { "ko": "가공제품 12", "en": "Product 12" } },
+    { "id": "p13", "image": "/images/products/13.jpeg", "width": 442, "height": 547, "alt": { "ko": "가공제품 13", "en": "Product 13" } },
+    { "id": "p14", "image": "/images/products/14.jpeg", "width": 443, "height": 589, "alt": { "ko": "가공제품 14", "en": "Product 14" } }
   ]
 }
