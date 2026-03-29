@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { TransitionLink as Link } from "@/components/common/TransitionLink";
 import { FooterMarqueeBand } from "./FooterMarqueeBand";
 
@@ -24,9 +25,13 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-3">
           {/* Company Info */}
           <div>
-            <p className="font-display text-lg font-bold">
-              {tCommon("siteName")}
-            </p>
+            <Image
+              src="/images/logo-white.svg"
+              alt={tCommon("siteName")}
+              width={120}
+              height={40}
+              className="h-10 w-auto"
+            />
             <address className="mt-4 text-sm not-italic leading-relaxed text-white/60">
               {tFooter("address")}
             </address>

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { usePathname } from "@/i18n/navigation";
 import { TransitionLink as Link } from "@/components/common/TransitionLink";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -99,11 +100,15 @@ export function Header() {
             : "h-16 max-w-[1400px] px-5 md:h-20 md:px-10 lg:px-20"
         }`}>
           {/* Logo */}
-          <Link
-            href="/"
-            className="font-display text-lg font-bold text-white"
-          >
-            {tCommon("siteName")}
+          <Link href="/" aria-label={tCommon("siteName")}>
+            <Image
+              src="/images/logo-white.svg"
+              alt={tCommon("siteName")}
+              width={120}
+              height={40}
+              className={`transition-all duration-500 w-auto ${scrolled ? "h-7" : "h-9 md:h-10"}`}
+              priority
+            />
           </Link>
 
           {/* PC Nav */}
@@ -172,10 +177,16 @@ export function Header() {
             <div className="flex h-16 items-center justify-between px-5">
               <Link
                 href="/"
-                className="font-display text-lg font-bold text-white"
+                aria-label={tCommon("siteName")}
                 onClick={() => setMobileOpen(false)}
               >
-                {tCommon("siteName")}
+                <Image
+                  src="/images/logo-white.svg"
+                  alt={tCommon("siteName")}
+                  width={120}
+                  height={40}
+                  className="h-9 w-auto"
+                />
               </Link>
               <button
                 onClick={() => setMobileOpen(false)}

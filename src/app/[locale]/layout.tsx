@@ -32,6 +32,9 @@ const pretendard = localFont({
 export const metadata: Metadata = {
   title: "(주)서경엔지니어링",
   description: "CNC·MCT 정밀 가공 전문기업",
+  icons: {
+    icon: { url: "/images/logo-symbol.svg", type: "image/svg+xml" },
+  },
 };
 
 export function generateStaticParams() {
