@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useContext } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { CTAButton } from "@/components/common/CTAButton";
-import { GlowBlob } from "@/components/common/GlowBlob";
 import { PageTransitionContext } from "@/providers/TransitionProvider";
 import { EASE_SPRING, DURATION_SLOW } from "@/lib/motion";
 
@@ -54,24 +53,22 @@ export function HeroSection({
 
   return (
     <section ref={sectionRef} className="relative flex min-h-[calc(100vh+48px)] items-center overflow-hidden bg-midnight">
-      {/* 배경 scale-up on scroll */}
+      {/* 배경 영상 + 오버레이 */}
       <motion.div
         className="pointer-events-none absolute inset-0"
         style={reducedMotion ? undefined : { scale: bgScale }}
         aria-hidden="true"
       >
-        <div
-          className="absolute inset-0"
-          style={{
-            background: [
-              "linear-gradient(135deg, rgba(20,71,230,0.06) 0%, transparent 50%, rgba(20,71,230,0.03) 100%)",
-              "radial-gradient(ellipse 80% 50% at 20% 40%, rgba(20,71,230,0.08), transparent)",
-              "radial-gradient(ellipse 60% 40% at 80% 60%, rgba(107,138,245,0.05), transparent)",
-            ].join(", "),
-          }}
-        />
-        <GlowBlob className="-left-32 top-1/4 will-change-transform" size={600} />
-        <GlowBlob className="-right-48 bottom-1/4 will-change-transform" size={500} />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/banner.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-midnight/70" />
       </motion.div>
 
       <motion.div
@@ -129,7 +126,7 @@ export function HeroSection({
             <CTAButton href="/contact" variant="solid" className="w-full sm:w-auto justify-center">
               {heroCta}
             </CTAButton>
-            <CTAButton href="/equipment" variant="outline" className="hidden sm:inline-flex">
+            <CTAButton href="/equipment" variant="outline-white" className="hidden sm:inline-flex">
               {heroCtaSecondary}
             </CTAButton>
           </div>
@@ -143,7 +140,7 @@ export function HeroSection({
             <CTAButton href="/contact" variant="solid" className="w-full sm:w-auto justify-center">
               {heroCta}
             </CTAButton>
-            <CTAButton href="/equipment" variant="outline" className="hidden sm:inline-flex">
+            <CTAButton href="/equipment" variant="outline-white" className="hidden sm:inline-flex">
               {heroCtaSecondary}
             </CTAButton>
           </motion.div>

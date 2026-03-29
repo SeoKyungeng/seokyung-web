@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 interface CTAButtonProps {
   children: React.ReactNode;
   href?: string;
-  variant?: "solid" | "outline" | "dark";
+  variant?: "solid" | "outline" | "outline-white" | "dark";
   size?: "lg" | "sm";
   onClick?: () => void;
   className?: string;
@@ -20,8 +20,9 @@ const EASE = "ease-[cubic-bezier(0.16,1,0.3,1)]";
 
 const base = `group/cta inline-flex items-center rounded-full font-semibold overflow-hidden transition-all duration-500 ${EASE} hover:scale-[1.04] active:scale-[0.97]`;
 const variants = {
-  solid: "bg-primary-400 text-white hover:bg-primary-300 hover:shadow-[0_0_24px_rgba(20,71,230,0.35)]",
+  solid: "bg-primary-400 text-white",
   outline: "border border-primary-400 text-primary-400 hover:bg-primary-400/10",
+  "outline-white": "border border-white/60 text-white hover:bg-white/10",
   dark: "bg-midnight text-white hover:bg-midnight/80",
 };
 
