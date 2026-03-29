@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cog } from "lucide-react";
 import { useAnimateInView } from "@/components/common/AnimateInView";
@@ -61,20 +62,48 @@ function SpecRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-function ImagePlaceholder({ model }: { model: string }) {
+function handleImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
+  const img = e.currentTarget;
+  img.style.filter = "blur(0)";
+  img.style.opacity = "1";
+}
+
+function handleImageError(e: React.SyntheticEvent<HTMLImageElement>) {
+  const img = e.currentTarget;
+  img.style.display = "none";
+  const fallback = img.parentElement?.querySelector("[data-fallback]");
+  if (fallback instanceof HTMLElement) fallback.style.display = "flex";
+}
+
+function EquipmentImage({ photo, model }: { photo: string; model: string }) {
+  if (!photo) {
+    return (
+      <div className="relative aspect-4/3 w-full overflow-hidden bg-gradient-to-br from-smoke to-gray-100">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+          <Cog className="h-10 w-10 text-gray-300" strokeWidth={1} aria-hidden="true" />
+          <span className="font-mono text-sm tracking-wider text-gray-400">{model}</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative aspect-4/3 w-full overflow-hidden bg-gradient-to-br from-smoke to-gray-100">
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-        <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-gray-200/80 bg-white shadow-sm">
-          <Cog
-            className="h-10 w-10 text-gray-300"
-            strokeWidth={1}
-            aria-hidden="true"
-          />
-        </div>
-        <span className="font-mono text-sm tracking-wider text-gray-400">
-          {model}
-        </span>
+      <Image
+        src={photo}
+        alt={model}
+        fill
+        sizes="(max-width: 768px) 100vw, 58vw"
+        className="object-cover blur-[20px] opacity-0 transition-[filter,opacity] duration-500"
+        onLoad={handleImageLoad}
+        onError={handleImageError}
+      />
+      <div
+        data-fallback
+        className="absolute inset-0 hidden flex-col items-center justify-center gap-4"
+      >
+        <Cog className="h-10 w-10 text-gray-300" strokeWidth={1} aria-hidden="true" />
+        <span className="font-mono text-sm tracking-wider text-gray-400">{model}</span>
       </div>
     </div>
   );
@@ -118,14 +147,14 @@ function EquipmentRow({
   const imageBlock = (
     <div className="overflow-hidden" style={{ clipPath }}>
       {reducedMotion ? (
-        <ImagePlaceholder model={item.model} />
+        <EquipmentImage photo={item.photo} model={item.model} />
       ) : (
         <motion.div
           variants={imageReveal}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <ImagePlaceholder model={item.model} />
+          <EquipmentImage photo={item.photo} model={item.model} />
         </motion.div>
       )}
     </div>
@@ -138,20 +167,23 @@ function EquipmentRow({
         className="mt-4 font-display text-2xl font-semibold tracking-tight text-gray-950 md:text-3xl lg:text-4xl"
         variants={staggerItem}
       >
-        {item.model}
-      </motion.h3>
-      <motion.p
-        className="mt-2 text-sm text-gray-500"
-        variants={staggerItem}
-      >
         {item.name}
-      </motion.p>
+      </motion.h3>
+      {item.model && (
+        <motion.p
+          className="mt-2 font-mono text-sm tracking-wider text-gray-400"
+          variants={staggerItem}
+        >
+          {item.model}
+        </motion.p>
+      )}
       <motion.p
         className="mt-1 text-sm text-gray-500"
         variants={staggerItem}
       >
-        {item.manufacturer} · {item.quantity}
-        {specUnit}
+        {item.manufacturer && item.manufacturer !== "미상" && item.manufacturer !== "Unknown"
+          ? `${item.manufacturer} · ${item.quantity}${specUnit}`
+          : `${item.quantity}${specUnit}`}
       </motion.p>
 
       {item.specs.length > 0 && (
@@ -168,12 +200,17 @@ function EquipmentRow({
     <>
       {typeBadge}
       <h3 className="mt-4 font-display text-2xl font-semibold tracking-tight text-gray-950 md:text-3xl lg:text-4xl">
-        {item.model}
+        {item.name}
       </h3>
-      <p className="mt-2 text-sm text-gray-500">{item.name}</p>
+      {item.model && (
+        <p className="mt-2 font-mono text-sm tracking-wider text-gray-400">
+          {item.model}
+        </p>
+      )}
       <p className="mt-1 text-sm text-gray-500">
-        {item.manufacturer} · {item.quantity}
-        {specUnit}
+        {item.manufacturer && item.manufacturer !== "미상" && item.manufacturer !== "Unknown"
+          ? `${item.manufacturer} · ${item.quantity}${specUnit}`
+          : `${item.quantity}${specUnit}`}
       </p>
 
       {item.specs.length > 0 && (

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cog, ChevronDown } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -39,28 +40,58 @@ function SpecRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-function ImagePlaceholder({
+function handleImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
+  const img = e.currentTarget;
+  img.style.filter = "blur(0)";
+  img.style.opacity = "1";
+}
+
+function handleImageError(e: React.SyntheticEvent<HTMLImageElement>) {
+  const img = e.currentTarget;
+  img.style.display = "none";
+  const fallback = img.parentElement?.querySelector("[data-fallback]");
+  if (fallback instanceof HTMLElement) fallback.style.display = "flex";
+}
+
+function EquipmentImage({
+  photo,
   model,
   isLarge,
 }: {
+  photo: string;
   model: string;
   isLarge: boolean;
 }) {
+  const aspect = isLarge ? "aspect-[4/3]" : "aspect-[7/5]";
+
+  if (!photo) {
+    return (
+      <div className={`relative w-full overflow-hidden rounded-lg bg-smoke transition-transform duration-300 hover:scale-[1.02] ${aspect}`}>
+        <div className="flex h-full w-full flex-col items-center justify-center gap-3">
+          <Cog className="h-16 w-16 text-gray-300" strokeWidth={1} aria-hidden="true" />
+          <span className="font-mono text-sm tracking-wider text-gray-500">{model}</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div
-      className={`relative w-full overflow-hidden rounded-lg bg-smoke transition-transform duration-300 hover:scale-[1.02] ${
-        isLarge ? "aspect-[4/3]" : "aspect-[7/5]"
-      }`}
-    >
-      <div className="flex h-full w-full flex-col items-center justify-center gap-3">
-        <Cog
-          className="h-16 w-16 text-gray-300"
-          strokeWidth={1}
-          aria-hidden="true"
-        />
-        <span className="font-mono text-sm tracking-wider text-gray-500">
-          {model}
-        </span>
+    <div className={`relative w-full overflow-hidden rounded-lg bg-smoke transition-transform duration-300 hover:scale-[1.02] ${aspect}`}>
+      <Image
+        src={photo}
+        alt={model}
+        fill
+        sizes={isLarge ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
+        className="object-cover blur-[20px] opacity-0 transition-[filter,opacity] duration-500"
+        onLoad={handleImageLoad}
+        onError={handleImageError}
+      />
+      <div
+        data-fallback
+        className="absolute inset-0 hidden flex-col items-center justify-center gap-3"
+      >
+        <Cog className="h-16 w-16 text-gray-300" strokeWidth={1} aria-hidden="true" />
+        <span className="font-mono text-sm tracking-wider text-gray-500">{model}</span>
       </div>
     </div>
   );
@@ -90,20 +121,25 @@ function EquipmentCard({
   return (
     <Card className="overflow-hidden">
       <div className="p-4">
-        <ImagePlaceholder model={item.model} isLarge={isLarge} />
+        <EquipmentImage photo={item.photo} model={item.model} isLarge={isLarge} />
 
         <div className="mt-4">
-          <p className="text-sm text-gray-500">{item.name}</p>
           <h3
             className={`font-display font-semibold text-gray-950 ${
               isLarge ? "text-xl" : "text-lg"
             }`}
           >
-            {item.model}
+            {item.name}
           </h3>
+          {item.model && (
+            <p className="mt-1 font-mono text-sm tracking-wider text-gray-400">
+              {item.model}
+            </p>
+          )}
           <p className="mt-1 text-sm text-gray-500">
-            {item.manufacturer} · {item.quantity}
-            {specUnit}
+            {item.manufacturer && item.manufacturer !== "미상" && item.manufacturer !== "Unknown"
+              ? `${item.manufacturer} · ${item.quantity}${specUnit}`
+              : `${item.quantity}${specUnit}`}
           </p>
         </div>
 
