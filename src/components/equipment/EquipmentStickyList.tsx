@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useRef, useState, useMemo, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cog } from "lucide-react";
 import { useAnimateInView } from "@/components/common/AnimateInView";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useLenis } from "@/providers/LenisProvider";
 import { useTranslations } from "next-intl";
 import { EASE_SMOOTH } from "@/lib/motion";
 import { StickyTabFilter } from "@/components/common/StickyTabFilter";
@@ -273,9 +274,29 @@ export function EquipmentStickyList({
   specUnit,
 }: EquipmentStickyListProps) {
   const reducedMotion = useReducedMotion();
+  const lenis = useLenis();
   const t = useTranslations("pages.equipment");
+  const listRef = useRef<HTMLElement>(null);
   const [activeCategory, setActiveCategory] =
     useState<EquipmentCategory>("all");
+
+  const handleCategoryChange = useCallback(
+    (key: string) => {
+      const section = listRef.current;
+      if (section) {
+        const offset = window.innerWidth >= 768 ? 132 : 120;
+        if (lenis) {
+          lenis.scrollTo(section, { immediate: true, offset: -offset });
+        } else {
+          const top =
+            section.getBoundingClientRect().top + window.scrollY - offset;
+          document.documentElement.scrollTop = top;
+        }
+      }
+      setActiveCategory(key as EquipmentCategory);
+    },
+    [lenis],
+  );
 
   const filteredItems = useMemo(() => {
     if (activeCategory === "all") return items;
@@ -295,12 +316,12 @@ export function EquipmentStickyList({
           { key: "other", label: t("filterOther") },
         ]}
         active={activeCategory}
-        onChange={(key) => setActiveCategory(key as EquipmentCategory)}
+        onChange={handleCategoryChange}
         ariaLabel={t("title")}
         layoutId="equipment-tab"
       />
 
-      <section>
+      <section ref={listRef} className="scroll-mt-30 md:scroll-mt-33">
         <AnimatePresence mode="popLayout">
           <motion.div
             key={activeCategory}
