@@ -6,7 +6,6 @@ import { EquipmentPreview } from "@/components/home/EquipmentPreview";
 import { ProductsHighlight } from "@/components/home/ProductsHighlight";
 import statsData from "@/data/stats.json";
 import equipmentRaw from "@/data/equipment.json";
-import productsData from "@/data/products.json";
 import clientsData from "@/data/clients.json";
 import type { EquipmentItem } from "@/lib/types";
 
@@ -24,11 +23,6 @@ export default async function HomePage() {
     name: c.name[locale],
   }));
 
-  // 제품 카테고리 라벨 (locale에 맞게)
-  const categoryItems = productsData.categories.map((cat) => ({
-    category: cat.key,
-    label: cat.label[locale],
-  }));
 
   return (
     <>
@@ -63,7 +57,6 @@ export default async function HomePage() {
         productsLabel={t("productsLabel")}
         productsTitle={t("productsTitle")}
         productsViewAll={t("productsViewAll")}
-        categories={categoryItems}
       />
     </>
   );
