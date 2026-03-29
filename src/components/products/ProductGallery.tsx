@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { ImageOff } from "lucide-react";
-import { ImageLightbox } from "@/components/common/ImageLightbox";
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
 import { useAnimateInView } from "@/components/common/AnimateInView";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { EASE_SPRING, EASE_SMOOTH } from "@/lib/motion";
@@ -136,9 +138,9 @@ function GalleryItem({ item, reducedMotion, onClick }: GalleryItemProps) {
 /* ── ProductGallery ── */
 export function ProductGallery({ items }: ProductGalleryProps) {
   const reducedMotion = useReducedMotion();
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState(-1);
 
-  const lightboxImages = items.map((item) => ({
+  const slides = items.map((item) => ({
     src: item.image,
     alt: item.alt,
     width: item.width,
@@ -160,16 +162,15 @@ export function ProductGallery({ items }: ProductGalleryProps) {
         </div>
       </section>
 
-      <AnimatePresence>
-        {lightboxIndex !== null && (
-          <ImageLightbox
-            images={lightboxImages}
-            currentIndex={lightboxIndex}
-            onClose={() => setLightboxIndex(null)}
-            onNavigate={setLightboxIndex}
-          />
-        )}
-      </AnimatePresence>
+      <Lightbox
+        open={lightboxIndex >= 0}
+        index={lightboxIndex}
+        close={() => setLightboxIndex(-1)}
+        slides={slides}
+        plugins={[Zoom]}
+        zoom={{ maxZoomPixelRatio: 3 }}
+        animation={{ fade: 300, swipe: 300 }}
+      />
     </>
   );
 }
