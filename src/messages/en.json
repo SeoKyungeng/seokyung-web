@@ -26,12 +26,8 @@
     "ctaMarqueeEn": "HOW CAN WE HELP?",
     "ctaButton": "Contact Us",
     "ctaButtonSecondary": "Our Equipment",
-    "address": "000, OO-ro, OO-gu, OO-si, Gyeonggi-do",
     "quickLinks": "Quick Links",
-    "contactTitle": "Contact",
-    "phone": "031-000-0000",
-    "fax": "031-000-0000",
-    "email": "info@seokyung.co.kr"
+    "contactTitle": "Contact"
   },
   "pages": {
     "home": {

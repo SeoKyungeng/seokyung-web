@@ -26,12 +26,8 @@
     "ctaMarqueeEn": "HOW CAN WE HELP?",
     "ctaButton": "문의하기",
     "ctaButtonSecondary": "설비 보기",
-    "address": "경기도 OO시 OO구 OO로 000",
     "quickLinks": "바로가기",
-    "contactTitle": "연락처",
-    "phone": "031-000-0000",
-    "fax": "031-000-0000",
-    "email": "info@seokyung.co.kr"
+    "contactTitle": "연락처"
   },
   "pages": {
     "home": {

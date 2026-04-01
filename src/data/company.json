@@ -4,14 +4,14 @@
     "en": "Seokyung Engineering Co., Ltd."
   },
   "address": {
-    "ko": "경기도 화성시 정남면 시청로 1234",
-    "en": "1234, Sicheong-ro, Jeongnam-myeon, Hwaseong-si, Gyeonggi-do, Korea"
+    "ko": "경기도 김포시 양촌읍 황금6로51",
+    "en": "51, Hwanggeum 6-ro, Yangchon-eup, Gimpo-si, Gyeonggi-do, Korea"
   },
-  "phone": "031-000-0000",
-  "fax": "031-000-0001",
-  "email": "info@seokyung.co.kr",
+  "phone": "031-984-9697",
+  "fax": "031-984-9672",
+  "email": "seokyung25@naver.com",
   "coordinates": {
-    "lat": 37.1234,
-    "lng": 127.0567
+    "lat": 37.610299,
+    "lng": 126.610194
   }
 }

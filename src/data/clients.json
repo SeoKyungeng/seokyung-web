@@ -6,6 +6,7 @@
     { "id": "ypc", "name": { "ko": "(주)와이피씨", "en": "YPC Co., Ltd." }, "logo": null },
     { "id": "wooshin", "name": { "ko": "(주)우신엔지니어링", "en": "Wooshin Engineering Co., Ltd." }, "logo": null },
     { "id": "osvalve", "name": { "ko": "(주)오에스벨브", "en": "OS Valve Co., Ltd." }, "logo": null },
-    { "id": "daehan", "name": { "ko": "(주)대한약품공업", "en": "Daehan Pharmaceutical Co., Ltd." }, "logo": null }
+    { "id": "daehan", "name": { "ko": "(주)대한약품공업", "en": "Daehan Pharmaceutical Co., Ltd." }, "logo": null },
+    { "id": "khnp", "name": { "ko": "한국수력원자력", "en": "Korea Hydro & Nuclear Power" }, "logo": null }
   ]
 }

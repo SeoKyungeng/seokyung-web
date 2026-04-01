@@ -1,7 +1,8 @@
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { TransitionLink as Link } from "@/components/common/TransitionLink";
 import { FooterMarqueeBand } from "./FooterMarqueeBand";
+import companyData from "@/data/company.json";
 
 const QUICK_LINKS = [
   { href: "/about", key: "about" },
@@ -15,6 +16,7 @@ export function Footer() {
   const t = useTranslations("nav");
   const tCommon = useTranslations("common");
   const tFooter = useTranslations("footer");
+  const locale = useLocale() as "ko" | "en";
 
   return (
     <footer className="bg-midnight text-white">
@@ -33,7 +35,7 @@ export function Footer() {
               className="h-10 w-auto"
             />
             <address className="mt-4 text-sm not-italic leading-relaxed text-white/60">
-              {tFooter("address")}
+              {companyData.address[locale]}
             </address>
           </div>
 
@@ -61,9 +63,9 @@ export function Footer() {
               {tFooter("contactTitle")}
             </p>
             <div className="mt-4 space-y-2 font-mono text-sm text-white/60">
-              <p>TEL: {tFooter("phone")}</p>
-              <p>FAX: {tFooter("fax")}</p>
-              <p>EMAIL: {tFooter("email")}</p>
+              <p>TEL: {companyData.phone}</p>
+              <p>FAX: {companyData.fax}</p>
+              <p>EMAIL: {companyData.email}</p>
             </div>
           </div>
         </div>
