@@ -1,6 +1,7 @@
 "use server";
 
 import { contactSchema, type ContactFormData } from "@/lib/schemas/contact";
+import { sendContactEmail } from "@/lib/email";
 
 export type ContactActionResult =
   | { success: true }
@@ -25,8 +26,14 @@ export async function submitContactForm(
     return { success: false, error: "VALIDATION_ERROR", fieldErrors };
   }
 
-  // TODO: 이메일 서비스 연결 지점
   // TODO: Rate limiting (봇 스팸 방지)
+
+  try {
+    await sendContactEmail(parsed.data);
+  } catch (error) {
+    console.error("[Contact] 이메일 발송 실패:", error);
+    return { success: false, error: "SEND_FAILED" };
+  }
 
   return { success: true };
 }
