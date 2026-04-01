@@ -1,10 +1,10 @@
 import { z } from "zod";
 
 /** 클라이언트/서버 스키마 간 검증 수치 동기화를 위한 상수 */
-const baseRules = {
+export const baseRules = {
   company: { min: 2, max: 50 },
   person: { min: 2, max: 20 },
-  message: { min: 10, max: 2000 },
+  message: { min: 5, max: 1000 },
   phonePattern: /^0\d{1,2}-?\d{3,4}-?\d{4}$/,
 } as const;
 

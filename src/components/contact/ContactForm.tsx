@@ -11,6 +11,7 @@ import { useAnimateInView } from "@/components/common/AnimateInView";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { EASE_SPRING, DURATION_NORMAL } from "@/lib/motion";
 import {
+  baseRules,
   createContactSchema,
   type ContactFormData,
 } from "@/lib/schemas/contact";
@@ -97,6 +98,7 @@ interface FloatTextareaProps {
   onBlur: () => void;
   error?: string | null;
   required?: boolean;
+  maxLength?: number;
 }
 
 function FloatTextarea({
@@ -107,15 +109,17 @@ function FloatTextarea({
   onBlur,
   error,
   required,
+  maxLength,
 }: FloatTextareaProps) {
   const errorId = `error-${id}`;
 
   return (
-    <div className="group relative">
+    <div className="group relative mt-6">
       <textarea
         id={id}
         placeholder=" "
         value={value}
+        maxLength={maxLength}
         onChange={(e) => onChange(e.target.value)}
         onBlur={onBlur}
         required={required}
@@ -123,7 +127,7 @@ function FloatTextarea({
         aria-invalid={!!error}
         aria-describedby={error ? errorId : undefined}
         rows={5}
-        className={`peer w-full resize-none border-b-2 bg-transparent pt-6 pb-2 text-gray-950 transition-all duration-300 ${
+        className={`peer w-full resize-none border-b-2 bg-transparent py-2 text-gray-950 transition-all duration-300 ${
           error
             ? "border-red-400 focus:border-red-400"
             : "border-gray-200 focus:border-primary-400"
@@ -132,7 +136,7 @@ function FloatTextarea({
       />
       <label
         htmlFor={id}
-        className={`pointer-events-none absolute left-0 top-4 text-sm transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-xs peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs ${
+        className={`pointer-events-none absolute left-0 -top-5 text-xs transition-all duration-300 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-5 peer-focus:text-xs peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-xs ${
           error
             ? "text-red-400 peer-focus:text-red-400"
             : "text-gray-500 peer-focus:text-primary-400"
@@ -145,11 +149,22 @@ function FloatTextarea({
           </span>
         )}
       </label>
-      {error && (
-        <p id={errorId} role="alert" className="mt-1.5 text-sm text-red-400">
-          {error}
-        </p>
-      )}
+      <div className="flex items-start justify-between gap-2">
+        {error && (
+          <p id={errorId} role="alert" className="mt-1.5 text-sm text-red-400">
+            {error}
+          </p>
+        )}
+        {maxLength != null && (
+          <p
+            className={`mt-1.5 ml-auto shrink-0 text-xs ${
+              value.length >= maxLength ? "text-red-400" : "text-gray-400"
+            }`}
+          >
+            {value.length}/{maxLength}
+          </p>
+        )}
+      </div>
     </div>
   );
 }
@@ -387,6 +402,7 @@ export function ContactForm() {
                         onBlur={field.onBlur}
                         error={fieldState.error?.message}
                         required
+                        maxLength={baseRules.message.max}
                       />
                     )}
                   />
