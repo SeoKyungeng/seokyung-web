@@ -8,8 +8,10 @@ import { DURATION_SLOW, STAGGER_DEFAULT } from "@/lib/motion";
 
 interface StatItem {
   label: { ko: string; en: string };
-  value: number;
-  suffix: { ko: string; en: string };
+  value?: number;
+  suffix?: { ko: string; en: string };
+  prefix?: { ko: string; en: string };
+  text?: { ko: string; en: string };
 }
 
 interface StatsSectionProps {
@@ -64,21 +66,28 @@ function StatColumn({
   reducedMotion: boolean;
   index: number;
 }) {
-  const count = useCounter(item.value, 2.2, triggered, reducedMotion);
-  const displayValue = Number.isInteger(item.value) ? count : count.toFixed(2);
+  const count = useCounter(item.value ?? 0, 2.2, triggered && !item.text, reducedMotion);
+  const displayValue = item.value && Number.isInteger(item.value) ? count : count.toFixed(2);
 
   const content = (
     <div className="group relative">
-      {/* 숫자 */}
-      <p className="font-mono text-5xl font-bold leading-none text-midnight md:text-6xl lg:text-7xl">
-        {displayValue}
-        <span className="ml-1 text-xl text-midnight/30 md:text-2xl">{item.suffix[locale]}</span>
-      </p>
+      {item.text ? (
+        <p className="text-4xl font-bold leading-snug tracking-tight text-midnight md:text-5xl lg:text-6xl">
+          {item.text[locale]}
+        </p>
+      ) : (
+        <p className="font-mono text-5xl font-bold leading-none text-midnight md:text-6xl lg:text-7xl">
+          {item.prefix && <span className="text-2xl text-midnight/50 md:text-3xl">{item.prefix[locale]}</span>}
+          {displayValue}
+          <span className="ml-1 text-xl text-midnight/30 md:text-2xl">{item.suffix?.[locale]}</span>
+        </p>
+      )}
 
-      {/* 라벨 */}
-      <p className="mt-3 text-sm uppercase tracking-[0.15em] text-gray-400">
-        {item.label[locale]}
-      </p>
+      {item.label[locale] && (
+        <p className="mt-3 text-sm uppercase tracking-[0.15em] text-gray-400">
+          {item.label[locale]}
+        </p>
+      )}
     </div>
   );
 
@@ -122,7 +131,7 @@ export function StatsSection({
     return () => observer.disconnect();
   }, [reducedMotion, triggered]);
 
-  const sinceCount = useCounter(sinceItem.value, 2.2, triggered, reducedMotion);
+  const sinceCount = useCounter(sinceItem.value ?? 0, 2.2, triggered, reducedMotion);
 
   const titleContent = (
     <>
@@ -138,7 +147,7 @@ export function StatsSection({
       <p className="text-xs uppercase tracking-[0.2em] text-gray-400">{statsSince}</p>
       <p className="mt-2 font-mono text-7xl font-bold leading-none text-midnight md:text-8xl lg:text-9xl">
         {sinceCount}
-        <span className="ml-2 text-3xl text-midnight/30 md:text-4xl">{sinceItem.suffix[locale]}</span>
+        <span className="ml-2 text-3xl text-midnight/30 md:text-4xl">{sinceItem.suffix?.[locale]}</span>
       </p>
       <p className="mt-5 max-w-sm text-base leading-relaxed text-gray-500">
         {statsSinceDesc}
@@ -166,7 +175,7 @@ export function StatsSection({
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8 lg:gap-12">
           {restItems.map((item, index) => (
             <StatColumn
-              key={item.label.ko}
+              key={item.label.ko || item.text?.ko}
               item={item}
               locale={locale}
               triggered={triggered}
