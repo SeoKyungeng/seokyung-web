@@ -1,12 +1,12 @@
 {
   "clients": [
-    { "id": "hanjin", "name": { "ko": "한진중공업", "en": "Hanjin Heavy Industries" }, "logo": null },
-    { "id": "taeil", "name": { "ko": "태일송풍기", "en": "Taeil Blower" }, "logo": null },
-    { "id": "samyeon", "name": { "ko": "삼연엔지니어링", "en": "Samyeon Engineering" }, "logo": null },
-    { "id": "ypc", "name": { "ko": "(주)와이피씨", "en": "YPC Co., Ltd." }, "logo": null },
-    { "id": "wooshin", "name": { "ko": "(주)우신엔지니어링", "en": "Wooshin Engineering Co., Ltd." }, "logo": null },
-    { "id": "osvalve", "name": { "ko": "(주)오에스벨브", "en": "OS Valve Co., Ltd." }, "logo": null },
-    { "id": "daehan", "name": { "ko": "(주)대한약품공업", "en": "Daehan Pharmaceutical Co., Ltd." }, "logo": null },
-    { "id": "khnp", "name": { "ko": "한국수력원자력", "en": "Korea Hydro & Nuclear Power" }, "logo": null }
+    { "id": "hj", "name": { "ko": "(주)HJ중공업", "en": "HJ Shipbuilding & Construction Co., Ltd." }, "logo": "/images/clients/한진중공업.svg" },
+    { "id": "taeil", "name": { "ko": "(주)태일송풍기", "en": "Taeil Blower Co., Ltd." }, "logo": "/images/clients/태일송풍기.png" },
+    { "id": "samyeon", "name": { "ko": "(주)삼연엔지니어링", "en": "Samyeon Engineering Co., Ltd." }, "logo": "/images/clients/삼연엔지니어링-small.jpg" },
+    { "id": "ypc", "name": { "ko": "(주)와이피씨", "en": "YPC Co., Ltd." }, "logo": "/images/clients/ypc.png" },
+    { "id": "wooshin", "name": { "ko": "(주)우신엔지니어링", "en": "Wooshin Engineering Co., Ltd." }, "logo": "/images/clients/우신엔지니어링.png" },
+    { "id": "osvalve", "name": { "ko": "(주)오에스벨브", "en": "OS Valve Co., Ltd." }, "logo": "/images/clients/오에스벨브.png" },
+    { "id": "daehan", "name": { "ko": "(주)대한약품공업", "en": "Dai Han Pharm Co., Ltd." }, "logo": "/images/clients/대한약품공업.jpg" },
+    { "id": "khnp", "name": { "ko": "한국수력원자력(주)", "en": "Korea Hydro & Nuclear Power Co., Ltd." }, "logo": "/images/clients/한국수력원자력.svg" }
   ]
 }
