@@ -68,7 +68,7 @@ function GalleryItem({ item, reducedMotion, onClick }: GalleryItemProps) {
       type="button"
       aria-label={item.alt}
       onClick={onClick}
-      className="group relative w-full overflow-hidden rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2"
+      className="group relative block w-full cursor-pointer overflow-hidden rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2"
     >
       <div
         className="relative w-full bg-smoke transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
@@ -96,21 +96,12 @@ function GalleryItem({ item, reducedMotion, onClick }: GalleryItemProps) {
         )}
       </div>
 
-      {/* Hover overlay */}
-      <div className="pointer-events-none absolute inset-0 bg-midnight/40 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100" />
-
-      {/* Hover 콘텐츠 */}
-      <div className="pointer-events-none absolute bottom-4 left-4 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100">
-        <span className="text-sm font-medium text-white drop-shadow-sm">
-          {item.alt}
-        </span>
-      </div>
     </button>
   );
 
   if (reducedMotion) {
     return (
-      <div ref={ref} className="mb-3 break-inside-avoid">
+      <div ref={ref} className="mb-2 break-inside-avoid">
         {content}
       </div>
     );
@@ -119,7 +110,7 @@ function GalleryItem({ item, reducedMotion, onClick }: GalleryItemProps) {
   return (
     <motion.div
       ref={ref}
-      className="mb-3 break-inside-avoid"
+      className="mb-2 break-inside-avoid"
       variants={staggerItem}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
