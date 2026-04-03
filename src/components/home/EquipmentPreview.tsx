@@ -45,12 +45,14 @@ function EquipmentCard({ item, locale }: { item: EquipmentItem; locale: "ko" | "
       </div>
 
       <div className="p-5">
-        <p className="text-xs uppercase tracking-[0.15em] text-white/50 mb-1">
+        <h3 className="text-lg font-semibold text-white group-hover:text-primary-300 transition-colors duration-200 leading-tight">
           {item.name[locale]}
-        </p>
-        <h3 className="font-mono text-xl font-bold text-white group-hover:text-primary-300 transition-colors duration-200 leading-tight">
-          {item.model}
         </h3>
+        {item.model && (
+          <p className="mt-1 font-mono text-sm tracking-wider text-white/50">
+            {item.model}
+          </p>
+        )}
       </div>
     </div>
   );
