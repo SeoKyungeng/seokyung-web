@@ -90,7 +90,7 @@ export function Header() {
         className={`fixed z-40 transition-all duration-500 ${
           scrolled
             ? "top-3 right-4 left-4 mx-auto max-w-4xl rounded-full border border-white/10 bg-midnight/80 ring-1 ring-white/10 backdrop-blur-xl lg:top-4 lg:right-0 lg:left-0"
-            : "top-0 right-0 left-0 bg-transparent"
+            : "top-0 right-0 left-0 border border-transparent bg-transparent"
         }`}
         style={{ transitionTimingFunction: EASE_SPRING_CSS }}
       >
