@@ -126,7 +126,7 @@ export function HeroSection({
             <CTAButton href="/contact" variant="solid" className="w-full sm:w-auto justify-center">
               {heroCta}
             </CTAButton>
-            <CTAButton href="/equipment" variant="outline-white" className="hidden sm:inline-flex">
+            <CTAButton href="/equipment" variant="outline-white" className="w-full sm:w-auto justify-center">
               {heroCtaSecondary}
             </CTAButton>
           </div>
@@ -140,7 +140,7 @@ export function HeroSection({
             <CTAButton href="/contact" variant="solid" className="w-full sm:w-auto justify-center">
               {heroCta}
             </CTAButton>
-            <CTAButton href="/equipment" variant="outline-white" className="hidden sm:inline-flex">
+            <CTAButton href="/equipment" variant="outline-white" className="w-full sm:w-auto justify-center">
               {heroCtaSecondary}
             </CTAButton>
           </motion.div>
