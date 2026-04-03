@@ -72,12 +72,12 @@ function StatColumn({
   const content = (
     <div className="group relative">
       {item.text ? (
-        <p className="text-4xl font-bold leading-snug tracking-tight text-midnight md:text-5xl lg:text-6xl">
+        <p className="text-5xl font-bold leading-none tracking-tight text-midnight md:text-6xl lg:text-7xl">
           {item.text[locale]}
         </p>
       ) : (
         <p className="font-mono text-5xl font-bold leading-none text-midnight md:text-6xl lg:text-7xl">
-          {item.prefix && <span className="text-2xl text-midnight/50 md:text-3xl">{item.prefix[locale]}</span>}
+          {item.prefix && <span className="text-2xl text-midnight/30 md:text-3xl">{item.prefix[locale]}</span>}
           {displayValue}
           <span className="ml-1 text-xl text-midnight/30 md:text-2xl">{item.suffix?.[locale]}</span>
         </p>
@@ -136,7 +136,7 @@ export function StatsSection({
   const titleContent = (
     <>
       <SectionLabel>{statsLabel}</SectionLabel>
-      <h2 className="mt-4 font-display text-3xl font-normal tracking-tight text-midnight break-keep md:text-4xl lg:text-5xl lg:leading-[1.15]">
+      <h2 className="mt-4 font-display text-3xl font-normal tracking-tight text-midnight whitespace-pre-line break-keep md:text-4xl lg:text-5xl lg:leading-[1.15]">
         {statsTitle}
       </h2>
     </>
@@ -144,7 +144,7 @@ export function StatsSection({
 
   const sinceBlock = (
     <div className="relative">
-      <p className="text-xs uppercase tracking-[0.2em] text-gray-400">{statsSince}</p>
+      <p className="text-sm uppercase tracking-[0.15em] text-gray-400">{statsSince}</p>
       <p className="mt-2 font-mono text-7xl font-bold leading-none text-midnight md:text-8xl lg:text-9xl">
         {sinceCount}
         <span className="ml-2 text-3xl text-midnight/30 md:text-4xl">{sinceItem.suffix?.[locale]}</span>
