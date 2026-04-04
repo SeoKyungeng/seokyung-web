@@ -28,7 +28,7 @@ export function Footer() {
           {/* Company Info */}
           <div>
             <Image
-              src="/images/logo-white.svg"
+              src="/images/logo.svg"
               alt={tCommon("siteName")}
               width={120}
               height={40}
