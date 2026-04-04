@@ -221,10 +221,7 @@
 - [x] 입력 데이터 서버 사이드 검증
 - [x] 에러 핸들링 + 응답 처리
 
-### 스팸 방지
-- [ ] reCAPTCHA v3 연동
-- [ ] 토큰 검증 (서버 사이드)
-- [ ] 실패 시 에러 토스트
+### ~~스팸 방지~~ — 미적용 확정 (트래픽 소량, 불필요 판단)
 
 ### i18n 번역
 - [x] ko.json — 전체 한국어 텍스트
@@ -234,12 +231,13 @@
 ### SEO
 - [ ] 페이지별 meta 태그 (title, description)
 - [ ] OG 태그 (og:title, og:description, og:image)
-- [ ] sitemap.xml 생성
+- [ ] OG 이미지 제작 (1200×630, 추후 추가)
+- [ ] sitemap.xml 생성 (도메인: seokyungeng.com)
 - [ ] robots.txt
 - [ ] hreflang 태그 (ko, en)
 - [ ] JSON-LD 구조화 데이터 (Organization)
 
-### 애널리틱스
+### ~~애널리틱스~~ — 추후 적용 (GA4 측정 ID 발급 후)
 - [ ] Google Analytics (GA4) 연동
 - [ ] 페이지뷰 자동 추적
 
