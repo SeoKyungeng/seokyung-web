@@ -1,4 +1,34 @@
 {
+  "metadata": {
+    "site": {
+      "name": "Seokyung Engineering",
+      "description": "Precision CNC & MCT Machining Specialist"
+    },
+    "home": {
+      "title": "Seokyung Engineering | Precision CNC & MCT Machining",
+      "description": "Seokyung Engineering specializes in precision CNC and MCT machining for defense, heat exchangers, and industrial machinery."
+    },
+    "about": {
+      "title": "About Us",
+      "description": "Learn about Seokyung Engineering's philosophy, organization, and key clients. Precision machining expertise since 1989."
+    },
+    "equipment": {
+      "title": "Equipment",
+      "description": "Explore Seokyung Engineering's state-of-the-art CNC and MCT machinery fleet. Equipped for high-precision machining."
+    },
+    "products": {
+      "title": "Products",
+      "description": "Precision machined parts for defense, heat exchangers, and industrial applications. Quality CNC and MCT machining."
+    },
+    "sustainability": {
+      "title": "Sustainability",
+      "description": "Seokyung Engineering's ESG management policy. Committed to environmental, social, and governance responsibility."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Get in touch with Seokyung Engineering. Reach out for quotes, technical consultations, and inquiries."
+    }
+  },
   "notFound": {
     "title": "Page not found",
     "backToHome": "Back to Home →"

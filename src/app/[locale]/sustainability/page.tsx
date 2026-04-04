@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/common/PageHeader";
 import { ESGIntro } from "@/components/sustainability/ESGIntro";
@@ -6,6 +7,24 @@ import sustainabilityData from "@/data/sustainability.json";
 import type { ESGPolicy } from "@/lib/types";
 
 type Locale = "ko" | "en";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata.sustainability" });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: {
+      canonical: `/${locale}/sustainability`,
+      languages: { ko: "/ko/sustainability", en: "/en/sustainability" },
+    },
+  };
+}
 
 export default async function SustainabilityPage() {
   const locale = (await getLocale()) as Locale;

@@ -1,7 +1,26 @@
+import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/common/PageHeader";
 import { ProductGallery } from "@/components/products/ProductGallery";
 import productsRaw from "@/data/products.json";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata.products" });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: {
+      canonical: `/${locale}/products`,
+      languages: { ko: "/ko/products", en: "/en/products" },
+    },
+  };
+}
 
 export default async function ProductsPage() {
   const locale = (await getLocale()) as "ko" | "en";

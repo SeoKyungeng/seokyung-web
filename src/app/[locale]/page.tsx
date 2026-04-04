@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import { HeroSection } from "@/components/home/HeroSection";
 import { StatsSection } from "@/components/home/StatsSection";
@@ -8,6 +9,24 @@ import statsData from "@/data/stats.json";
 import equipmentRaw from "@/data/equipment.json";
 import clientsData from "@/data/clients.json";
 import type { EquipmentItem } from "@/lib/types";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata.home" });
+
+  return {
+    title: { absolute: t("title") },
+    description: t("description"),
+    alternates: {
+      canonical: `/${locale}`,
+      languages: { ko: "/ko", en: "/en" },
+    },
+  };
+}
 
 export default async function HomePage() {
   const locale = (await getLocale()) as "ko" | "en";

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/common/PageHeader";
 import { CeoSection } from "@/components/about/CeoSection";
@@ -9,6 +10,24 @@ import organizationData from "@/data/organization.json";
 import philosophyData from "@/data/philosophy.json";
 import clientsData from "@/data/clients.json";
 import type { CEO, Department, PhilosophyValue, Client } from "@/lib/types";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata.about" });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: {
+      canonical: `/${locale}/about`,
+      languages: { ko: "/ko/about", en: "/en/about" },
+    },
+  };
+}
 
 export default async function AboutPage() {
   const locale = (await getLocale()) as "ko" | "en";

@@ -1,9 +1,28 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/common/PageHeader";
 import { AnimateInView } from "@/components/common/AnimateInView";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { CompanyInfo } from "@/components/contact/CompanyInfo";
 import { MapPlaceholder } from "@/components/contact/MapPlaceholder";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata.contact" });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: {
+      canonical: `/${locale}/contact`,
+      languages: { ko: "/ko/contact", en: "/en/contact" },
+    },
+  };
+}
 
 export default async function ContactPage() {
   const t = await getTranslations("pages.contact");

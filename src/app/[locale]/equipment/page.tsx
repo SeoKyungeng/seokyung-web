@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/common/PageHeader";
 import { EquipmentHeader } from "@/components/equipment/EquipmentHeader";
@@ -5,6 +6,24 @@ import { EquipmentStickyList } from "@/components/equipment/EquipmentStickyList"
 import equipmentRaw from "@/data/equipment.json";
 
 type Locale = "ko" | "en";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata.equipment" });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: {
+      canonical: `/${locale}/equipment`,
+      languages: { ko: "/ko/equipment", en: "/en/equipment" },
+    },
+  };
+}
 
 export default async function EquipmentPage() {
   const locale = (await getLocale()) as Locale;
