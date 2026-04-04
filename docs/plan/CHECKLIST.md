@@ -128,7 +128,7 @@
   - [x] 시안 연결선 + 노드 stagger fade-in
   - [x] 인원수 비표시 (미기재)
 - [x] 주요 고객사
-  - [ ] 파트너사 로고 수집 및 적용 (8개사)
+  - [x] 파트너사 로고 수집 및 적용 (8개사)
   - [x] 텍스트 그리드 (로고 미수령)
   - [x] 4열 (PC) / 2열 (모바일)
   - [x] hover shadow + border-primary
@@ -226,16 +226,16 @@
 ### i18n 번역
 - [x] ko.json — 전체 한국어 텍스트
 - [x] en.json — 전체 영어 텍스트
-- [ ] 메타 태그 번역 (title, description)
+- [x] 메타 태그 번역 (title, description)
 
 ### SEO
-- [ ] 페이지별 meta 태그 (title, description)
-- [ ] OG 태그 (og:title, og:description, og:image)
+- [x] 페이지별 meta 태그 (title, description)
+- [x] OG 태그 (og:title, og:description, og:image)
 - [ ] OG 이미지 제작 (1200×630, 추후 추가)
-- [ ] sitemap.xml 생성 (도메인: seokyungeng.com)
-- [ ] robots.txt
-- [ ] hreflang 태그 (ko, en)
-- [ ] JSON-LD 구조화 데이터 (Organization)
+- [x] sitemap.xml 생성 (도메인: seokyungeng.com)
+- [x] robots.txt
+- [x] hreflang 태그 (ko, en)
+- [x] JSON-LD 구조화 데이터 (Organization)
 
 ### ~~애널리틱스~~ — 추후 적용 (GA4 측정 ID 발급 후)
 - [ ] Google Analytics (GA4) 연동
