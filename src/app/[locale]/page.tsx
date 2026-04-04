@@ -21,6 +21,7 @@ export default async function HomePage() {
   const clients = clientsData.clients.map((c) => ({
     id: c.id,
     name: c.name[locale],
+    logo: c.logo,
   }));
 
 

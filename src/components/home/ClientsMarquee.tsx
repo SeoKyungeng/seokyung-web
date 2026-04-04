@@ -7,6 +7,7 @@ import { SectionTitle } from "@/components/common/SectionTitle";
 interface ClientItem {
   id: string;
   name: string;
+  logo: string | null;
 }
 
 interface ClientsMarqueeProps {
@@ -15,51 +16,43 @@ interface ClientsMarqueeProps {
   clients: ClientItem[];
 }
 
+function LogoItem({ client }: { client: ClientItem }) {
+  if (!client.logo) return null;
+
+  return (
+    <div className="flex shrink-0 items-center justify-center px-8 md:px-12">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={client.logo}
+        alt={client.name}
+        className="h-8 max-w-[120px] object-contain opacity-40 grayscale transition-all duration-500 hover:opacity-100 hover:grayscale-0 md:h-10 md:max-w-[140px]"
+      />
+    </div>
+  );
+}
+
 function MarqueeTrack({
   clients,
-  reverse = false,
   duration = 30,
-  reducedMotion,
+  reverse = false,
 }: {
   clients: ClientItem[];
-  reverse?: boolean;
   duration?: number;
-  reducedMotion: boolean;
+  reverse?: boolean;
 }) {
-  // 화면을 넉넉히 채우도록 4배 복제
   const repeated = [...clients, ...clients, ...clients, ...clients];
-
-  if (reducedMotion) {
-    return (
-      <div className="flex flex-wrap justify-center gap-3 px-5">
-        {clients.map((c) => (
-          <span
-            key={c.id}
-            className="inline-flex items-center rounded-full border border-gray-200/80 bg-white/80 px-5 py-2 text-sm font-medium text-gray-700 backdrop-blur-sm ring-1 ring-gray-200/50"
-          >
-            {c.name}
-          </span>
-        ))}
-      </div>
-    );
-  }
 
   return (
     <div className="overflow-hidden" aria-hidden="true">
       <div
-        className="flex w-max gap-4"
+        className="flex w-max"
         style={{
           animation: `marquee ${duration}s linear infinite`,
           animationDirection: reverse ? "reverse" : "normal",
         }}
       >
         {repeated.map((c, i) => (
-          <span
-            key={`${c.id}-${i}`}
-            className="inline-flex items-center whitespace-nowrap rounded-full border border-gray-200/80 bg-white/80 px-6 py-2.5 text-sm font-medium text-gray-700 backdrop-blur-sm ring-1 ring-gray-200/50 transition-colors duration-200 hover:border-primary-400/30 hover:text-primary-400"
-          >
-            {c.name}
-          </span>
+          <LogoItem key={`${c.id}-${i}`} client={c} />
         ))}
       </div>
     </div>
@@ -72,10 +65,11 @@ export function ClientsMarquee({
   clients,
 }: ClientsMarqueeProps) {
   const reducedMotion = useReducedMotion();
+  const logoClients = clients.filter((c) => c.logo);
 
   return (
     <section className="bg-smoke py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-20 mb-10">
+      <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-20 mb-14 md:mb-16">
         <SectionLabel>{clientsLabel}</SectionLabel>
         <SectionTitle weight="normal" className="mt-3 text-2xl md:text-4xl text-midnight">
           {clientsTitle}
@@ -91,10 +85,17 @@ export function ClientsMarquee({
         </ul>
       </div>
 
-      <div className="space-y-4">
-        <MarqueeTrack clients={clients} duration={25} reducedMotion={reducedMotion} />
-        <MarqueeTrack clients={clients} duration={35} reverse reducedMotion={reducedMotion} />
-      </div>
+      {reducedMotion ? (
+        <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-20">
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+            {logoClients.map((c) => (
+              <LogoItem key={c.id} client={c} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <MarqueeTrack clients={logoClients} duration={30} />
+      )}
     </section>
   );
 }

@@ -68,7 +68,7 @@ function ClientCard({ client, locale }: { client: Client; locale: "ko" | "en" })
           <img
             src={client.logo}
             alt={client.name[locale]}
-            className="max-h-12 max-w-[80%] object-contain"
+            className="h-12 max-w-[80%] object-contain"
           />
         ) : (
           <span className="font-mono text-2xl font-bold text-gray-300 md:text-3xl" aria-hidden="true">
