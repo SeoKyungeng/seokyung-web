@@ -52,6 +52,7 @@ export async function generateMetadata({
       type: "website",
       locale: locale === "ko" ? "ko_KR" : "en_US",
       siteName: t("site.name"),
+      images: [{ url: "/images/og.jpg", width: 1200, height: 630 }],
     },
   };
 }
