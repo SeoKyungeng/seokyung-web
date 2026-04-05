@@ -278,7 +278,7 @@
 ## Phase 5 — 최적화 + 배포 (~0.5주)
 
 ### 최적화
-- [ ] 이미지 WebP 변환 + srcset
+- [x] 이미지 WebP 변환 + srcset (AVIF/WebP 포맷, deviceSizes, 캐시 TTL, img→next/image 전환, priority 설정)
 - [ ] 번들 사이즈 분석 (`next build` + `@next/bundle-analyzer`)
 - [ ] 불필요한 JS 제거 (tree-shaking 확인)
 - [ ] 폰트 서브셋 최적화
