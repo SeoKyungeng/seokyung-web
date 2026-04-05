@@ -14,7 +14,7 @@ interface ProductsHighlightProps {
 
 const HIGHLIGHT_ITEMS = [
   { image: "/images/products/01.jpeg", size: "lg" as const },
-  { image: "/images/products/05.jpeg", size: "md" as const },
+  { image: "/images/products/04.jpeg", size: "md" as const },
   { image: "/images/products/10.jpeg", size: "md" as const },
 ];
 
