@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { SectionTitle } from "@/components/common/SectionTitle";
@@ -64,10 +65,11 @@ function ClientCard({ client, locale }: { client: Client; locale: "ko" | "en" })
     <div className="group relative aspect-[3/2] cursor-default rounded-xl border border-gray-200 bg-white ring-1 ring-gray-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:scale-[1.02] hover:border-primary-400/30 hover:shadow-md">
       <div className="flex h-full flex-col items-center justify-center gap-3 px-4 py-6">
         {client.logo ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={client.logo}
             alt={client.name[locale]}
+            width={160}
+            height={48}
             className="h-12 max-w-[80%] object-contain"
           />
         ) : (

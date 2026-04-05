@@ -76,7 +76,7 @@ function handleImageError(e: React.SyntheticEvent<HTMLImageElement>) {
   if (fallback instanceof HTMLElement) fallback.style.display = "flex";
 }
 
-function EquipmentImage({ photo, model }: { photo: string; model: string }) {
+function EquipmentImage({ photo, model, priority = false }: { photo: string; model: string; priority?: boolean }) {
   if (!photo) {
     return (
       <div className="relative aspect-4/3 w-full overflow-hidden bg-gradient-to-br from-smoke to-gray-100">
@@ -95,6 +95,7 @@ function EquipmentImage({ photo, model }: { photo: string; model: string }) {
         alt={model}
         fill
         sizes="(max-width: 768px) 100vw, 58vw"
+        priority={priority}
         className="object-cover blur-[20px] opacity-0 transition-[filter,opacity] duration-500"
         onLoad={handleImageLoad}
         onError={handleImageError}
@@ -127,6 +128,7 @@ interface EquipmentRowProps {
   specUnit: string;
   reducedMotion: boolean;
   reversed: boolean;
+  isFirst?: boolean;
 }
 
 function EquipmentRow({
@@ -134,6 +136,7 @@ function EquipmentRow({
   specUnit,
   reducedMotion,
   reversed,
+  isFirst = false,
 }: EquipmentRowProps) {
   const { ref: rowRef, isInView } = useAnimateInView();
 
@@ -148,14 +151,14 @@ function EquipmentRow({
   const imageBlock = (
     <div className="overflow-hidden" style={{ clipPath }}>
       {reducedMotion ? (
-        <EquipmentImage photo={item.photo} model={item.model} />
+        <EquipmentImage photo={item.photo} model={item.model} priority={isFirst} />
       ) : (
         <motion.div
           variants={imageReveal}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <EquipmentImage photo={item.photo} model={item.model} />
+          <EquipmentImage photo={item.photo} model={item.model} priority={isFirst} />
         </motion.div>
       )}
     </div>
@@ -337,6 +340,7 @@ export function EquipmentStickyList({
                 specUnit={specUnit}
                 reducedMotion={reducedMotion}
                 reversed={index % 2 === 1}
+                isFirst={index === 0}
               />
             ))}
           </motion.div>

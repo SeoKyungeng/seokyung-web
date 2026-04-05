@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { SectionTitle } from "@/components/common/SectionTitle";
@@ -21,10 +22,11 @@ function LogoItem({ client }: { client: ClientItem }) {
 
   return (
     <div className="flex shrink-0 items-center justify-center px-8 md:px-12">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src={client.logo}
         alt={client.name}
+        width={140}
+        height={40}
         className="h-8 max-w-[120px] object-contain opacity-40 grayscale transition-all duration-500 hover:opacity-100 hover:grayscale-0 md:h-10 md:max-w-[140px]"
       />
     </div>
