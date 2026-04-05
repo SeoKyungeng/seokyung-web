@@ -231,7 +231,7 @@
 ### SEO
 - [x] 페이지별 meta 태그 (title, description)
 - [x] OG 태그 (og:title, og:description, og:image)
-- [ ] OG 이미지 제작 (1200×630, 추후 추가)
+- [x] OG 이미지 제작 (1200×630, 추후 추가)
 - [x] sitemap.xml 생성 (도메인: seokyungeng.com)
 - [x] robots.txt
 - [x] hreflang 태그 (ko, en)
