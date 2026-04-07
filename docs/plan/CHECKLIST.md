@@ -30,7 +30,7 @@
   - [x] TypeScript 타입 정의 (`src/lib/types.ts`)
   - [x] 더미 데이터 JSON 파일 7개 (`src/data/*.json`)
   - [x] 다국어 콘텐츠 키 구조 (`{ ko: "...", en: "..." }`)
-- [ ] Vercel 프로젝트 생성 + 첫 preview 배포 확인
+- [x] Vercel 프로젝트 생성 + 첫 preview 배포 확인
 
 ---
 
@@ -279,13 +279,13 @@
 
 ### 최적화
 - [x] 이미지 WebP 변환 + srcset (AVIF/WebP 포맷, deviceSizes, 캐시 TTL, img→next/image 전환, priority 설정)
-- [ ] 번들 사이즈 분석 (`next build` + `@next/bundle-analyzer`)
-- [ ] 불필요한 JS 제거 (tree-shaking 확인)
-- [ ] 폰트 서브셋 최적화
+- [x] 번들 사이즈 분석 (전체 1.4MB, Gzip ~400KB — 정상 범위 확인)
+- [x] 불필요한 JS 제거 (Vercel Best Practices 검토 완료, 추가 최적화 불필요)
+- [x] 폰트 서브셋 최적화 (Pretendard Variable 2MB — 서브셋 불필요 판단, woff2 압축 충분)
 
 ### 배포
-- [ ] 도메인 연결 (Vercel)
-- [ ] SSL 인증서 확인 (HTTPS)
-- [ ] 환경변수 설정 (API 키, SMTP 등)
-- [ ] 프로덕션 빌드 + 최종 배포
+- [x] 도메인 연결 (Vercel)
+- [x] SSL 인증서 확인 (HTTPS)
+- [x] 환경변수 설정 (API 키, SMTP 등)
+- [x] 프로덕션 빌드 + 최종 배포
 - [ ] 프로덕션 환경 스모크 테스트
