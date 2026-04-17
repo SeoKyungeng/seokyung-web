@@ -3,6 +3,6 @@
     { "label": { "ko": "설립", "en": "Since" }, "value": 2011, "suffix": { "ko": "년", "en": "" } },
     { "label": { "ko": "보유 설비", "en": "Machines" }, "value": 19, "suffix": { "ko": "대", "en": "+" } },
     { "label": { "ko": "납품 실적", "en": "Deliveries" }, "value": 500, "prefix": { "ko": "연간 ", "en": "Annual " }, "suffix": { "ko": "+", "en": "+" } },
-    { "label": { "ko": "가공 역량", "en": "Capability" }, "text": { "ko": "초정밀 가공", "en": "Ultra-Precision" } }
+    { "label": { "ko": "가공 역량", "en": "Capability" }, "text": { "ko": "턴키 가공 전문", "en": "Turnkey Solutions" } }
   ]
 }
