@@ -1,8 +1,8 @@
-import { useTranslations, useLocale } from "next-intl";
+import { getTranslations, getLocale } from "next-intl/server";
 import Image from "next/image";
 import { TransitionLink as Link } from "@/components/common/TransitionLink";
 import { FooterMarqueeBand } from "./FooterMarqueeBand";
-import companyData from "@/data/company.json";
+import { getCompanyInfo } from "@/lib/sanity/fetchers";
 
 const QUICK_LINKS = [
   { href: "/about", key: "about" },
@@ -12,11 +12,19 @@ const QUICK_LINKS = [
   { href: "/contact", key: "contact" },
 ] as const;
 
-export function Footer() {
-  const t = useTranslations("nav");
-  const tCommon = useTranslations("common");
-  const tFooter = useTranslations("footer");
-  const locale = useLocale() as "ko" | "en";
+export async function Footer() {
+  const [t, tCommon, tFooter, locale, company] = await Promise.all([
+    getTranslations("nav"),
+    getTranslations("common"),
+    getTranslations("footer"),
+    getLocale() as Promise<"ko" | "en">,
+    getCompanyInfo(),
+  ]);
+
+  const address = company?.address[locale] ?? "";
+  const phone = company?.phone ?? "";
+  const fax = company?.fax ?? "";
+  const email = company?.email ?? "";
 
   return (
     <footer className="bg-midnight text-white">
@@ -35,7 +43,7 @@ export function Footer() {
               className="h-10 w-auto"
             />
             <address className="mt-4 text-sm not-italic leading-relaxed text-white/60">
-              {companyData.address[locale]}
+              {address}
             </address>
           </div>
 
@@ -63,9 +71,9 @@ export function Footer() {
               {tFooter("contactTitle")}
             </p>
             <div className="mt-4 space-y-2 font-mono text-sm text-white/60">
-              <p>TEL: {companyData.phone}</p>
-              <p>FAX: {companyData.fax}</p>
-              <p>EMAIL: {companyData.email}</p>
+              <p>TEL: {phone}</p>
+              <p>FAX: {fax}</p>
+              <p>EMAIL: {email}</p>
             </div>
           </div>
         </div>

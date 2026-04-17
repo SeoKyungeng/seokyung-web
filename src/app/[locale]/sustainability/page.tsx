@@ -3,7 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/common/PageHeader";
 import { ESGIntro } from "@/components/sustainability/ESGIntro";
 import { ESGSection } from "@/components/sustainability/ESGSection";
-import sustainabilityData from "@/data/sustainability.json";
+import { getSustainability } from "@/lib/sanity/fetchers";
 import type { ESGPolicy } from "@/lib/types";
 
 type Locale = "ko" | "en";
@@ -30,16 +30,19 @@ export default async function SustainabilityPage() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("pages.sustainability");
 
+  const data = await getSustainability();
+  if (!data) throw new Error("Sustainability 데이터 누락");
+
   const esgItems = (["e", "s", "g"] as const).map((key) => {
-    const data = sustainabilityData.esg[key];
+    const entry = data.esg[key];
     return {
-      key: data.key as ESGPolicy["key"],
-      title: data.title[locale],
-      subtitle: data.subtitle[locale],
-      description: data.description[locale],
-      icon: data.icon,
-      image: data.image,
-      items: data.items.map((item) => item[locale]),
+      key: entry.key as ESGPolicy["key"],
+      title: entry.title[locale],
+      subtitle: entry.subtitle[locale],
+      description: entry.description[locale],
+      icon: entry.icon,
+      image: entry.image ?? "",
+      items: entry.items.map((item) => item[locale]),
     };
   });
 
@@ -52,8 +55,8 @@ export default async function SustainabilityPage() {
       />
 
       <ESGIntro
-        vision={sustainabilityData.intro.vision[locale]}
-        description={sustainabilityData.intro.description[locale]}
+        vision={data.intro.vision[locale]}
+        description={data.intro.description[locale]}
         label={t("introLabel")}
       />
 

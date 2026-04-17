@@ -5,9 +5,11 @@ import { StatsSection } from "@/components/home/StatsSection";
 import { ClientsMarquee } from "@/components/home/ClientsMarquee";
 import { EquipmentPreview } from "@/components/home/EquipmentPreview";
 import { ProductsHighlight } from "@/components/home/ProductsHighlight";
-import statsData from "@/data/stats.json";
-import equipmentRaw from "@/data/equipment.json";
-import clientsData from "@/data/clients.json";
+import {
+  getClientList,
+  getEquipmentList,
+  getStats,
+} from "@/lib/sanity/fetchers";
 import type { EquipmentItem } from "@/lib/types";
 
 export async function generateMetadata({
@@ -32,17 +34,30 @@ export default async function HomePage() {
   const locale = (await getLocale()) as "ko" | "en";
   const t = await getTranslations("pages.home");
 
-  const allEquipment: EquipmentItem[] = [
-    ...equipmentRaw.cnc.map((item) => ({ ...item, type: "cnc" as const })),
-    ...equipmentRaw.mct.map((item) => ({ ...item, type: "mct" as const })),
-  ];
+  const [stats, equipmentRaw, clientsRaw] = await Promise.all([
+    getStats(),
+    getEquipmentList(),
+    getClientList(),
+  ]);
 
-  const clients = clientsData.clients.map((c) => ({
+  const allEquipment: EquipmentItem[] = equipmentRaw
+    .filter((e) => e.type === "cnc" || e.type === "mct")
+    .map((e) => ({
+      id: e.id,
+      type: e.type as "cnc" | "mct",
+      name: e.name,
+      model: e.model ?? "",
+      manufacturer: e.manufacturer,
+      quantity: e.quantity,
+      photo: e.photo ?? "",
+      specs: (e.specs ?? []).map((s) => ({ label: s.label, value: s.value })),
+    }));
+
+  const clients = clientsRaw.map((c) => ({
     id: c.id,
     name: c.name[locale],
     logo: c.logo,
   }));
-
 
   return (
     <>
@@ -58,7 +73,13 @@ export default async function HomePage() {
         statsTitle={t("statsTitle")}
         statsSince={t("statsSince")}
         statsSinceDesc={t("statsSinceDesc")}
-        stats={statsData.items}
+        stats={(stats?.items ?? []).map((s) => ({
+          label: s.label,
+          value: s.value ?? undefined,
+          text: s.text ?? undefined,
+          prefix: s.prefix ?? undefined,
+          suffix: s.suffix ?? undefined,
+        }))}
         locale={locale}
       />
       <ClientsMarquee
