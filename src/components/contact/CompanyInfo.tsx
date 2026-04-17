@@ -1,6 +1,6 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { SectionLabel } from "@/components/common/SectionLabel";
-import companyData from "@/data/company.json";
+import { getCompanyInfo } from "@/lib/sanity/fetchers";
 
 interface InfoRowProps {
   label: string;
@@ -28,11 +28,15 @@ function InfoRow({ label, value, href, mono = false, isLast = false }: InfoRowPr
 }
 
 export async function CompanyInfo() {
-  const t = await getTranslations("pages.contact");
-  const locale = (await getLocale()) as "ko" | "en";
+  const [t, locale, company] = await Promise.all([
+    getTranslations("pages.contact"),
+    getLocale() as Promise<"ko" | "en">,
+    getCompanyInfo(),
+  ]);
 
-  const address =
-    locale === "ko" ? companyData.address.ko : companyData.address.en;
+  if (!company) return null;
+
+  const address = company.address[locale];
 
   return (
     <div className="rounded-2xl border border-gray-100 bg-smoke/50 p-6 md:p-8">
@@ -40,9 +44,9 @@ export async function CompanyInfo() {
 
       <dl className="mt-8">
         <InfoRow label={t("addressLabel")} value={address} />
-        <InfoRow label={t("phoneLabel")} value={companyData.phone} href={`tel:${companyData.phone}`} mono />
-        <InfoRow label={t("faxLabel")} value={companyData.fax} mono />
-        <InfoRow label={t("emailLabel")} value={companyData.email} href={`mailto:${companyData.email}`} mono isLast />
+        <InfoRow label={t("phoneLabel")} value={company.phone} href={`tel:${company.phone}`} mono />
+        <InfoRow label={t("faxLabel")} value={company.fax} mono />
+        <InfoRow label={t("emailLabel")} value={company.email} href={`mailto:${company.email}`} mono isLast />
       </dl>
     </div>
   );

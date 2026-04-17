@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [390, 640, 750, 828, 1080, 1280, 1920],
     minimumCacheTTL: 2592000,
+    remotePatterns: [
+      { protocol: "https", hostname: "cdn.sanity.io" },
+    ],
   },
 };
 

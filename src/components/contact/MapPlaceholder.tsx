@@ -1,13 +1,18 @@
 import { getTranslations } from "next-intl/server";
 import { MapPin, ExternalLink } from "lucide-react";
 import { SectionLabel } from "@/components/common/SectionLabel";
-import companyData from "@/data/company.json";
+import { getCompanyInfo } from "@/lib/sanity/fetchers";
 
 export async function MapPlaceholder() {
-  const t = await getTranslations("pages.contact");
+  const [t, company] = await Promise.all([
+    getTranslations("pages.contact"),
+    getCompanyInfo(),
+  ]);
 
-  const { lat, lng } = companyData.coordinates;
-  const mapUrl = `https://map.naver.com/v5/search/${encodeURIComponent(companyData.address.ko)}?c=${lng},${lat},15,0,0,0,dh`;
+  if (!company) return null;
+
+  const { lat, lng } = company.coordinates;
+  const mapUrl = `https://map.naver.com/v5/search/${encodeURIComponent(company.address.ko)}?c=${lng},${lat},15,0,0,0,dh`;
 
   return (
     <section aria-label="지도" className="relative w-full overflow-hidden">
@@ -19,7 +24,7 @@ export async function MapPlaceholder() {
       <div className="flex h-[300px] w-full flex-col items-center justify-center gap-5 bg-smoke md:h-[400px]">
         <SectionLabel>{t("mapTitle")}</SectionLabel>
         <MapPin className="h-12 w-12 text-primary-400" aria-hidden="true" />
-        <p className="text-base text-gray-600">{companyData.address.ko}</p>
+        <p className="text-base text-gray-600">{company.address.ko}</p>
         <a
           href={mapUrl}
           target="_blank"

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/common/PageHeader";
 import { ProductGallery } from "@/components/products/ProductGallery";
-import productsRaw from "@/data/products.json";
+import { getProductList } from "@/lib/sanity/fetchers";
 
 export async function generateMetadata({
   params,
@@ -26,13 +26,17 @@ export default async function ProductsPage() {
   const locale = (await getLocale()) as "ko" | "en";
   const t = await getTranslations("pages.products");
 
-  const items = productsRaw.items.map((item) => ({
-    id: item.id,
-    image: item.image,
-    width: item.width,
-    height: item.height,
-    alt: item.alt[locale],
-  }));
+  const raw = await getProductList();
+
+  const items = raw
+    .filter((p) => p.image && p.width && p.height)
+    .map((item) => ({
+      id: item.id,
+      image: item.image!,
+      width: item.width!,
+      height: item.height!,
+      alt: item.alt?.[locale] ?? "",
+    }));
 
   return (
     <>
