@@ -14,6 +14,7 @@
 | 디자인 시스템 | `docs/design/design.md` | 시각 스펙 정의 (**스펙 충돌 시 정본**) |
 | 페이지별 디자인 | `docs/design/pages/*.md` | 페이지 와이어프레임 + 모션 + 상태 |
 | 개발 체크리스트 | `docs/plan/CHECKLIST.md` | 구현 작업 추적 |
+| CMS 도입 계획서 | `docs/plan/CMS_PLAN.md` | Sanity CMS 도입 설계·실행 기록 |
 | 본 문서 (PM) | `docs/plan/PLAN.md` | 일정, 리스크, 의사소통 관리 |
 
 > **정본 원칙**: 수치/스펙이 문서 간 충돌할 경우 `design.md` → `pages/*.md` → `CHECKLIST.md` 순서로 우선.
@@ -31,7 +32,8 @@
 | 2 | 페이지 퍼블리싱 | ✅ 완료 | 6페이지 퍼블리싱 완료 |
 | 3 | 기능 구현 | 🔄 진행중 | 이메일 발송 완료 (Nodemailer + SMTP) |
 | 4 | 테스트 + QA | ⬜ 대기 | |
-| 5 | 최적화 + 배포 | ⬜ 대기 | |
+| 5 | 최적화 + 배포 | ✅ 완료 | 프로덕션 도메인 seokyungeng.com 연결 |
+| 6 | CMS 도입 (Sanity) | 🔄 진행중 | 마이그레이션·웹훅 완료, 담당자 온보딩 대기 |
 
 > 상태: ✅ 완료 / 🔄 진행중 / ⬜ 대기 / ⚠️ 블로킹
 
