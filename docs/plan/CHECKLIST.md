@@ -289,3 +289,64 @@
 - [x] 환경변수 설정 (API 키, SMTP 등)
 - [x] 프로덕션 빌드 + 최종 배포
 - [ ] 프로덕션 환경 스모크 테스트
+
+---
+
+## Phase 6 — CMS 도입 (Sanity) (~1.5주)
+
+> 상세 계획: [docs/plan/CMS_PLAN.md](./CMS_PLAN.md)
+
+### A. Sanity 프로젝트 셋업
+- [x] Sanity 계정 + 프로젝트 생성 (`j5mmf0h2`, dataset `production`)
+- [x] Viewer 토큰 발급 → `.env.local` / Vercel 환경변수 등록
+- [x] CORS origins 등록 (`localhost:3000`, `seokyungeng.com`, Vercel 도메인)
+- [x] Vercel 환경변수 4개 등록 (Production + Preview + Development)
+
+### B. Studio 통합
+- [x] `pnpm add sanity next-sanity @sanity/image-url @sanity/vision styled-components`
+- [x] `sanity.config.ts` 작성 (싱글턴 UX 커스터마이즈 포함)
+- [x] `src/app/studio/[[...tool]]/page.tsx` 임베드
+- [x] `src/app/studio/layout.tsx` 전용 layout (i18n·Provider 격리)
+- [x] `src/proxy.ts` matcher에서 `/studio` 제외
+- [x] 로컬 `/studio` 접속 확인 + Sanity COS development host 등록
+
+### C. 스키마 정의
+- [x] `localizedString`, `localizedText` 공통 오브젝트
+- [x] 컬렉션 스키마 3종: `equipment`, `product`, `client`
+- [x] 싱글턴 스키마 6종: `companyInfo`, `ceo`, `philosophy`, `organization`, `sustainability`, `stats`
+- [x] 이미지 필드 hotspot/crop 활성화
+- [x] 좌측 메뉴 구조(`structure.ts`) + 싱글턴 가드 액션 필터링
+
+### D. 데이터 마이그레이션
+- [x] `scripts/migrate-to-sanity.ts` 작성
+- [x] 이미지 40여장 Sanity CDN 업로드
+- [x] 문서 생성 (설비 15 + 제품 14 + 고객사 8 + 싱글턴 6)
+- [x] Studio에서 데이터 검증
+
+### E. 앱 데이터 소스 전환
+- [x] `src/lib/sanity/` 모듈 (env, client, image, queries, fetchers, types)
+- [x] `next.config.ts`에 `cdn.sanity.io` remotePatterns 추가
+- [x] 홈 페이지: stats + equipment preview + clients marquee
+- [x] `/equipment`: 전체 설비 목록 (순서 유지)
+- [x] `/about`: CEO + philosophy + organization + clients
+- [x] `/products`: 갤러리 (이미지 dimensions 포함)
+- [x] `/sustainability`: intro + ESG
+- [x] `/contact`: company info + map
+- [x] Footer: company info
+- [x] 프로덕션 빌드 통과 + 타입체크 통과
+
+### F. 재검증 웹훅
+- [x] `@sanity/webhook` 설치 + `/api/revalidate` 라우트 작성
+- [x] HMAC 서명 검증 + `revalidateTag(type, "max")`
+- [x] `SANITY_REVALIDATE_SECRET` 생성 + 환경변수 등록
+- [x] Sanity 웹훅 설정 (Create/Update/Delete + 타입 필터 + projection `{_type}`)
+- [x] 실제 Publish로 `200 {"revalidated":true,...}` 확인
+
+### G. 온보딩 + 정리
+- [x] `CLAUDE.md` Sanity 아키텍처 섹션 추가
+- [x] `CMS_PLAN.md` 도입 계획서 작성
+- [x] `SANITY_WRITE_TOKEN` 사용 종료 (Sanity 대시보드에서 revoke 예정)
+- [ ] 담당자 온보딩 매뉴얼 (스크린샷 포함 Studio 사용법)
+- [ ] `src/data/*.json` 삭제 (2주 유예 후)
+- [ ] `src/lib/types.ts` 중복 타입 정리
+- [ ] Vercel 프리뷰 전용 웹훅 추가 (선택)
