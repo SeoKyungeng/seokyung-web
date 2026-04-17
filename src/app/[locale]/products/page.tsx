@@ -3,6 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/common/PageHeader";
 import { ProductGallery } from "@/components/products/ProductGallery";
 import { getProductList } from "@/lib/sanity/fetchers";
+import type { Locale } from "@/i18n/routing";
 
 export async function generateMetadata({
   params,
@@ -23,7 +24,7 @@ export async function generateMetadata({
 }
 
 export default async function ProductsPage() {
-  const locale = (await getLocale()) as "ko" | "en";
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations("pages.products");
 
   const raw = await getProductList();

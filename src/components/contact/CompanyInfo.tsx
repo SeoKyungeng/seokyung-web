@@ -1,6 +1,7 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { getCompanyInfo } from "@/lib/sanity/fetchers";
+import type { Locale } from "@/i18n/routing";
 
 interface InfoRowProps {
   label: string;
@@ -30,7 +31,7 @@ function InfoRow({ label, value, href, mono = false, isLast = false }: InfoRowPr
 export async function CompanyInfo() {
   const [t, locale, company] = await Promise.all([
     getTranslations("pages.contact"),
-    getLocale() as Promise<"ko" | "en">,
+    getLocale() as Promise<Locale>,
     getCompanyInfo(),
   ]);
 

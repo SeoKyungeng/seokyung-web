@@ -1,7 +1,9 @@
 import { defineQuery } from "next-sanity";
 
-/** 공통: Sanity 이미지 → 직접 CDN URL 문자열로 변환 */
 const image = (field: string) => `"${field}": ${field}.asset->url`;
+
+const esgFields = (key: string) =>
+  `"${key}": ${key}{ key, title, subtitle, description, icon, ${image("image")}, items }`;
 
 export const equipmentListQuery = defineQuery(`
   *[_type == "equipment"] | order(order asc) {
@@ -67,9 +69,9 @@ export const sustainabilityQuery = defineQuery(`
   *[_type == "sustainability"][0]{
     intro{ vision, description },
     "esg": {
-      "e": e{ key, title, subtitle, description, icon, ${image("image")}, items },
-      "s": s{ key, title, subtitle, description, icon, ${image("image")}, items },
-      "g": g{ key, title, subtitle, description, icon, ${image("image")}, items }
+      ${esgFields("e")},
+      ${esgFields("s")},
+      ${esgFields("g")}
     }
   }
 `);

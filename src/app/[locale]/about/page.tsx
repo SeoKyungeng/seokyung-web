@@ -12,6 +12,7 @@ import {
   getPhilosophy,
 } from "@/lib/sanity/fetchers";
 import type { CEO, Department, PhilosophyValue, Client } from "@/lib/types";
+import type { Locale } from "@/i18n/routing";
 
 export async function generateMetadata({
   params,
@@ -32,7 +33,7 @@ export async function generateMetadata({
 }
 
 export default async function AboutPage() {
-  const locale = (await getLocale()) as "ko" | "en";
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations("pages.about");
 
   const [ceo, philosophy, organization, clients] = await Promise.all([

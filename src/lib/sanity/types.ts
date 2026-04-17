@@ -1,9 +1,21 @@
-/**
- * Sanity GROQ 쿼리 응답 타입.
- * queries.ts의 projection과 1:1 매핑. 스키마 변경 시 함께 업데이트.
- */
+import type { LocalizedText } from "@/lib/types";
 
-export type LocalizedText = { ko: string; en: string };
+export type { LocalizedText };
+
+/** 전체 Sanity 문서 타입. revalidateTag·웹훅 필터의 단일 source-of-truth. */
+export const DOCUMENT_TYPES = [
+  "equipment",
+  "product",
+  "client",
+  "companyInfo",
+  "ceo",
+  "philosophy",
+  "organization",
+  "sustainability",
+  "stats",
+] as const;
+
+export type DocumentType = (typeof DOCUMENT_TYPES)[number];
 
 export type SanityEquipment = {
   id: string;

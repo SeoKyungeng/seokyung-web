@@ -5,8 +5,7 @@ import { ESGIntro } from "@/components/sustainability/ESGIntro";
 import { ESGSection } from "@/components/sustainability/ESGSection";
 import { getSustainability } from "@/lib/sanity/fetchers";
 import type { ESGPolicy } from "@/lib/types";
-
-type Locale = "ko" | "en";
+import type { Locale } from "@/i18n/routing";
 
 export async function generateMetadata({
   params,

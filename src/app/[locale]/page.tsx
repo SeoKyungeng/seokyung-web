@@ -11,6 +11,7 @@ import {
   getStats,
 } from "@/lib/sanity/fetchers";
 import type { EquipmentItem } from "@/lib/types";
+import type { Locale } from "@/i18n/routing";
 
 export async function generateMetadata({
   params,
@@ -31,7 +32,7 @@ export async function generateMetadata({
 }
 
 export default async function HomePage() {
-  const locale = (await getLocale()) as "ko" | "en";
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations("pages.home");
 
   const [stats, equipmentRaw, clientsRaw] = await Promise.all([
