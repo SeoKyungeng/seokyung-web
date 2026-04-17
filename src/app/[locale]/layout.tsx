@@ -14,6 +14,7 @@ import { Footer } from "@/components/common/Footer";
 import { GrainOverlay } from "@/components/common/GrainOverlay";
 import { TransitionProvider } from "@/providers/TransitionProvider";
 import { SITE_URL } from "@/lib/constants";
+import { Analytics } from "@vercel/analytics/next";
 import "@/styles/globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -117,6 +118,7 @@ export default async function LocaleLayout({
             </ToastProvider>
           </LenisProvider>
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
