@@ -3,6 +3,7 @@ import Image from "next/image";
 import { TransitionLink as Link } from "@/components/common/TransitionLink";
 import { FooterMarqueeBand } from "./FooterMarqueeBand";
 import { getCompanyInfo } from "@/lib/sanity/fetchers";
+import type { Locale } from "@/i18n/routing";
 
 const QUICK_LINKS = [
   { href: "/about", key: "about" },
@@ -17,7 +18,7 @@ export async function Footer() {
     getTranslations("nav"),
     getTranslations("common"),
     getTranslations("footer"),
-    getLocale() as Promise<"ko" | "en">,
+    getLocale() as Promise<Locale>,
     getCompanyInfo(),
   ]);
 

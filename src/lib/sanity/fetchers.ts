@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { sanityClient } from "./client";
 import {
   ceoQuery,
@@ -11,6 +12,7 @@ import {
   sustainabilityQuery,
 } from "./queries";
 import type {
+  DocumentType,
   SanityCeo,
   SanityClient,
   SanityCompanyInfo,
@@ -22,69 +24,48 @@ import type {
   SanitySustainability,
 } from "./types";
 
-/**
- * 모든 Sanity fetch는 ISR 1시간. 콘텐츠 변경 시 웹훅으로 revalidateTag 호출.
- * tags: 문서 타입별 → 해당 타입 수정 시에만 무효화.
- */
-const nextOptions = (tag: string) => ({
-  next: { revalidate: 3600, tags: [tag] },
-});
-
-export const getEquipmentList = () =>
-  sanityClient.fetch<SanityEquipment[]>(
-    equipmentListQuery,
+const fetchWithTag = <T>(query: string, tag: DocumentType) =>
+  sanityClient.fetch<T>(
+    query,
     {},
-    nextOptions("equipment")
+    { next: { revalidate: 3600, tags: [tag] } }
   );
 
-export const getProductList = () =>
-  sanityClient.fetch<SanityProduct[]>(
-    productListQuery,
-    {},
-    nextOptions("product")
-  );
+export const getEquipmentList = cache(() =>
+  fetchWithTag<SanityEquipment[]>(equipmentListQuery, "equipment")
+);
 
-export const getClientList = () =>
-  sanityClient.fetch<SanityClient[]>(
-    clientListQuery,
-    {},
-    nextOptions("client")
-  );
+export const getProductList = cache(() =>
+  fetchWithTag<SanityProduct[]>(productListQuery, "product")
+);
 
-export const getCompanyInfo = () =>
-  sanityClient.fetch<SanityCompanyInfo | null>(
-    companyInfoQuery,
-    {},
-    nextOptions("companyInfo")
-  );
+export const getClientList = cache(() =>
+  fetchWithTag<SanityClient[]>(clientListQuery, "client")
+);
 
-export const getCeo = () =>
-  sanityClient.fetch<SanityCeo | null>(ceoQuery, {}, nextOptions("ceo"));
+export const getCompanyInfo = cache(() =>
+  fetchWithTag<SanityCompanyInfo | null>(companyInfoQuery, "companyInfo")
+);
 
-export const getPhilosophy = () =>
-  sanityClient.fetch<SanityPhilosophy | null>(
-    philosophyQuery,
-    {},
-    nextOptions("philosophy")
-  );
+export const getCeo = cache(() =>
+  fetchWithTag<SanityCeo | null>(ceoQuery, "ceo")
+);
 
-export const getOrganization = () =>
-  sanityClient.fetch<SanityOrganization | null>(
-    organizationQuery,
-    {},
-    nextOptions("organization")
-  );
+export const getPhilosophy = cache(() =>
+  fetchWithTag<SanityPhilosophy | null>(philosophyQuery, "philosophy")
+);
 
-export const getSustainability = () =>
-  sanityClient.fetch<SanitySustainability | null>(
+export const getOrganization = cache(() =>
+  fetchWithTag<SanityOrganization | null>(organizationQuery, "organization")
+);
+
+export const getSustainability = cache(() =>
+  fetchWithTag<SanitySustainability | null>(
     sustainabilityQuery,
-    {},
-    nextOptions("sustainability")
-  );
+    "sustainability"
+  )
+);
 
-export const getStats = () =>
-  sanityClient.fetch<SanityStats | null>(
-    statsQuery,
-    {},
-    nextOptions("stats")
-  );
+export const getStats = cache(() =>
+  fetchWithTag<SanityStats | null>(statsQuery, "stats")
+);

@@ -4,8 +4,7 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { EquipmentHeader } from "@/components/equipment/EquipmentHeader";
 import { EquipmentStickyList } from "@/components/equipment/EquipmentStickyList";
 import { getEquipmentList } from "@/lib/sanity/fetchers";
-
-type Locale = "ko" | "en";
+import type { Locale } from "@/i18n/routing";
 
 export async function generateMetadata({
   params,
