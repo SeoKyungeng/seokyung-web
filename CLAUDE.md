@@ -42,7 +42,9 @@ pnpm start        # 프로덕션 서버
 - 데이터 접근: `src/lib/sanity/fetchers.ts` (타입별 함수, ISR 3600s + 태그 재검증)
 - 이미지: Sanity CDN (`cdn.sanity.io`) — `next.config.ts`의 `remotePatterns`에 허용
 - 재검증 웹훅: `src/app/api/revalidate/route.ts` — `@sanity/webhook` HMAC 서명 검증
-- 계획서: `docs/plan/CMS_PLAN.md`
+- 아키텍처 설명: `docs/sanity-architecture.md` — `[[...tool]]` 라우팅, 레이아웃 격리, ISR 흐름
+- 도입 계획서: `docs/plan/CMS_PLAN.md`
+- 담당자 매뉴얼: `docs/cms-manual.md`
 
 ### 레이아웃 구조
 - `layout.tsx`가 `<main id="main-content">` 제공 → 페이지에서 `<main>` 사용 금지

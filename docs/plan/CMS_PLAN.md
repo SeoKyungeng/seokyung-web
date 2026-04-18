@@ -122,6 +122,8 @@ defineType({
 - Draft Mode로 발행 전 미리보기
 - Sanity 웹훅 → `/api/revalidate` → `revalidateTag()` 호출
 
+> **상세 아키텍처**: 도입 후 운영 중 구조(라우팅·격리 레이아웃·인증·ISR 흐름)는 [`docs/sanity-architecture.md`](../sanity-architecture.md) 참조.
+
 ---
 
 ## 4. 구현 계획 (Phase별)
