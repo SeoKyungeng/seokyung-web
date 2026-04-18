@@ -11,7 +11,7 @@ export const dataset = assertValue(
 export const apiVersion =
   process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? "2025-01-01";
 
-export const useCdn = process.env.NODE_ENV === "production";
+export const useCdn = false;
 
 function assertValue<T>(value: T | undefined, errorMessage: string): T {
   if (value === undefined) {
