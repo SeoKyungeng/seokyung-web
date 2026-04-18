@@ -346,7 +346,7 @@
 - [x] `CLAUDE.md` Sanity 아키텍처 섹션 추가
 - [x] `CMS_PLAN.md` 도입 계획서 작성
 - [x] `SANITY_WRITE_TOKEN` 사용 종료 (Sanity 대시보드에서 revoke 예정)
-- [ ] 담당자 온보딩 매뉴얼 (스크린샷 포함 Studio 사용법)
+- [x] 담당자 온보딩 매뉴얼 초안 작성 (`docs/cms-manual.md`, 스크린샷은 추후 촬영)
 - [ ] `src/data/*.json` 삭제 (2주 유예 후)
 - [ ] `src/lib/types.ts` 중복 타입 정리
 - [ ] Vercel 프리뷰 전용 웹훅 추가 (선택)
