@@ -96,12 +96,12 @@ export function CeoSection({ ceo, locale, label }: CeoSectionProps) {
     <section className="bg-white py-24 md:py-40" aria-labelledby="ceo-heading">
       <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-20">
         {reducedMotion ? (
-          <div className="grid grid-cols-12 gap-10 md:gap-16">
+          <div className="grid grid-cols-12 gap-y-10 md:gap-16">
             {leftStatic}
             {rightStatic}
           </div>
         ) : (
-          <div ref={ref} className="grid grid-cols-12 gap-10 md:gap-16">
+          <div ref={ref} className="grid grid-cols-12 gap-y-10 md:gap-16">
             {leftAnimated}
             {rightAnimated}
           </div>
