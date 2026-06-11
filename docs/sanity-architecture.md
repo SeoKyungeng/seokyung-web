@@ -195,6 +195,17 @@ src/app/api/revalidate/route.ts
 - **평소**: Vercel Edge 캐시가 응답 → 밀리초 단위 latency.
 - **Publish 직후**: 캐시 무효화 → 다음 요청에서 한 번 재생성 → 이후 다시 캐싱.
 
+#### 왜 `useCdn: false`인가
+
+`src/lib/sanity/env.ts`에서 `useCdn`을 **항상 `false`로 고정**한다. 이유:
+
+- `useCdn: true`이면 `apicdn.sanity.io` (Sanity 엣지 CDN)에서 응답을 받는데, Publish 후 CDN 전파에 **수 초~60초 지연**이 있음.
+- 이 지연이 `revalidateTag`보다 늦으면 Next.js가 **옛 데이터를 다시 캐시**해 최대 1시간 락이 걸림 (경쟁 조건).
+- Next.js Data Cache + Vercel Edge가 이미 CDN 역할을 하므로 Sanity CDN 레이어는 **중복이자 방해 요소**.
+- → `api.sanity.io` (실시간 엔드포인트) 직접 호출로 Publish 즉시 반영.
+
+**한도 영향**: ISR 캐싱 덕에 실제 Sanity API 호출은 월 1만 건 이하 (무료 한도 25만의 4% 수준). Sanity 공식 권장 패턴.
+
 ---
 
 ## 5. 싱글턴 보호
@@ -273,6 +284,7 @@ Sanity 프로젝트의 CORS 설정에 `http://localhost:3000`이 등록되어 �
 1. 웹훅 페이로드 확인 (Sanity Manage → API → Webhooks → Attempts)
 2. 응답 본문에 `{"revalidated": true, "tag": "..."}`가 있어야 정상
 3. 서명 오류 시 `SANITY_REVALIDATE_SECRET`이 Sanity 웹훅 설정과 Vercel 환경변수에서 동일한지 확인
+4. 위가 모두 정상인데도 반영이 안 되면 **Sanity CDN 전파 지연** 가능성 → §4.3 "왜 `useCdn: false`인가" 참고. 이 프로젝트는 `useCdn: false`로 고정해 해당 경쟁 조건을 제거함.
 
 ### Q. 스키마 변경 배포는?
 
