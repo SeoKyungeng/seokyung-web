@@ -14,6 +14,7 @@ import { Footer } from "@/components/common/Footer";
 import { GrainOverlay } from "@/components/common/GrainOverlay";
 import { TransitionProvider } from "@/providers/TransitionProvider";
 import { SITE_URL } from "@/lib/constants";
+import { SEO_KEYWORDS, SEO_SERVICES } from "@/lib/seo";
 import { getCompanyInfo } from "@/lib/sanity/fetchers";
 import { Analytics } from "@vercel/analytics/next";
 import "@/styles/globals.css";
@@ -47,6 +48,7 @@ export async function generateMetadata({
       template: `%s | ${t("site.name")}`,
     },
     description: t("site.description"),
+    keywords: SEO_KEYWORDS[locale as Locale],
     icons: {
       icon: { url: "/images/logo-symbol.svg", type: "image/svg+xml" },
     },
@@ -89,6 +91,11 @@ export default async function LocaleLayout({
       (locale === "ko" ? "(주)서경엔지니어링" : "Seokyung Engineering Co., Ltd."),
     url: SITE_URL,
     logo: `${SITE_URL}/images/logo-symbol.svg`,
+    knowsAbout: SEO_KEYWORDS[locale as Locale],
+    makesOffer: SEO_SERVICES[locale as Locale].map((service) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: service },
+    })),
     ...(company?.address[locale as Locale] && {
       address: {
         "@type": "PostalAddress",
