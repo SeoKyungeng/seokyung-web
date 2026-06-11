@@ -19,7 +19,7 @@ export async function generateMetadata({
     description: t("description"),
     alternates: {
       canonical: `/${locale}/contact`,
-      languages: { ko: "/ko/contact", en: "/en/contact" },
+      languages: { ko: "/ko/contact", en: "/en/contact", "x-default": "/ko/contact" },
     },
   };
 }
