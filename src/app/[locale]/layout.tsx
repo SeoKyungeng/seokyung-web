@@ -6,7 +6,7 @@ import localFont from "next/font/local";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { routing } from "@/i18n/routing";
+import { routing, type Locale } from "@/i18n/routing";
 import { LenisProvider } from "@/providers/LenisProvider";
 import { ToastProvider } from "@/providers/ToastProvider";
 import { Header } from "@/components/common/Header";
@@ -14,6 +14,7 @@ import { Footer } from "@/components/common/Footer";
 import { GrainOverlay } from "@/components/common/GrainOverlay";
 import { TransitionProvider } from "@/providers/TransitionProvider";
 import { SITE_URL } from "@/lib/constants";
+import { getCompanyInfo } from "@/lib/sanity/fetchers";
 import { Analytics } from "@vercel/analytics/next";
 import "@/styles/globals.css";
 
@@ -75,23 +76,41 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = await getMessages();
+  const [messages, company] = await Promise.all([
+    getMessages(),
+    getCompanyInfo(),
+  ]);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: locale === "ko" ? "(주)서경엔지니어링" : "Seokyung Engineering Co., Ltd.",
+    name:
+      company?.name[locale as Locale] ??
+      (locale === "ko" ? "(주)서경엔지니어링" : "Seokyung Engineering Co., Ltd."),
     url: SITE_URL,
     logo: `${SITE_URL}/images/logo-symbol.svg`,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: locale === "ko" ? "경남 창원시" : "Changwon, Gyeongnam",
-      addressCountry: "KR",
-    },
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "customer service",
-    },
+    ...(company?.address[locale as Locale] && {
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: company.address[locale as Locale],
+        addressCountry: "KR",
+      },
+    }),
+    ...(company?.coordinates && {
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: company.coordinates.lat,
+        longitude: company.coordinates.lng,
+      },
+    }),
+    ...(company?.phone && {
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        telephone: company.phone,
+        ...(company.email && { email: company.email }),
+      },
+    }),
   };
 
   return (
